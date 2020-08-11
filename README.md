@@ -22,23 +22,19 @@ source myvenv/Scripts/activate
 ### Installation and Setup
 1. Clone repository
     ```
-    git clone https://github.com/ccapdev1920T2/s12g7.git
+    git clone "*insert link here"
     ```
 2. Install requirements
     ```
     pip install -r requirements.txt
     ```
 ### Running (i have no idea pero follow niyo na lang para masaya haha)
-1. Clone git repository
-	```
-    git clone "*insert link here"
-    ```
-2. Run these also every time mag modify ng model.py
+1. Run these also every time mag modify ng model.py
     ```
     manage.py makemigrations
     manage.py migrate
 	```
-3. Run server
+2. Run server
 	```
     manage.py runserver
     ```
