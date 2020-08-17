@@ -1,0 +1,10 @@
+{% load static %}
+
+<section class="mx-md">
+    <h1 class="display-4 header">Let's connect.</h1>
+    <div class="card black-card card-shadow d-flex flex-column justify-content-center p-3">
+        {% include "./contact-info.html" with link='fb.com/WilsonadsComputer' prefix='fb.com' suffix='/WilsonadsComputer' icon='fab fa-facebook icon' %}
+        {% include "./contact-info.html" with link='instagr.am/wilsonads-computer' prefix='instagr.am' suffix='/wilsonads-computer' icon='fab fa-instagram icon'%}
+        {% include "./contact-info.html" with link='m.me/WilsonadsComputer' prefix='m.me' suffix='/WilsonadsComputer' icon='fab fa-facebook-messenger icon'%}
+    </div>
+</section>

@@ -1,0 +1,28 @@
+{% load static %}
+
+<div id="sidebar" class="card-shadow p-4 col-12 col-md-6 col-xl-4 h-100">
+    <div class="container-fluid h-100 d-flex flex-column p-0">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col" id="closeBtn">
+                <i class="fas fa-times mx-2" type="button"></i>
+            </div>
+            <div class="row d-flex justify-content-cente">
+                <h2 class="header-secondary m-0">My Cart</h2>
+            </div>
+        </div>
+        {# Temporary. Use for loops and context in the future. #}
+        <div class="h-100 overflow-auto"> 
+            {% include './cart-card.html' %}
+            {% include './cart-card.html' %}
+            {% include './cart-card.html' %}
+        </div>
+
+        <button class="btn btn-primary m-4">Proceed to Checkout</button>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#closeBtn').click(() => $('#sidebar').css('display', 'none'));
+})
+</script>
