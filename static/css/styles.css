@@ -1,0 +1,93 @@
+@import "./fonts.css";
+
+body {
+  background-color: #F8F9FA;
+  font-family: 'IBM Plex Sans';
+  color: #424242
+}
+
+nav {
+  height: 6rem;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #FFCC49 !important;
+  border: none;
+  font-family: 'IBM Plex Sans SemiBold'; 
+  padding: 0.5rem 0;
+  font-size: 20px;
+  border-radius: 6px;
+}
+
+.btn-blue {
+  background-color: #2E48D9;
+  color: white; 
+}
+
+.nav-item {
+  margin: 0 2rem;
+  font-size: 16px;
+}
+
+.nav-item.active {
+  font-weight: 500;
+  border-bottom: 3px solid #FFCC49;
+}
+
+.dropdown-menu 
+.dropdown-item {
+  padding: 1rem;
+  font-size: 16px;
+  color: #424242;
+  background-color: #FBFBFB;
+  border-radius: 8px;
+}
+
+.dropdown-menu.show {
+  margin-top: 1rem;
+  padding: 0;
+  border: 0px;
+  filter: drop-shadow(0px 4px 48px rgba(0, 0, 0, 0.08));
+}
+
+.dropdown-item:hover {
+  background-color: #FAF6A5;
+}
+
+.navbar-collapse {
+  z-index: 1;
+}
+
+#brand-logo {
+  height: 64px;
+  width: 64px;
+}
+
+#brand-name {
+  font-family: OverpassEB;
+  font-size: 20px;
+  margin: 0;
+  padding-left: 1rem;
+}
+
+#login, 
+#divider, 
+#register {
+  font-family: 'IBM Plex Sans';
+  font-size: 15px;
+  margin-left: 20px;
+}
+
+#search-bar::placeholder {
+  color: #CDCDCD;
+  font-family: 'IBM Plex Sans';
+  font-size: 14px;
+}
+
+#search-bar {
+  border: 0.2px solid #CDCDCD;
+  border-radius: 6px;
+  font-family: 'IBM Plex Sans';
+  height: 40px;
+  padding: 12px;
+}

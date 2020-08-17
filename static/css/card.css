@@ -1,0 +1,49 @@
+@import "./fonts.css";
+
+.black-card {
+  width: max-content;
+  background-image: linear-gradient(270deg, #000000, #323232);  
+  font-size: 24px;
+  color: #FFCC49;
+}
+
+.card {
+  height: max-content;
+  border: 0.2px solid #EAEAEA;
+  border-radius: 8px;
+  font-family: 'IBM Plex Sans';
+  margin-bottom: 2rem; 
+}
+
+.card-title {
+  font-family: 'IBM Plex Sans SemiBold';
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #7B879E
+}
+
+.card-url {
+  font-family: 'IBM Plex Sans Light';
+}
+
+.card-suffix {
+  font-family: 'IBM Plex Sans SemiBold';
+}
+
+.card-img-top {
+  padding: 3rem 1.5rem;
+}
+
+.card-shadow {
+  box-shadow: 0px 4px 32px rgba(0, 0, 0, 0.08)
+}
+
+.card-link {
+  margin: 1rem;
+}
+
+.icon {
+  font-size: 32px;
+}

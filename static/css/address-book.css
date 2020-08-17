@@ -1,0 +1,199 @@
+<style>
+#header {
+    height: 104px;
+}
+
+#brand-logo {
+    height: 64px;
+    width: 64px;
+}
+
+#brand-name {
+    
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    margin: 0;
+    padding-left: 15px;
+}
+
+#login, #divider, #register {
+    font-family: Rubik;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+#search-bar {
+    border-color: #ABABAB;
+    border-radius: 6px;
+    height: 40px;
+    padding: 12px;
+    margin: 24px
+}
+
+body {
+    background-color: #F8F9FA;
+    font-family: Overpass;
+}
+
+nav {
+    height: 100px;
+}
+
+.nav-item {
+    margin-left: 60px;
+    font-family: IBM Plex Sans;
+    font-size: 16px;
+}
+
+.nav-item.active {
+    font-weight: 500;
+    border-bottom: 3px solid #FFCC49;
+}
+
+#search-bar::placeholder {
+    color: #CDCDCD;
+    font-family: IBM Plex Sans;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.dropdown-menu .dropdown-item {
+    font-family: Raleway;
+    font-size: 12px;
+    color: #444444;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #FBFBFB;
+}
+
+.dropdown-menu.show {
+    margin-top: 18px;
+
+    padding: 0;
+    border: 0px;
+
+    filter: drop-shadow(0px 4px 48px rgba(0, 0, 0, 0.08));
+}
+
+.dropdown-item:hover {
+    background-color: #FAF6A5;
+}
+
+.title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 800;
+}
+
+.subtitle {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+}
+
+.side-nav-container {
+    padding-left: 4rem!important;
+    margin-left: 3rem!important;
+}
+
+.side-nav {
+    margin-left: 0;
+}
+
+.side-nav-item {
+    width: 150px;
+    padding: 0rem 1rem;
+}
+
+.side-nav-item.active {
+    border-right: 3px solid #FFCC49;
+    
+}
+.side-nav-item > a{
+    font-family: IBM Plex Sans;
+    font-size: 16px;
+    color: #424242;
+    font-weight: 600;
+    padding: 0;
+}
+
+hr {
+    background: #CDCDCD;
+}
+
+.address-container {
+    background-color: #f6f6f6;
+    height: max-content;
+    border-radius: 15px;
+}
+
+.label-field {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #424242;
+    font-weight: 600;
+    float: left;
+    min-width: max-content;
+}
+
+.label-field.right {
+    display: inline-block;
+    width: inherit;
+    text-align: right;
+}
+
+#instructions {
+    height: 131px;
+}
+
+.textarea-lbl {
+    align-self: end;
+}
+
+input.form-control {
+    width: inherit;
+}
+
+.form-inline {
+    padding: 10px 10px 10px 0px;
+}
+
+.help-block {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #424242;
+}
+
+.buttons {
+    display: inherit;
+    text-align: right;
+}
+
+.gray-btn {
+    background-color: #6b6b6b;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: bolder;
+    width: 141px;
+    height: 48px;
+    border: none;
+}
+
+@media (min-width: 576px) {
+    .form-inline .form-control {
+        display: inline-block;
+        width: inherit;
+        vertical-align: middle;
+    }
+}
+
+@media screen and (max-width: 992px){
+    .side-nav-container {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .label-field.right {
+    display: inline-block;
+    width: inherit;
+    text-align: left;
+    }
+}
