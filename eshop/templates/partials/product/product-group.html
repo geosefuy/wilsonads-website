@@ -3,15 +3,13 @@
 
 <section class="container product-group">
   <div class="row"> 
-    {% include './product-card.html' %}
-    {% include './product-card.html' %}
-    {% include './product-card.html' %}
-    {% include './product-card.html' %}
+    {% for product in row_one_products %}
+      {% include './product-card.html' %}
+    {% endfor %}
   </div>
   <div class="row">
-    {% include './product-card.html' %}
-    {% include './product-card.html' %}
-    {% include './product-card.html' %}
-    {% include './product-card.html' %}
+    {% for product in row_two_products %}
+      {% include './product-card.html' %}
+    {% endfor %}
   </div>
 </section>
