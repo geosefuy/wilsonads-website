@@ -1,0 +1,23 @@
+{% load static %}
+
+<div class="container-fluid my-3">
+  <div class="row align-items-center">
+    <div class="col d-flex justify-content-start align-items-center mx-3">
+      <img id="brand-logo" src="{% static "images/wilsonads.png" %}">
+      <p class="d-none d-md-block" id="brand-name">Wilsonads Computer Sales</p>
+    </div>
+    <div class="col d-none d-lg-flex justify-content-center">
+      <input type="text" id="search-bar" class="form-control" placeholder="What would you like to search for?">
+    </div>
+    <div class="col d-flex justify-content-end mx-3" id="login-register">
+      <i id="cart" class="fa fa-shopping-bag" type="button" aria-hidden="true"></i>
+      <a id="login">Login</a><span id="divider">|</span><a id="register">Register</a>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#cart').click(() => $('#sidebar').css('display', 'flex'));
+})
+</script>

@@ -1,0 +1,52 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light container d-flex justify-content-center p-0">
+  {# For Smaller Screens #}
+  <div class="container-fluid">
+    <div class="d-flex d-lg-none col-9 justify-content-center">
+      <input type="text" id="search-bar" class="form-control" placeholder="What would you like to search for?">
+    </div>  
+    <div class="d-flex container-fluid col-3 justify-content-end">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+
+  {# For Larger Screens #}
+  <div class="collapse navbar-collapse" id="navbarNavDropdown" style="background-color: #F8F9FA">
+    <ul class="navbar-nav">
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Laptops
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="#">Entry-level Laptops</a>
+        <a class="dropdown-item" href="#">Midrange Laptops</a>
+        <a class="dropdown-item" href="#">Gaming Laptops</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Desktops</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Servers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Audio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Mobile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Network</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Accessories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Software</a>
+      </li>
+    </ul>
+  </div>
+</nav>
