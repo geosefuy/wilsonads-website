@@ -1,6 +1,35 @@
-{% extends 'partials/header.html' %}
+{% extends '../partials/base.html' %}
+{% load static %}
+  
+{% block title %}Home | WilsonAds{% endblock %}
 
-{% block content %}
-homepage
-<img src="wilsonads.png">
+{% block body %}
+<!-- Banner -->
+{% include '../partials/home/banner.html' %}
+
+<!-- Product Group 1 -->
+<div class="m-md"></div>
+<section class="justify-content-between">
+    <h1 class="display-4 m-md-5 text-center header">
+        Top-Selling Laptops
+    </h1>
+    <img src="{% static "/images/art/product-group1.svg" %}" id="imgEl1" />
+</section>
+{% include '../partials/product/product-group.html' %}
+
+<!-- Product Group 2 -->
+<div class="m-big"></div>
+<section class="d-flex align-items-center">
+    <img src="{% static "/images/art/product-group2.svg" %}" id="imgEl2" />
+    <h1 class="display-4 header text-center pr-4">
+        For the Virtual Worker
+    </h1>
+</section>
+<div class="d-flex justify-content-center" id="productHeader2">
+    <img src="{% static "/images/art/circles.svg" %}" id="imgEl2b" />
+</div>
+{% include '../partials/product/product-group.html' %}
+
+<!-- Contact Us -->
+{% include '../partials/home/contact.html' %}
 {% endblock %}
