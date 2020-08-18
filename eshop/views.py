@@ -2,6 +2,17 @@ from django.shortcuts import render
 from .models import *
 
 # Create your views here.
+def cart(req):
+    context = {}
+    return render(req, 'pages/cart.html', context)
+
+def checkout(req):
+    context = {}
+    return render(req, 'pages/checkout.html', context)
+
+def product_details(req):
+    context = {}
+    return render(req, 'pages/view-product.html', context)
 
 def homepage(req):
     # TODO include filter for each group
@@ -20,3 +31,10 @@ def homepage(req):
 def product_list(req):
     context = {}
     return render(req, 'pages/product_list.html', context)
+def account(req):
+    context = {}
+    return render(req, 'pages/account-page.html', context)  
+
+def result(req):
+    context = {}
+    return render(req, 'pages/result.html', context)

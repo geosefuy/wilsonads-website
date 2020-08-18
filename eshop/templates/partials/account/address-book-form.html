@@ -1,0 +1,100 @@
+{% load static %}
+
+<div class="col-md ml-2 pl-2 mb-5">
+    <div class="container address-container mb-5">
+        <form class="form-horizontal edit-profile" role="form">
+            <div class="pt-5 pb-3">
+                <h2 class="title col-sm">Address book</h2>
+            </div>
+            
+            <hr class="pt-0 mt-0 ml-3">
+            <div class="form-inline">
+                <div class="label col-sm-3 mr-1">
+                    <label for="title" class="label-field right">Title</label>
+                </div>
+                    
+                <div class="col-sm-2">
+                    <input type="text" id="title" class="form-control" autofocus>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="label col-sm-3 mr-1 label-right">
+                    <label for="firstName" class="label-field right">First name</label>
+                </div>
+                    
+                <div class="col-sm-5">
+                    <input type="text" id="firstName" class="form-control" autofocus>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="label col-sm-3 mr-1 label-right">
+                    <label for="lastName" class="label-field right">Last name</label>
+                </div>
+                
+                <div class="col-sm-5">
+                    <input type="text" id="lastName" class="form-control" autofocus>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="label col-sm-3 mr-1 label-right">
+                    <label for="address" class="label-field right">Address</label>
+                </div>
+                
+                <div class="col-sm-5">
+                    <input type="text" id="address" class="form-control" name= "address">
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="label col-sm-3 mr-1">
+                    <label for="city" class="label-field right">City</label>
+                </div>
+                
+                <div class="col-sm-5">
+                    <input type="text" id="city" class="form-control" name= "city">
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="label col-sm-3 mr-1">
+                    <label for="state" class="label-field right">State/County</label>
+                </div>
+                
+                <div class="col-sm-5">
+                    <input type="text" id="state" class="form-control" name= "state">
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="label col-sm-3 mr-1">
+                    <label for="zipcode" class="label-field right">Zip code</label>
+                </div>
+                
+                <div class="col-sm-2">
+                    <input type="text" id="zipcode" class="form-control" name= "zipcode">
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="label col-sm-3 mr-1">
+                    <label for="phoneNumber" class="label-field right">Phone number </label>
+                </div>
+                
+                <div class="col-sm-5">
+                    <input type="phoneNumber" id="phoneNumber" class="form-control">
+                    <span class="help-block">In case we need to call you about your order</span>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="label textarea-lbl col-sm-3 mr-1">
+                    <label for="instructions" class="label-field textarea right">Instructions</label>
+                </div>
+                
+                <div class="col-sm-5">
+                    <textarea id="instructions" class="form-control"></textarea>
+                    <span class="help-block">Tell us anything we should know when delivering your order</span>
+                </div>
+            </div>
+            <div class="form-inline buttons py-3">
+                <button type="submit" class="btn btn-primary gray-btn">Save</button>
+            </div>
+            
+        </form> <!-- /form -->
+    </div>
+</div>
