@@ -29,15 +29,8 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.FloatField()
     stock = models.PositiveIntegerField()
+    description = models.CharField(max_length=500)
     #image
-
-    def __str__(self):
-        return self.name
-
-class ProductAttribute(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, default='')
-    name = models.CharField(max_length=200, default='')
-    value = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
