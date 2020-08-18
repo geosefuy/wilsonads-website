@@ -1,0 +1,31 @@
+/* IBM Plex Sans */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('../fonts/IBM_Plex_Sans/IBMPlexSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Bold';
+  src: url('../fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans SemiBold';
+  src: url('../fonts/IBM_Plex_Sans/IBMPlexSans-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Light';
+  src: url('../fonts/IBM_Plex_Sans/IBMPlexSans-Light.ttf');
+}
+
+/* Overpass */
+@font-face {
+  font-family: OverpassEB;
+  src: url('../fonts/Overpass/Overpass-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: OverpassBold;
+  src: url('../fonts/Overpass/Overpass-Bold.ttf');
+}

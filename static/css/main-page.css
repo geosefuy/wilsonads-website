@@ -1,0 +1,43 @@
+@import "./fonts.css";
+
+.banner {
+  filter: drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.25));
+}
+
+#productHeader1 {
+  margin: 6.5rem;  
+  position: relative; 
+  z-index: -1
+}
+
+#productHeader2 {
+  margin: 1rem; 
+  position: relative; 
+  z-index: -1
+}
+
+#imgEl1 {
+  position: absolute; 
+  width: 100%;
+}
+
+#imgEl2 {
+  width: 40%;
+  z-index: -1;
+}
+
+#imgEl2b {
+  position: absolute; 
+  width: 50%;
+  z-index: -1
+}
+
+#group2LineImg {
+  position: absolute; 
+  z-index: 2;
+}
+
+#header {
+  height: 6.5rem;
+  width: 100vw;
+}

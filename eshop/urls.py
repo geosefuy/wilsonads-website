@@ -5,7 +5,10 @@ urlpatterns = [
     path('', homepage, name = 'homepage'),
     path('cart/', cart, name = 'cart'),
     path('checkout/', checkout, name = 'checkout'),
-    path('product_details/', product_details, name = 'product_details'),
+    path('view-product/', product_details, name = 'product_details'),
     path('login/', login, name = 'login'),
+    path('account/', account, name = 'account'),
     path('register/', register, name = 'register'),
+    path('product_list/', product_list, name = 'product_list'),
+    path('result/', result, name = 'result'),
 ]

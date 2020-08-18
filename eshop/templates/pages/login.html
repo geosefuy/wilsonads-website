@@ -1,5 +1,6 @@
-{% extends 'partials/header.html' %}
+{% extends '../partials/base.html' %}
+{% load static %}
 
-{% block content %}
-login
+{% block body %}
+{% include "../partials/login/login-form.html" %}
 {% endblock %}
