@@ -1,0 +1,214 @@
+{% load static %}
+<style>
+	#header {
+		height: 104px;
+	}
+
+	#brand-logo {
+		height: 64px;
+		weight: 64px;
+	}
+
+	#brand-name {
+		
+		font-style: normal;
+		font-weight: 900;
+		font-size: 20px;
+		margin: 0;
+		padding-left: 15px;
+	}
+
+	#login, #divider, #register {
+		font-family: Rubik;
+		font-size: 15px;
+		margin-left: 20px;
+	}
+
+	#search-bar {
+		border-color: #ABABAB;
+		border-radius: 6px;
+		height: 40px;
+		padding: 12px;
+		margin: 24px
+	}
+
+	body {
+		background-color: #F8F9FA;
+		font-family: Overpass;
+	}
+	
+	nav {
+		height: 100px;
+	}
+
+	.nav-item {
+		margin-left: 60px;
+		font-family: IBM Plex Sans;
+		font-size: 16px;
+	}
+
+	.nav-item.active {
+		font-weight: 500;
+		border-bottom: 3px solid #FFCC49;
+	}
+
+	#search-bar::placeholder {
+		color: #CDCDCD;
+		font-family: IBM Plex Sans;
+		font-size: 12px;
+		font-weight: 500;
+	}
+	
+	.dropdown-menu .dropdown-item {
+		font-family: Raleway;
+		font-size: 12px;
+		color: #444444;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		padding-left: 15px;
+		padding-right: 15px;
+		background-color: #FBFBFB;
+	}
+
+	.dropdown-menu.show {
+		margin-top: 18px;
+
+		padding: 0;
+		border: 0px;
+
+		filter: drop-shadow(0px 4px 48px rgba(0, 0, 0, 0.08));
+	}
+
+	.dropdown-item:hover {
+		background-color: #FAF6A5;
+	}
+
+	#checkout-info{
+		background-color: rgb(187, 186, 186);
+		display: flex;
+	}
+	.steps {
+		font-family: IBM Plex Sans;
+		font-size: 13px;
+		font-weight: 1000;
+		display:inline-block;
+		margin:20px auto;
+		color: #dfdfdf;
+	}
+	.step-active{
+		color: #000000;
+	}
+	.fillup-area{
+		background-color: rgb(238, 238, 238);
+		font-family: IBM Plex Sans;
+	}
+	.col-form-label{
+		text-align: right;
+	}
+	.fillup-group{
+		justify-content: center;
+		vertical-align: middle;
+		text-align: center;
+	}
+	.payment-image{
+		width: 50px;
+		height: 50px;
+	}
+	.payment-paypal{
+		width: 100px;
+		height: 50px;
+	}
+	.payment-type{
+		width: 75px;
+		height: 50px;
+	}
+	.card-types{
+		background-color: rgb(146, 146, 146);
+	}
+
+	@media screen and (max-width: 768px) {
+		.container {
+		padding: 0;
+		}
+		.table td, .table th{
+		padding: 2px;
+		}
+		.prod-img{
+			height: 35px;
+			width: auto;
+			justify-content: center;
+		}
+		form,
+		.table td, .table th, .fillup-submit{
+		font-size: 10px;
+		} 
+		ul li span {
+		font-size: 10px !important;
+		}
+		.steps{
+			font-size: 7px;
+			padding: 2px;
+		}
+		
+	}
+
+</style>
+
+<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Select a Payment Method</h4>
+<form action="#" class="fillup-area p-4" method="POST">
+	<div class="row">
+		<div class="form-check form-check-inline col-sm-2 col-lg-3 fillup-group">
+			<input class="form-check-input" type="radio" name="paymentOptions" value="credit">
+			<div style="display: grid; text-align: center;">
+				<img src="credit.png" class="payment-image ml-1" alt="">
+				<small class="form-check-label" for="credit_card">Credit Card</small>
+			</div>
+		</div>
+		<div class="form-check form-check-inline col-sm-2 col-lg-4 fillup-group">
+			<input class="form-check-input" type="radio" name="paymentOptions" value="paypal">
+			<div style="display: grid; text-align: center;">
+				<img src="paypal.png" class="payment-paypal" alt="">
+				<small class="form-check-label" for="paypal">PayPal</small>
+			</div>
+		</div>
+		<div class="form-check form-check-inline col-sm-2 col-lg-4 fillup-group">
+			<input class="form-check-input" type="radio" name="paymentOptions" value="cod" disabled>
+			<div style="display: grid; text-align: center;">
+				<img src="cod.png" class="payment-image" alt="">
+				<small class="form-check-label" for="cash_on_delivery">Cash on Delivery</small>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="form-inline card-types p-2">
+		<p class="pl-4 mb-0">Accepted Card Types:</p>
+		<img src="mastercard.jpg" class="payment-type ml-2 mr-2" alt="">
+		<img src="visa.png" class="payment-type" alt="">
+	</div>
+	<br>
+	<div class="form-group">
+		<label for="card_number">Card number</label>
+		<input type="text" class="form-control input-sm" placeholder="1234000056780000">
+	</div>
+	<br>
+	<div class="form-inline row">
+		<div class="form-group col-lg-4">
+			<label for="expmonth">Expiration Month</label>
+			<input type="number" class="form-control" id="" placeholder=" ">
+		</div>
+		<div class="form-group col-lg-4">
+			<label for="expyear">Expiration Year</label>
+			<input type="number" class="form-control" id="" placeholder=" ">
+		</div>
+		<div class="form-group col-lg-4">
+			<label for="seccode">Security Code</label>
+			<input type="text" class="form-control" id="" placeholder=" ">
+		</div>
+	</div>
+	<br><br>
+	<div class="form-inline fillup-group">
+		<input type="submit" class="btn btn-secondary inline-block" value="Proceed to secure payment">
+		<span class="ml-1" style="font-size: 13px;">or <a class="inline-block" href="#">return to shipping method</a></span>
+	</div>
+	
+</form>

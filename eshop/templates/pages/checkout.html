@@ -1,5 +1,14 @@
-{% extends 'partials/header.html' %}
+{% extends "../partials/base.html" %}
+{% load static %}
 
-{% block content %}
-checkout
+{% block body %}
+<div class="row mt-5 px-4">
+	<div class="container bg-light">
+		{% include "../partials/checkout/checkout-nav.html" %}
+        {% include "../partials/checkout/step-1.html" %}
+        {% comment %} {% include "../partials/checkout/step-2.html" %}
+        {% include "../partials/checkout/step-3.html" %}
+        {% include "../partials/checkout/step-4.html" %} {% endcomment %}
+	</div>
+</div>
 {% endblock %}

@@ -1,0 +1,161 @@
+{% load static %}
+
+<style>
+	#header {
+		height: 104px;
+	}
+
+	#brand-logo {
+		height: 64px;
+		weight: 64px;
+	}
+
+	#brand-name {
+		
+		font-style: normal;
+		font-weight: 900;
+		font-size: 20px;
+		margin: 0;
+		padding-left: 15px;
+	}
+
+	#login, #divider, #register {
+		font-family: Rubik;
+		font-size: 15px;
+		margin-left: 20px;
+	}
+
+	#search-bar {
+		border-color: #ABABAB;
+		border-radius: 6px;
+		height: 40px;
+		padding: 12px;
+		margin: 24px
+	}
+
+	body {
+		background-color: #F8F9FA;
+		font-family: Overpass;
+	}
+	
+	nav {
+		height: 100px;
+	}
+
+	.nav-item {
+		margin-left: 60px;
+		font-family: IBM Plex Sans;
+		font-size: 16px;
+	}
+
+	.nav-item.active {
+		font-weight: 500;
+		border-bottom: 3px solid #FFCC49;
+	}
+
+	#search-bar::placeholder {
+		color: #CDCDCD;
+		font-family: IBM Plex Sans;
+		font-size: 12px;
+		font-weight: 500;
+	}
+	
+	.dropdown-menu .dropdown-item {
+		font-family: Raleway;
+		font-size: 12px;
+		color: #444444;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		padding-left: 15px;
+		padding-right: 15px;
+		background-color: #FBFBFB;
+	}
+
+	.dropdown-menu.show {
+		margin-top: 18px;
+
+		padding: 0;
+		border: 0px;
+
+		filter: drop-shadow(0px 4px 48px rgba(0, 0, 0, 0.08));
+	}
+
+	.dropdown-item:hover {
+		background-color: #FAF6A5;
+	}
+
+	#checkout-info{
+		background-color: rgb(187, 186, 186);
+		display: flex;
+	}
+	.steps {
+		font-family: IBM Plex Sans;
+		font-size: 13px;
+		font-weight: 1000;
+		display:inline-block;
+		margin:20px auto;
+		color: #dfdfdf;
+	}
+	.step-active{
+		color: #000000;
+	}
+	.fillup-area{
+		background-color: rgb(238, 238, 238);
+		font-family: IBM Plex Sans;
+	}
+	.col-form-label{
+		text-align: right;
+	}
+	.fillup-group{
+		justify-content: center;
+		vertical-align: middle;
+		text-align: center;
+	}
+
+	@media screen and (max-width: 768px) {
+		.container {
+		padding: 0;
+		}
+		.table td, .table th{
+		padding: 2px;
+		}
+		.prod-img{
+			height: 35px;
+			width: auto;
+		}
+		form,
+		.table td, .table th, .fillup-submit{
+		font-size: 10px;
+		} 
+		ul li span {
+		font-size: 10px !important;
+		}
+		.steps{
+			font-size: 7px;
+			padding: 2px;
+		}
+	}
+
+</style>
+
+<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Choose your Shipping Method</h4>
+<form action="#" class="fillup-area p-4 " method="POST">
+	<div class="form-check fillup-group">
+		<input class="form-check-input" type="radio" name="shipping" value="260">
+		<label for="lbc_shipping" class="form-check-label">LBC Express</label>
+		<label for="lbc_price" class="form-check-label">(₱260.00)</label>
+	</div>
+	<br>
+	<div class="form-check fillup-group">
+		<input class="form-check-input" type="radio" name="shipping" value="150">
+		<label for="lalamove_shipping" class="form-check-label">Lalamove</label>
+		<label for="lalamove_price" class="form-check-label">(₱150.00)</label>
+	</div>
+
+	<br><br>
+	<div class="form-inline fillup-group">
+		<input type="submit" class="btn btn-secondary inline-block" style="font-size: 20px;" value="Continue">
+		<span class="ml-1" style="font-size: 13px;">or <a class="inline-block" href="#">return to cart</a></span>
+	</div>
+	
+</form>
