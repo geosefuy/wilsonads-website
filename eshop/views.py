@@ -28,9 +28,14 @@ def homepage(req):
 
     return render(req, 'pages/homepage.html', context)
 
+def login(req):
+    context = {}
+    return render(req, 'pages/login.html', context)
+    
 def product_list(req):
     context = {}
     return render(req, 'pages/product_list.html', context)
+
 def account(req):
     context = {}
     return render(req, 'pages/account-page.html', context)  
