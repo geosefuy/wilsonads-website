@@ -29,7 +29,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.FloatField()
     stock = models.PositiveIntegerField()
-    description = models.CharField(max_length=200, default="")
+    description = models.CharField(max_length=500, default="")
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):

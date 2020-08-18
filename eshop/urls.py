@@ -10,6 +10,5 @@ urlpatterns = [
     path('login/', login, name = 'login'),
     path('account/', account, name = 'account'),
     path('register/', register, name = 'register'),
-    path('product_list/', product_list, name = 'product_list'),
     path('result/', result, name = 'result'),
 ]
