@@ -6,15 +6,15 @@ from .models import *
 def homepage(req):
     # TODO include filter for each group
     # Limits query to 8 products for each group
-    group_A_row_one_products = Product.objects.all()[:4]
-    group_A_row_two_products = Product.objects.all()[4:4]
-    group_B_row_one_products = Product.objects.all()[:4]
-    group_B_row_two_products = Product.objects.all()[4:4]
-    context = { 'group_A_row_one_products': group_A_row_one_products,
-                'group_A_row_two_products': group_A_row_two_products,
-                'group_B_row_one_products': group_B_row_one_products,
-                'group_B_row_two_products': group_B_row_two_products,
+    group_one = Product.objects.all()[:8]
+    group_two = Product.objects.all()[:8]
+    categories = Category.objects.all()
+    context = { 
+        'group_one_products': group_one,
+        'group_two_products': group_two,
+        'categories': categories
     }
+
     return render(req, 'pages/homepage.html', context)
 
 def product_list(req):
