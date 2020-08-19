@@ -32,8 +32,12 @@ def login(req):
     context = {}
     return render(req, 'pages/login.html', context)
     
-def product_list(req):
-    context = {}
+#category in argument is in slug form  
+def product_list(req, category):
+    category = Category.objects.get(slug=category)
+    context = {
+        'category': category,
+    }
     return render(req, 'pages/product_list.html', context)
 
 def account(req):

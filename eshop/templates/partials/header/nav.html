@@ -20,7 +20,7 @@
       {# TODO fix highlight of active category/subcategory #}
       {% for category in categories %}
       <li class="nav-item {% if category.subcategory_set.all %}dropdown {% endif %}{% if "/TODO/" in request.path %}active{% endif %}">
-        <a href="#" class="nav-link {% if category.subcategory_set.all %}dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{% else %}" {% endif %}>
+        <a href="{% url 'product_list' category=category.slug %}" class="nav-link {% if category.subcategory_set.all %}dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{% else %}" {% endif %}>
           {{ category.name }}
         </a>
         {% if category.subcategory_set.all %}
