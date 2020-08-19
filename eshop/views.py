@@ -19,11 +19,9 @@ def homepage(req):
     # Limits query to 8 products for each group
     group_one = Product.objects.all()[:8]
     group_two = Product.objects.all()[:8]
-    categories = Category.objects.all()
     context = { 
         'group_one_products': group_one,
         'group_two_products': group_two,
-        'categories': categories
     }
 
     return render(req, 'pages/homepage.html', context)
@@ -33,10 +31,20 @@ def login(req):
     return render(req, 'pages/login.html', context)
     
 #category in argument is in slug form  
-def product_list(req, category):
+def category_product_list(req, category):
     category = Category.objects.get(slug=category)
     context = {
         'category': category,
+    }
+    return render(req, 'pages/product_list.html', context)
+
+#subcategory and category in argument are in slug form  
+def subcategory_product_list(req, category, subcategory):
+    category = Category.objects.get(slug=category)
+    subcategory = SubCategory.objects.get(slug=subcategory)
+    context = {
+        'category': category,
+        'subcategory': subcategory,
     }
     return render(req, 'pages/product_list.html', context)
 
