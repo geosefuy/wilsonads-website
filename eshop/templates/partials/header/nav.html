@@ -17,16 +17,15 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown" style="background-color: #F8F9FA">
     <ul class="navbar-nav">
 
-      {# TODO fix highlight of active category/subcategory #}
       {% for category in categories %}
-      <li class="nav-item {% if category.subcategory_set.all %}dropdown {% endif %}{% if "/TODO/" in request.path %}active{% endif %}">
-        <a href="{% url 'product_list' category=category.slug %}" class="nav-link {% if category.subcategory_set.all %}dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{% else %}" {% endif %}>
+      <li class="nav-item {% if category.subcategory_set.all %}dropdown {% endif %}{% if category.slug in request.path %}active{% endif %}">
+        <a href="{% url 'category_product_list' category=category.slug %}" class="nav-link {% if category.subcategory_set.all %}dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{% else %}" {% endif %}>
           {{ category.name }}
         </a>
         {% if category.subcategory_set.all %}
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           {% for subcategory in category.subcategory_set.all  %}
-          <a class="dropdown-item" href="#">{{ subcategory.name}}</a>
+          <a class="dropdown-item" href="{% url 'subcategory_product_list' category=category.slug subcategory=subcategory.slug %}">{{ subcategory.name}}</a>
           {% endfor %}
         </div>
         {% endif %}
