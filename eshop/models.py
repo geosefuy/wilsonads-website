@@ -35,14 +35,48 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.name
 
+class Gallery(models.Model):
+    image1 = models.ImageField(null=True, blank=True)
+    image2 = models.ImageField(null=True, blank=True)
+    image3 = models.ImageField(null=True, blank=True)
+    image4 = models.ImageField(null=True, blank=True)
+    def __str__(self):
+        return self.name
+    
+    @property
+    def image1URL(self):
+        try:
+            url = self.image1.url
+        except:
+            url = ''
+        return url
+    def image2URL(self):
+        try:
+            url = self.image2.url
+        except:
+            url = ''
+        return url
+    def image3URL(self):
+        try:
+            url = self.image3.url
+        except:
+            url = ''
+        return url
+    def image4URL(self):
+        try:
+            url = self.image4.url
+        except:
+            url = ''
+        return url
+
 class Product(models.Model):
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     price = models.FloatField()
     stock = models.PositiveIntegerField()
-    description = models.CharField(max_length=500, default="")
+    description = models.TextField(max_length=500, default="")
     image = models.ImageField(null=True, blank=True)
-
+    gallery = models.ForeignKey(Gallery, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.name
     

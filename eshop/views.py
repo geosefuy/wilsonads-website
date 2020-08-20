@@ -10,8 +10,11 @@ def checkout(req):
     context = {}
     return render(req, 'pages/checkout.html', context)
 
-def product_details(req):
-    context = {}
+def product_details(req, product_id):
+    product = Product.objects.get(id=product_id)
+    context = {
+        'product': product,
+    }
     return render(req, 'pages/view-product.html', context)
 
 def homepage(req):
