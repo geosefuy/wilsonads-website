@@ -84,13 +84,13 @@ def result(req):
 
 # For add to cart functionality
 def updateItem(req):
-	data = json.loads(request.body)
+	data = json.loads(req.body)
 	productId = data['productId']
 	action = data['action']
 	print('Action:', action)
 	print('Product:', productId)
 
-	customer = request.user.customer
+	customer = req.user.customer
 	product = Product.objects.get(id=productId)
 	order, created = Order.objects.get_or_create(customer=customer, complete=False)
 

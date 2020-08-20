@@ -19,10 +19,7 @@
     </div>
     <p id="price">{{ product.price|floatformat:2 }}</p>
 
-    <div class="row">
-        {% include "../../cart/quantity.html" %}
-        <div class="container col-10 d-flex justify-content-start align-items-center">
-            <button id="add-cart-button" type="button" class="btn">Add to cart</button>
-        </div>
+    <div class="container">
+        <button data-product="{{product.id}}" data-action="add" data-product="{{item.product.id}}" id="add-cart-button" type="button" class="btn update-cart">Add to cart</button>
     </div>
 </div>

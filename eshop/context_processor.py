@@ -47,7 +47,7 @@ def cookieCart(request):
 	return {'cartItems':cartItems ,'order':order, 'items':items}
 
 def cartData(req):
-	if req.user.is_authenticated:
+	if req.user.is_authenticated and not req.user.is_superuser:
 		customer = req.user.customer
 		order, created = Order.objects.get_or_create(customer=customer, complete=False)
 		items = order.orderitem_set.all()
