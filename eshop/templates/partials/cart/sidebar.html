@@ -12,9 +12,9 @@
         </div>
         {# Temporary. Use for loops and context in the future. #}
         <div class="h-100 overflow-auto"> 
-            {% include './cart-card.html' %}
-            {% include './cart-card.html' %}
-            {% include './cart-card.html' %}
+            {% for item in items %}
+                {% include './cart-card.html' %}
+            {% endfor %}
         </div>
 
         <button class="btn btn-primary m-4">Proceed to Checkout</button>
