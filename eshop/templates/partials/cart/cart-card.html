@@ -8,8 +8,8 @@
         </div>
         <div class="col-8 d-flex align-items-center">
             <div class="container-fluid">
-                <h5 class="header-secondary">Macbook Pro 15" (256GB)</h5>
-                <h6 class="price">Php123,546</h6>
+                <h5 class="header-secondary">{{ item.product.name }}</h5>
+                <h6 class="price">{{ item.product.price |floatformat:2}}</h6>
             </div>
         </div>
     </div>

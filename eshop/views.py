@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import *
+from django.http import JsonResponse
+import json
 
 # Create your views here.
 def cart(req):
@@ -22,9 +24,11 @@ def homepage(req):
     # Limits query to 8 products for each group
     group_one = Product.objects.all()[:8]
     group_two = Product.objects.all()[:8]
+
     context = { 
         'group_one_products': group_one,
         'group_two_products': group_two,
+        
     }
 
     return render(req, 'pages/homepage.html', context)
@@ -58,3 +62,29 @@ def account(req):
 def result(req):
     context = {}
     return render(req, 'pages/result.html', context)
+
+# For add to cart functionality
+def updateItem(req):
+	data = json.loads(request.body)
+	productId = data['productId']
+	action = data['action']
+	print('Action:', action)
+	print('Product:', productId)
+
+	customer = request.user.customer
+	product = Product.objects.get(id=productId)
+	order, created = Order.objects.get_or_create(customer=customer, complete=False)
+
+	orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
+
+	if action == 'add':
+		orderItem.quantity = (orderItem.quantity + 1)
+	elif action == 'remove':
+		orderItem.quantity = (orderItem.quantity - 1)
+
+	orderItem.save()
+
+	if orderItem.quantity <= 0:
+		orderItem.delete()
+
+	return JsonResponse('Item was added', safe=False)
