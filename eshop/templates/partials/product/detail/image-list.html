@@ -2,15 +2,31 @@
 {# For loop #}
 <div class="container col-lg-2 col-3">
     <div class="container product-thumbnail-container">
-        <img src="https://lh3.google.com/u/0/d/1QNPca_9orDoVLifV2DlwgbuPLj0gV8wb=w3000-h5331-iv1" class="img-fluid">
+        {% if gallery.image1URL %}
+            <img src="{{ gallery.image1URL }}" class="img-fluid">
+        {% else %}
+            <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
+        {% endif %}
     </div>
     <div class="container product-thumbnail-container">
-        <img src="https://lh3.google.com/u/0/d/1QNPca_9orDoVLifV2DlwgbuPLj0gV8wb=w3000-h5331-iv1" class="img-fluid">
+        {% if gallery.image2URL %}
+            <img src="{{ gallery.image2URL }}" class="img-fluid">
+        {% else %}
+            <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
+        {% endif %}
     </div>
     <div class="container product-thumbnail-container">
-        <img src="https://lh3.google.com/u/0/d/1QNPca_9orDoVLifV2DlwgbuPLj0gV8wb=w3000-h5331-iv1" class="img-fluid">
+        {% if gallery.image3URL %}
+            <img src="{{ gallery.image3URL }}" class="img-fluid">
+        {% else %}
+            <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
+        {% endif %}
     </div>
     <div class="container product-thumbnail-container">
-        <img src="https://lh3.google.com/u/0/d/1QNPca_9orDoVLifV2DlwgbuPLj0gV8wb=w3000-h5331-iv1" class="img-fluid">
+        {% if gallery.image4URL %}
+            <img src="{{ gallery.image4URL }}" class="img-fluid">
+        {% else %}
+            <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
+        {% endif %}
     </div>
 </div>

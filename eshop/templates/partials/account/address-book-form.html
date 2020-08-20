@@ -9,21 +9,12 @@
             
             <hr class="pt-0 mt-0 ml-3">
             <div class="form-inline">
-                <div class="label col-sm-3 mr-1">
-                    <label for="title" class="label-field right">Title</label>
-                </div>
-                    
-                <div class="col-sm-2">
-                    <input type="text" id="title" class="form-control" autofocus>
-                </div>
-            </div>
-            <div class="form-inline">
                 <div class="label col-sm-3 mr-1 label-right">
                     <label for="firstName" class="label-field right">First name</label>
                 </div>
                     
                 <div class="col-sm-5">
-                    <input type="text" id="firstName" class="form-control" autofocus>
+                    <input type="text" id="firstName" class="form-control" value="{% if address.fname %} {{ address.fname }} {% endif %}" autofocus>
                 </div>
             </div>
             <div class="form-inline">
@@ -32,7 +23,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="text" id="lastName" class="form-control" autofocus>
+                    <input type="text" id="lastName" class="form-control" value="{% if address.lname %} {{ address.lname }} {% endif %}" autofocus>
                 </div>
             </div>
             <div class="form-inline">
@@ -41,7 +32,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="text" id="address" class="form-control" name= "address">
+                    <input type="text" id="address" class="form-control" name= "address" value="{% if address.address %} {{ address.address }} {% endif %}" >
                 </div>
             </div>
             <div class="form-inline">
@@ -50,16 +41,16 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="text" id="city" class="form-control" name= "city">
+                    <input type="text" id="city" class="form-control" name= "city" value="{% if address.city %} {{ address.city }} {% endif %}" >
                 </div>
             </div>
             <div class="form-inline">
                 <div class="label col-sm-3 mr-1">
-                    <label for="state" class="label-field right">State/County</label>
+                    <label for="state" class="label-field right">State/Country</label>
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="text" id="state" class="form-control" name= "state">
+                    <input type="text" id="state" class="form-control" name= "state" value="{% if address.state %} {{ address.state }} {% endif %}" >
                 </div>
             </div>
             <div class="form-inline">
@@ -68,7 +59,7 @@
                 </div>
                 
                 <div class="col-sm-2">
-                    <input type="text" id="zipcode" class="form-control" name= "zipcode">
+                    <input type="text" id="zipcode" class="form-control" name= "zipcode" value="{% if address.zipcode %} {{ address.zipcode }} {% endif %}" >
                 </div>
             </div>
             <div class="form-inline">
@@ -77,7 +68,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="phoneNumber" id="phoneNumber" class="form-control">
+                    <input type="phoneNumber" id="phoneNumber" class="form-control" value="{% if address.phone %} {{ address.phone }} {% endif %}" >
                     <span class="help-block">In case we need to call you about your order</span>
                 </div>
             </div>
@@ -87,7 +78,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <textarea id="instructions" class="form-control"></textarea>
+                    <textarea id="instructions" class="form-control">{% if address.instructions %} {{ address.instructions }} {% endif %}</textarea>
                     <span class="help-block">Tell us anything we should know when delivering your order</span>
                 </div>
             </div>

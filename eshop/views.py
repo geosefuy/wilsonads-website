@@ -2,9 +2,6 @@ from django.shortcuts import render
 from .models import *
 
 # Create your views here.
-def cart(req):
-    context = {}
-    return render(req, 'pages/cart.html', context)
 
 def checkout(req):
     context = {}
@@ -12,8 +9,10 @@ def checkout(req):
 
 def product_details(req, product_id):
     product = Product.objects.get(id=product_id)
+    gallery = Gallery.objects.get(productid=product_id)
     context = {
         'product': product,
+        'gallery': gallery
     }
     return render(req, 'pages/view-product.html', context)
 
@@ -51,8 +50,28 @@ def subcategory_product_list(req, category, subcategory):
     }
     return render(req, 'pages/product_list.html', context)
 
-def account(req):
-    context = {}
+def account_profile(req, account_id):
+    profile = Customer.objects.get(id=account_id)
+    context = {
+        'profile': profile,
+    }
+    return render(req, 'pages/account-page.html', context)  
+
+def account_orders(req, account_id):
+    orders = Orders.objects.get(customer=account_id)
+    context = {
+        'profile': profile,
+        'orders': orders
+    }
+    return render(req, 'pages/account-page.html', context)  
+
+def account_address(req, account_id):
+    address = ShippingAddress.objects.get(customer=account_id)
+    profile = Customer.objects.get(id=account_id)
+    context = {
+        'address': address,
+        'profile': profile
+    }
     return render(req, 'pages/account-page.html', context)  
 
 def result(req):

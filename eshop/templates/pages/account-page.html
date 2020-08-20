@@ -5,9 +5,12 @@
 <div class="row mt-4 px-4 flex-row">
     {% include "../partials/account/account-nav.html" %}
 
-    {# Separated by if statements in the future #}
-    {% include "../partials/account/address-book-form.html" %}
-    {% comment %} {% include "../partials/account/profile-form.html" %} {% endcomment %}
-    {% comment %} {% include "../partials/account/order-history.html" %} {% endcomment %}
+    {% if address %}
+        {% include "../partials/account/address-book-form.html" %}
+    {% elif orders %}
+        {% include "../partials/account/return-form.html" %}
+    {% else %}
+        {% include "../partials/account/profile-form.html" %}
+    {% endif %}
 </div>
 {% endblock %}
