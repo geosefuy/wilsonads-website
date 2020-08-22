@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 SITE_ID = 2
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -89,6 +90,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'eshop.context_processor.product_categories',
                 'eshop.context_processor.cartData',
+                'eshop.context_processor.customerData',
             ],
         },
     },

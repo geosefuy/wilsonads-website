@@ -3,6 +3,7 @@ from .models import *
 from django.http import JsonResponse
 from .forms import *
 import json
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -183,3 +184,7 @@ def updateItem(req):
 		orderItem.delete()
 
 	return JsonResponse('Item was added', safe=False)
+
+def logout_view(req):
+    logout(req)
+    return homepage(req)

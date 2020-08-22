@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import *
 
+
 urlpatterns = [
     path('', homepage, name = 'homepage'),
     path('product_list/<slug:category>', category_product_list, name = 'category_product_list'),
@@ -13,4 +14,5 @@ urlpatterns = [
     path('account/<int:account_id>/change_password', change_password, name = 'change_password'),
     path('account/<int:account_id>/create_and_update_address', create_and_update_address, name="create_and_update_address"),
     path('account/<int:account_id>/orders', account_orders, name = 'account_orders'),
+    path('logout/', logout_view, name='logout_view'),
 ]

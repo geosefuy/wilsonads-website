@@ -59,3 +59,10 @@ def cartData(req):
 		items = cookieData['items']
 
 	return {'cartItems':cartItems ,'order':order, 'items':items}
+
+def customerData(req):
+	if req.user.is_authenticated:
+		customer = Customer.objects.get(user=req.user)
+		return {'customer_id': customer.id, 'customer_fname': customer.fname, 'customer_lname': customer.lname, 'customer_email': customer.email}
+	else:
+		return {}
