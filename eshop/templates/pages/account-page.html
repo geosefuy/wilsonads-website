@@ -5,7 +5,9 @@
 <div class="row mt-4 px-4 flex-row">
     {% include "../partials/account/account-nav.html" %}
 
-    {% if account %}
+    {% if pw %}
+        {% include "../partials/account/profile-change-password.html" %}
+    {% elif account %}
         {% include "../partials/account/profile-form.html" %} 
     {% elif address %}
         {% include "../partials/account/address-book-form.html" %}

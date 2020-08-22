@@ -39,3 +39,13 @@ class CustomerForm(forms.ModelForm):
             'lname': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
+
+class UserPassForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
+    class Meta:
+        model = User
+        fields = [
+            'password',
+        ]
+    

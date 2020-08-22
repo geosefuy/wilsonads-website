@@ -33,7 +33,16 @@ def homepage(req):
 
     return render(req, 'pages/homepage.html', context)
 
-def login(req):
+def login_page(req):
+
+    # if req.method == "POST":
+    #     username = req.POST.get('username')
+    #     password = req.POST.get('password')
+    #     user = authenticate(request, username=username, password=password)
+
+    #     if user is not None:
+    #         login(req, user)
+    #         return redirect('/')
     context = {}
     return render(req, 'pages/login.html', context)
     
@@ -66,6 +75,9 @@ def update_profile(req, account_id):
     context = {
         'profile': profile,
         'account': True,
+        'pw': False,
+        'address': False,
+        'order': False,
         'form': form
     }
     return render(req, 'pages/account-page.html', context)  
@@ -79,11 +91,36 @@ def account_orders(req, account_id):
         orders = Order.objects.filter(customer=account_id).count()
     context = {
         'profile': profile,
+        'account': False,
+        'pw': False,
+        'address': False,
         'order': True,
         'orders': orders
     }
     return render(req, 'pages/account-page.html', context)  
 
+def change_password(req, account_id):
+    profile = Customer.objects.get(id=account_id)
+    user = profile.user
+    if req.method == "POST":
+        curr_password = req.POST.get("curr_password")
+        password = req.POST.get("password")
+        confirm_password = req.POST.get("confirm_password")
+
+        #user = authenticate(req, username=username, password=password)
+
+        # if user is not None:
+        #     login(req, user)
+        #     redirect('/')
+    context = {
+        'account': False,
+        'pw': True,
+        'address': False,
+        'order': False,
+        'profile': profile,
+        'form': form,
+    }
+    return render(req, 'pages/account-page.html', context)
 
 def result(req):
     context = {}
@@ -112,7 +149,10 @@ def create_and_update_address(req, account_id):
                 form.save()
                 return redirect('/')
     context = {
+        'account': False,
+        'pw': False,
         'address': True,
+        'order': False,
         'profile': profile,
         'form': form
     }
