@@ -1,14 +1,15 @@
 {% load static %}
+{% load socialaccount %}
 
 {% block body %}
 <div class="login-form">
     <form action="" method="post">
         <h2 class="header">Login</h2>		
         <div class="text-center social-btn">
-            <a href="#" class="btn btn-block" style="border: 2px solid #2E48D9; color: #2E48D9">
+            <a href="{% provider_login_url 'facebook' process='login' %}" class="btn btn-block" style="border: 2px solid #2E48D9; color: #2E48D9">
                 <i class="fab fa-facebook"></i> Sign in with <b>Facebook</b>
             </a>
-			<a href="#" class="btn btn-block"  style="background-color: #fff; border: 2px solid #E73549; color: #E73549">
+			<a href="{% provider_login_url 'google' process='login' %}" class="btn btn-block"  style="background-color: #fff; border: 2px solid #E73549; color: #E73549">
                 <i class="fab fa-google"></i> Sign in with <b>Google</b>
             </a>
         </div>
