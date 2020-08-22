@@ -6,9 +6,9 @@
         <div class="pt-5 pb-4">
             <h2 class="title col-sm">Profile</h2>
         </div>
-        <form class="form-horizontal edit-profile" role="form">
+        <form class="form-horizontal edit-profile" role="form" method="POST">
             
-
+            {% csrf_token %}
             <h5 class="subtitle col-sm">Personal information</h5>
             <hr class="pt-0 mt-0 ml-3">
             <div class="form-inline">
@@ -17,7 +17,7 @@
                 </div>
                     
                 <div class="col-sm-5">
-                    <input type="text" id="firstName" class="form-control" value="{{ profile.fname }}" autofocus>
+                    {{ form.fname }}
                 </div>
             </div>
             <div class="form-inline">
@@ -26,7 +26,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="text" id="lastName" class="form-control" value="{{ profile.lname }}" autofocus>
+                    {{ form.lname }}
                 </div>
             </div>
             <div class="form-inline">
@@ -35,7 +35,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="email" id="email" class="form-control" value="{{ profile.email }}" name= "email">
+                    {{ form.email }}
                 </div>
             </div>
             <div class="container mx-2 mt-5 py-4">

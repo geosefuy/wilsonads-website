@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from django.http import JsonResponse
+from .forms import *
 import json
 
 # Create your views here.
@@ -42,7 +43,7 @@ def category_product_list(req, category):
     context = {
         'category': category,
     }
-    return render(req, 'pages/product_list.html', context)
+    return render(req, 'pages/product-list.html', context)
 
 #subcategory and category in argument are in slug form  
 def subcategory_product_list(req, category, subcategory):
@@ -52,35 +53,70 @@ def subcategory_product_list(req, category, subcategory):
         'category': category,
         'subcategory': subcategory,
     }
-    return render(req, 'pages/product_list.html', context)
+    return render(req, 'pages/product-list.html', context)
 
-def account_profile(req, account_id):
+def update_profile(req, account_id):
     profile = Customer.objects.get(id=account_id)
+    form = CustomerForm(instance=profile)
+    if req.method == 'POST':
+        form = CustomerForm(req.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
     context = {
         'profile': profile,
+        'account': True,
+        'form': form
     }
     return render(req, 'pages/account-page.html', context)  
 
 def account_orders(req, account_id):
-    orders = Orders.objects.get(customer=account_id)
+    orders = Order.objects.filter(customer=account_id)
+    profile = Customer.objects.get(id=account_id)
+    if Order.objects.filter(customer=account_id).exists():
+        orders = Order.objects.filter(customer=account_id)
+    else:
+        orders = Order.objects.filter(customer=account_id).count()
     context = {
         'profile': profile,
+        'order': True,
         'orders': orders
     }
     return render(req, 'pages/account-page.html', context)  
 
-def account_address(req, account_id):
-    address = ShippingAddress.objects.get(customer=account_id)
-    profile = Customer.objects.get(id=account_id)
-    context = {
-        'address': address,
-        'profile': profile
-    }
-    return render(req, 'pages/account-page.html', context)  
 
 def result(req):
     context = {}
     return render(req, 'pages/result.html', context)
+
+def create_and_update_address(req, account_id):
+    address = ShippingAddress.objects.filter(customer=account_id)
+    profile = Customer.objects.get(id=account_id)
+    context = {}
+    if ShippingAddress.objects.filter(customer=account_id).exists():
+        address = ShippingAddress.objects.get(customer=account_id)
+        form = ShippingAddressForm(instance=address)
+        if req.method == 'POST':
+            form = ShippingAddressForm(req.POST, instance=address)
+            if form.is_valid():
+                form.save()
+                return redirect('/')
+    else:
+        form = ShippingAddressForm()
+        if req.method == 'POST':
+            form = ShippingAddressForm(req.POST)
+            if form.is_valid():
+                print("VALID POST")
+                form = form.save(commit=False)
+                form.customer = profile
+                form.save()
+                return redirect('/')
+    context = {
+        'address': True,
+        'profile': profile,
+        'form': form
+    }
+    return render(req, 'pages/account-page.html', context)
 
 # For add to cart functionality
 def updateItem(req):

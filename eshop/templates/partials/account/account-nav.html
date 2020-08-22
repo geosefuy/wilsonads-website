@@ -4,13 +4,13 @@
     <h2 class="title col-sm">My Account</h2> 
     <ul class="nav side-nav flex-column mt-3 pt-3">
         <li class="side-nav-item active mb-3">
-            <a class="nav-link" href="{% url 'account_profile' account_id=profile.id %}">Profile</a>
+            <a class="nav-link" href="{% url 'update_profile' profile.id %}">Profile</a>
         </li>
         <li class="side-nav-item mb-3">
-            <a class="nav-link" href="{% url 'account_address' account_id=profile.id %}">Address book</a>
+            <a class="nav-link" href="{% url 'create_and_update_address' profile.id %}">Address book</a>
         </li>
         <li class="side-nav-item mb-3">
-            <a class="nav-link" href="{% url 'account_orders' account_id=profile.id %}">Order history</a>
+            <a class="nav-link" href="{% url 'account_orders' profile.id %}">Order history</a>
         </li>
     </ul>
 </div>

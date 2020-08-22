@@ -2,19 +2,20 @@
 
 <div class="col-md ml-2 pl-2 mb-5">
     <div class="container address-container mb-5">
-        <form class="form-horizontal edit-profile" role="form">
+        <form class="form-horizontal edit-profile" role="form" method='POST'>
             <div class="pt-5 pb-3">
                 <h2 class="title col-sm">Address book</h2>
             </div>
             
             <hr class="pt-0 mt-0 ml-3">
+            {% csrf_token %}
             <div class="form-inline">
                 <div class="label col-sm-3 mr-1 label-right">
                     <label for="firstName" class="label-field right">First name</label>
                 </div>
                     
                 <div class="col-sm-5">
-                    <input type="text" id="firstName" class="form-control" value="{% if address.fname %} {{ address.fname }} {% endif %}" autofocus>
+                    {{ form.fname }}
                 </div>
             </div>
             <div class="form-inline">
@@ -23,7 +24,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="text" id="lastName" class="form-control" value="{% if address.lname %} {{ address.lname }} {% endif %}" autofocus>
+                    {{ form.lname }}
                 </div>
             </div>
             <div class="form-inline">
@@ -32,7 +33,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="text" id="address" class="form-control" name= "address" value="{% if address.address %} {{ address.address }} {% endif %}" >
+                    {{ form.address }}
                 </div>
             </div>
             <div class="form-inline">
@@ -41,7 +42,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="text" id="city" class="form-control" name= "city" value="{% if address.city %} {{ address.city }} {% endif %}" >
+                    {{ form.city }}
                 </div>
             </div>
             <div class="form-inline">
@@ -50,7 +51,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="text" id="state" class="form-control" name= "state" value="{% if address.state %} {{ address.state }} {% endif %}" >
+                    {{ form.state }}
                 </div>
             </div>
             <div class="form-inline">
@@ -59,7 +60,7 @@
                 </div>
                 
                 <div class="col-sm-2">
-                    <input type="text" id="zipcode" class="form-control" name= "zipcode" value="{% if address.zipcode %} {{ address.zipcode }} {% endif %}" >
+                    {{ form.zipcode }}
                 </div>
             </div>
             <div class="form-inline">
@@ -68,7 +69,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <input type="phoneNumber" id="phoneNumber" class="form-control" value="{% if address.phone %} {{ address.phone }} {% endif %}" >
+                    {{ form.phone }}
                     <span class="help-block">In case we need to call you about your order</span>
                 </div>
             </div>
@@ -78,7 +79,7 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    <textarea id="instructions" class="form-control">{% if address.instructions %} {{ address.instructions }} {% endif %}</textarea>
+                    {{ form.instructions }}
                     <span class="help-block">Tell us anything we should know when delivering your order</span>
                 </div>
             </div>
