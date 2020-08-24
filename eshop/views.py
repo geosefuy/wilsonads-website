@@ -27,9 +27,8 @@ def homepage(req):
     group_two = Product.objects.all()[:8]
 
     context = { 
-        'group_one_products': group_one,
-        'group_two_products': group_two,
-        
+        'products_one': group_one,
+        'products_two': group_two,
     }
 
     return render(req, 'pages/homepage.html', context)
@@ -59,9 +58,11 @@ def category_product_list(req, category):
 def subcategory_product_list(req, category, subcategory):
     category = Category.objects.get(slug=category)
     subcategory = SubCategory.objects.get(slug=subcategory)
+    products = Product.objects.filter(subcategory=subcategory)
     context = {
         'category': category,
         'subcategory': subcategory,
+        'products': products,
     }
     return render(req, 'pages/product-list.html', context)
 

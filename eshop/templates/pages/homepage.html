@@ -15,10 +15,9 @@
     </h1>
     <img src="{% static "/images/art/product-group1.svg" %}" id="imgEl1" />
 </section>
-{% with group_one_products|slice:":4" as row_one_products %}
-{% with group_one_products|slice:"4:8" as row_two_products %}
+
+{% with products_one as products %}
 {% include '../partials/product/product-group.html' %}
-{% endwith %}
 {% endwith %}
 
 <!-- Product Group 2 -->
@@ -32,10 +31,8 @@
 <div class="d-flex justify-content-center" id="productHeader2">
     <img src="{% static "/images/art/circles.svg" %}" id="imgEl2b" />
 </div>
-{% with group_two_products|slice:":4" as row_one_products %}
-{% with group_two_products|slice:"4:8" as row_two_products %}
+{% with products_two as products %}
 {% include '../partials/product/product-group.html' %}
-{% endwith %}
 {% endwith %}
 
 <!-- Contact Us -->
