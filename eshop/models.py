@@ -135,6 +135,17 @@ class OrderItem(models.Model):
         total = self.product.price * self.quantity
         return total
 
+class Return(models.Model):
+    STATUS = (
+        ('Pending', 'Pending'),
+        ('Approved', 'Approved'),
+        ('Returned', 'Returned'),
+    )
+
+    item = models.ForeignKey(OrderItem, on_delete=models.CASCADE, blank=True, null=True)
+    description = models.TextField(max_length=500, null=True, blank=True)
+    status = models.CharField(max_length=200, null=True, choices=STATUS, default="Pending")
+
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     fname = models.CharField(max_length=200, null=False)

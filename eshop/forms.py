@@ -38,12 +38,13 @@ class CustomerForm(forms.ModelForm):
             'lname': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
-class UserPassForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
+class ReturnForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = Return
         fields = [
-            'password',
+            'description',
         ]
+        widgets = {
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+        }
     

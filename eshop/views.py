@@ -126,6 +126,31 @@ def result(req):
     context = {}
     return render(req, 'pages/result.html', context)
 
+def create_return(req, account_id, order_id):
+    profile = Customer.objects.filter(id=account_id)
+    if profile:
+        profile = Customer.objects.get(id=account_id)
+        if req.user == profile.user:
+            form = ReturnForm()
+            if req.method == 'POST':
+                form = ReturnForm(req.POST)
+                if form.is_valid():
+                    form.save()
+                    return HttpResponseRedirect(req.path_info)
+            context = {
+                'account': False,
+                'address': True,
+                'order': False,
+                'detail': False,
+                'profile': profile,
+                'form': form
+            }
+            return render(req, 'pages/account-page.html', context)
+        else:
+            return render(req, 'pages/403.html')
+    else:
+        return render(req, 'pages/404.html')
+
 def create_and_update_address(req, account_id):
     profile = Customer.objects.filter(id=account_id)
     if profile:
