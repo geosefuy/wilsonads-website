@@ -1,5 +1,5 @@
 {% load static %}
-
+<form action="{% url 'result' %}" method="GET">
 <div class="container-fluid my-3">
   <div class="row align-items-center">
     <div class="col d-flex justify-content-start align-items-center mx-3">
@@ -9,7 +9,8 @@
       </a>
     </div>
     <div class="col d-none d-lg-flex justify-content-center">
-      <input type="text" id="search-bar" class="form-control" placeholder="What would you like to search for?">
+        <input name="q" type="text" id="search-bar" class="form-control" placeholder="What would you like to search for?">
+        <input type="submit" style="display: none" />
     </div>
     <div class="col d-flex justify-content-end mx-3" id="login-register">
       <i id="cart" class="fa fa-shopping-bag" type="button" aria-hidden="true"></i>
@@ -22,12 +23,10 @@
         <a href="{% url 'login_page' %}" id="login" style="text-decoration: none; color: inherit;">Login</a>
       {% endif %}
       
-      
-      
-      
     </div>
   </div>
 </div>
+</form>
 
 <script>
 $(document).ready(function() {

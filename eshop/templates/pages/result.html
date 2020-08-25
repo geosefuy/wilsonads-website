@@ -3,7 +3,12 @@
 
 {% block body %}
 <div class="container">
-    <h2 class="display-5 sub_header">Search results for: Macbook</h2>
-    {% include "../partials/product/product-group.html" %}
+    <h2 class="display-5 sub_header">Search results for: "{{ query }}"</h2>
+
+    {% if products %}
+        {% include "../partials/product/product-group.html" %}
+    {% else %}
+        <p>No result found</p>
+    {% endif %}
 </div>
 {% endblock %}
