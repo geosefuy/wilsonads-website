@@ -7,13 +7,15 @@
                 <h5 class="modal-title" id="return-form-title">Return Form</h5>
             </div>
             <div class="modal-body">
-                <form>                                            
+                <form method="POST">                                            
                     <p><div class="d-inline p-2" id="return-label">Reason for return:</div></p>
+                    {% csrf_token %}
                     <div class="input-group">
-                        <textarea id="return-form-text-area" class="form-control" aria-label="With textarea"></textarea>
+                        {{ form.description }}
                     </div>
+                        {{ form.orderitem_id }}
                     <div class="container mt-3 mb-1 d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" id="return-send-button">Send</button>
+                        <input type="submit" class="btn btn-secondary" id="return-send-button" value="Send">
                         <div class="container"></div>
                         <button type="button" class="btn btn-secondary" id="return-cancel-button" data-dismiss="modal">Cancel</button>
                     </div>

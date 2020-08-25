@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from .forms import *
 import json
 from django.contrib.auth import logout
@@ -34,15 +34,6 @@ def homepage(req):
     return render(req, 'pages/homepage.html', context)
 
 def login_page(req):
-
-    # if req.method == "POST":
-    #     username = req.POST.get('username')
-    #     password = req.POST.get('password')
-    #     user = authenticate(request, username=username, password=password)
-
-    #     if user is not None:
-    #         login(req, user)
-    #         return redirect('/')
     context = {}
     return render(req, 'pages/login.html', context)
     
@@ -67,98 +58,137 @@ def subcategory_product_list(req, category, subcategory):
     return render(req, 'pages/product-list.html', context)
 
 def update_profile(req, account_id):
-    profile = Customer.objects.get(id=account_id)
-    form = CustomerForm(instance=profile)
-    if req.method == 'POST':
-        form = CustomerForm(req.POST, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    context = {
-        'profile': profile,
-        'account': True,
-        'pw': False,
-        'address': False,
-        'order': False,
-        'form': form
-    }
-    return render(req, 'pages/account-page.html', context)  
+    profile = Customer.objects.filter(id=account_id)
+    if profile:
+        profile = Customer.objects.get(id=account_id)
+        if req.user == profile.user:
+            form = CustomerForm(instance=profile)
+            if req.method == 'POST':
+                form = CustomerForm(req.POST, instance=profile)
+                if form.is_valid():
+                    form.save()
+                    return HttpResponseRedirect(req.path_info)
+            context = {
+                'profile': profile,
+                'account': True,
+                'address': False,
+                'order': False,
+                'detail': False,
+                'form': form
+            }
+            return render(req, 'pages/account-page.html', context)  
+        else:
+            return render(req, 'pages/403.html')
+    else:
+        return render(req, 'pages/404.html')
+    
 
 def account_orders(req, account_id):
-    orders = Order.objects.filter(customer=account_id)
-    profile = Customer.objects.get(id=account_id)
-    if Order.objects.filter(customer=account_id).exists():
-        orders = Order.objects.filter(customer=account_id)
+    profile = Customer.objects.filter(id=account_id)
+    if profile:
+        profile = Customer.objects.get(id=account_id)
+        if req.user == profile.user:
+            orders = Order.objects.filter(customer=account_id).order_by('-date_ordered')
+            context = {
+                'profile': profile,
+                'account': False,
+                'address': False,
+                'order': True,
+                'detail': False,
+                'orders': orders
+            }
+            return render(req, 'pages/account-page.html', context)
+        else:
+            return render(req, 'pages/403.html')
     else:
-        orders = Order.objects.filter(customer=account_id).count()
-    context = {
-        'profile': profile,
-        'account': False,
-        'pw': False,
-        'address': False,
-        'order': True,
-        'orders': orders
-    }
-    return render(req, 'pages/account-page.html', context)  
+        return render(req, 'pages/404.html')
 
-def change_password(req, account_id):
-    profile = Customer.objects.get(id=account_id)
-    user = profile.user
-    if req.method == "POST":
-        curr_password = req.POST.get("curr_password")
-        password = req.POST.get("password")
-        confirm_password = req.POST.get("confirm_password")
-
-        #user = authenticate(req, username=username, password=password)
-
-        # if user is not None:
-        #     login(req, user)
-        #     redirect('/')
-    context = {
-        'account': False,
-        'pw': True,
-        'address': False,
-        'order': False,
-        'profile': profile,
-        'form': form,
-    }
-    return render(req, 'pages/account-page.html', context)
+def order_details(req, account_id, order_id):
+    profile = Customer.objects.filter(id=account_id)
+    if profile:
+        profile = Customer.objects.get(id=account_id)
+        if req.user == profile.user:
+            details = OrderItem.objects.filter(order=order_id)
+            context = {
+                'profile': profile,
+                'account': False,
+                'address': False,
+                'order': False,
+                'detail': True,
+                'details': details,
+            }
+            return render(req, 'pages/account-page.html', context)
+        else:
+            return render(req, 'pages/403.html')
+    else:
+        return render(req, 'pages/404.html')
 
 def result(req):
     context = {}
     return render(req, 'pages/result.html', context)
 
-def create_and_update_address(req, account_id):
-    address = ShippingAddress.objects.filter(customer=account_id)
-    profile = Customer.objects.get(id=account_id)
-    context = {}
-    if ShippingAddress.objects.filter(customer=account_id).exists():
-        address = ShippingAddress.objects.get(customer=account_id)
-        form = ShippingAddressForm(instance=address)
-        if req.method == 'POST':
-            form = ShippingAddressForm(req.POST, instance=address)
-            if form.is_valid():
-                form.save()
-                return redirect('/')
+def create_return(req, account_id, order_id):
+    profile = Customer.objects.filter(id=account_id)
+    if profile:
+        profile = Customer.objects.get(id=account_id)
+        if req.user == profile.user:
+            form = ReturnForm()
+            if req.method == 'POST':
+                form = ReturnForm(req.POST)
+                if form.is_valid():
+                    form.save()
+                    return HttpResponseRedirect(req.path_info)
+            context = {
+                'account': False,
+                'address': True,
+                'order': False,
+                'detail': False,
+                'profile': profile,
+                'form': form
+            }
+            return render(req, 'pages/account-page.html', context)
+        else:
+            return render(req, 'pages/403.html')
     else:
-        form = ShippingAddressForm()
-        if req.method == 'POST':
-            form = ShippingAddressForm(req.POST)
-            if form.is_valid():
-                print("VALID POST")
-                form = form.save(commit=False)
-                form.customer = profile
-                form.save()
-                return redirect('/')
-    context = {
-        'account': False,
-        'pw': False,
-        'address': True,
-        'order': False,
-        'profile': profile,
-        'form': form
-    }
-    return render(req, 'pages/account-page.html', context)
+        return render(req, 'pages/404.html')
+
+def create_and_update_address(req, account_id):
+    profile = Customer.objects.filter(id=account_id)
+    if profile:
+        profile = Customer.objects.get(id=account_id)
+        if req.user == profile.user:
+            address = ShippingAddress.objects.filter(customer=account_id)
+            context = {}
+            if ShippingAddress.objects.filter(customer=account_id).exists():
+                address = ShippingAddress.objects.get(customer=account_id)
+                form = ShippingAddressForm(instance=address)
+                if req.method == 'POST':
+                    form = ShippingAddressForm(req.POST, instance=address)
+                    if form.is_valid():
+                        form.save()
+                        return HttpResponseRedirect(req.path_info)
+            else:
+                form = ShippingAddressForm()
+                if req.method == 'POST':
+                    form = ShippingAddressForm(req.POST)
+                    if form.is_valid():
+                        form = form.save(commit=False)
+                        form.customer = profile
+                        form.save()
+                        return HttpResponseRedirect(req.path_info)
+            context = {
+                'account': False,
+                'address': True,
+                'order': False,
+                'detail': False,
+                'profile': profile,
+                'form': form
+            }
+            return render(req, 'pages/account-page.html', context)
+        else:
+            return render(req, 'pages/403.html')
+    else:
+        return render(req, 'pages/404.html')
 
 # For add to cart functionality
 def updateItem(req):
@@ -170,7 +200,7 @@ def updateItem(req):
 
 	customer = req.user.customer
 	product = Product.objects.get(id=productId)
-	order, created = Order.objects.get_or_create(customer=customer, complete=False)
+	order, created = Order.objects.get_or_create(customer=customer, status='Pending')
 
 	orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
