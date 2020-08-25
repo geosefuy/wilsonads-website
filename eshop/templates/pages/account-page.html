@@ -5,14 +5,14 @@
 <div class="row mt-4 px-4 flex-row">
     {% include "../partials/account/account-nav.html" %}
 
-    {% if pw %}
-        {% include "../partials/account/profile-change-password.html" %}
-    {% elif account %}
+    {% if account %}
         {% include "../partials/account/profile-form.html" %} 
     {% elif address %}
         {% include "../partials/account/address-book-form.html" %}
     {% elif order %}
         {% include "../partials/account/order-history.html" %}
+    {% elif detail %}
+        {% include "../partials/account/order-details.html" %}
     {% endif %}
 </div>
 {% endblock %}

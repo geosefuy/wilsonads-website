@@ -11,8 +11,8 @@ urlpatterns = [
     path('login/', login_page, name = 'login_page'),
     path('update_item/', updateItem, name="update_item"),
     path('account/<int:account_id>/', update_profile, name = 'update_profile'),
-    path('account/<int:account_id>/change_password', change_password, name = 'change_password'),
     path('account/<int:account_id>/create_and_update_address', create_and_update_address, name="create_and_update_address"),
     path('account/<int:account_id>/orders', account_orders, name = 'account_orders'),
+    path('account/<int:account_id>/orders/<int:order_id>', order_details, name = 'order_details'),
     path('logout/', logout_view, name='logout_view'),
 ]

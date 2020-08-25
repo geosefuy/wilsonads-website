@@ -55,9 +55,14 @@ class Product(models.Model):
         return url
 
 class Order(models.Model):
+    STATUS = (
+        ('Pending', 'Pending'),
+        ('Delivered', 'Delivered'),
+    )
+
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
-    complete = models.BooleanField(default=False, null=True, blank=False)
+    status = models.CharField(max_length=200, null=True, choices=STATUS, default="Pending")
     transaction_id = models.CharField(max_length=200, null=True, unique=True)
 
     fname = models.CharField(max_length=200, null=True)
@@ -139,7 +144,7 @@ class ShippingAddress(models.Model):
     state = models.CharField(max_length=200, null=False)
     zipcode = models.CharField(max_length=200, null=False)
     phone = models.PositiveIntegerField(null=False)
-    instructions = models.TextField(max_length=500, null=True)
+    instructions = models.TextField(max_length=500, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -35,11 +35,10 @@
                 </div>
                 
                 <div class="col-sm-5">
-                    {{ form.email }}
+                    <input class = "form-control" value="{{ profile.email }}" disabled>
                 </div>
             </div>
             <div class="container mx-2 mt-5 py-4">
-                <a href="{% url 'change_password' profile.id %}" class="btn btn-primary black-btn mr-4">Change Password</a>
                 <button type="submit" class="btn btn-primary yellow-btn">Save Changes</button>
             </div>
             

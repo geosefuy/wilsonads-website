@@ -32,12 +32,10 @@ class CustomerForm(forms.ModelForm):
         fields = [
             'fname',
             'lname',
-            'email',
         ]
         widgets = {
             'fname': forms.TextInput(attrs={'class': 'form-control'}),
             'lname': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
 
 class UserPassForm(forms.ModelForm):
