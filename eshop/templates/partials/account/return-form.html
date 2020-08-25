@@ -7,13 +7,13 @@
                 <h5 class="modal-title" id="return-form-title">Return Form</h5>
             </div>
             <div class="modal-body">
-                <form method="POST">                                            
+                <form method="POST">
+                    {% csrf_token %}                                        
                     <p><div class="d-inline p-2" id="return-label">Reason for return:</div></p>
-                    {% csrf_token %}
+                    
                     <div class="input-group">
                         {{ form.description }}
                     </div>
-                        {{ form.orderitem_id }}
                     <div class="container mt-3 mb-1 d-flex justify-content-center">
                         <input type="submit" class="btn btn-secondary" id="return-send-button" value="Send">
                         <div class="container"></div>

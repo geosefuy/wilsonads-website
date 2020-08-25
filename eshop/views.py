@@ -103,7 +103,7 @@ def account_orders(req, account_id):
     else:
         return render(req, 'pages/404.html')
 
-def order_details(req, account_id, order_id):
+def order_details2(req, account_id, order_id):
     profile = Customer.objects.filter(id=account_id)
     if profile:
         profile = Customer.objects.get(id=account_id)
@@ -127,23 +127,26 @@ def result(req):
     context = {}
     return render(req, 'pages/result.html', context)
 
-def create_return(req, account_id, order_id):
+def order_details(req, account_id, order_id):
     profile = Customer.objects.filter(id=account_id)
     if profile:
         profile = Customer.objects.get(id=account_id)
         if req.user == profile.user:
+            details = OrderItem.objects.filter(order=order_id)
             form = ReturnForm()
             if req.method == 'POST':
                 form = ReturnForm(req.POST)
                 if form.is_valid():
+                    print(form.item)
                     form.save()
                     return HttpResponseRedirect(req.path_info)
             context = {
                 'account': False,
-                'address': True,
+                'address': False,
                 'order': False,
-                'detail': False,
+                'detail': True,
                 'profile': profile,
+                'details': details,
                 'form': form
             }
             return render(req, 'pages/account-page.html', context)
