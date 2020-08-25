@@ -19,6 +19,7 @@
                 <div class="col-sm-5">
                     {{ form.fname }}
                 </div>
+                <span>{{ form.fname.errors|striptags }}</span>
             </div>
             <div class="form-inline">
                 <div class="label col-sm-2 mr-3">
@@ -28,6 +29,7 @@
                 <div class="col-sm-5">
                     {{ form.lname }}
                 </div>
+                <span>{{ form.lname.errors|striptags }}</span>
             </div>
             <div class="form-inline">
                 <div class="label col-sm-2 mr-3">
