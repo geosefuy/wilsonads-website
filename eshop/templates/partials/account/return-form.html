@@ -10,6 +10,7 @@
                 <form method="POST">
                     {% csrf_token %}                                        
                     <p><div class="d-inline p-2" id="return-label">Reason for return:</div></p>
+                        {{ form.item }}
                     <div class="input-group">
                         {{ form.description }}
                     </div>
