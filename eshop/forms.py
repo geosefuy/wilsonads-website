@@ -34,7 +34,7 @@ class ShippingAddressForm(forms.ModelForm):
     def clean_lname(self):
         lname = self.cleaned_data.get('lname')
         if lname.replace(' ', '').isalpha() == False:
-            raise forms.ValidationError("First name must only consist of alphabetic characters.")
+            raise forms.ValidationError("Last name must only consist of alphabetic characters.")
         return lname.strip()
     
     def clean_city(self):
@@ -59,7 +59,7 @@ class ShippingAddressForm(forms.ModelForm):
         phone = self.cleaned_data.get('phone')
         if len(str(phone)) != 10:
             raise forms.ValidationError("Phone number must be 10 numbers (9234567890).")
-        elif int(phone/pow(10, math.log10(phone))) != 9:
+        elif str(phone)[0] != '9':
             raise forms.ValidationError("Phone number must start with 9 (9234567890).")
         return phone
 
