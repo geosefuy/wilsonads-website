@@ -23,8 +23,8 @@ def product_details(req, product_id):
 def homepage(req):
     # TODO include filter for each group
     # Limits query to 8 products for each group
-    group_one = Product.objects.all()[:8]
-    group_two = Product.objects.all()[:8]
+    group_one = Product.objects.all()
+    group_two = Product.objects.all()
 
     context = { 
         'products_one': group_one,
