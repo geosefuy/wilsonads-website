@@ -43,8 +43,10 @@ class ReturnForm(forms.ModelForm):
         model = Return
         fields = [
             'description',
+            'item',
         ]
         widgets = {
             'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'item': forms.HiddenInput(attrs={'id': 'orderitem-id'})
         }
     
