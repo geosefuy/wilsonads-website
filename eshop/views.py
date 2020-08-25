@@ -23,8 +23,8 @@ def product_details(req, product_id):
 def homepage(req):
     # TODO include filter for each group
     # Limits query to 8 products for each group
-    group_one = Product.objects.all()[:8]
-    group_two = Product.objects.all()[:8]
+    group_one = Product.objects.all()
+    group_two = Product.objects.all()
 
     context = { 
         'products_one': group_one,
@@ -124,7 +124,15 @@ def order_details2(req, account_id, order_id):
         return render(req, 'pages/404.html')
 
 def result(req):
-    context = {}
+    query = req.GET['q']
+    if query != '' and query != ' ':
+        products = Product.objects.filter(name__contains=query)
+    else:
+        products = None
+    context = {
+        'query': query,
+        'products': products,
+    }
     return render(req, 'pages/result.html', context)
 
 def order_details(req, account_id, order_id):
