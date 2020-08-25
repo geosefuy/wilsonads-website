@@ -137,7 +137,8 @@ def order_details(req, account_id, order_id):
             if req.method == 'POST':
                 form = ReturnForm(req.POST)
                 if form.is_valid():
-                    print(form.item)
+                    form = form.save(commit=False)
+                    form.item = OrderItem.objects.get(id=req.POST.get('item'))
                     form.save()
                     return HttpResponseRedirect(req.path_info)
             context = {
