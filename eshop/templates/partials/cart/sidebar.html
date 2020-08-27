@@ -17,7 +17,11 @@
             {% endfor %}
         </div>
 
-        <button class="btn btn-primary m-4">Proceed to Checkout</button>
+        <div class="container">
+            <h5 class="header-secondary">Total: ₱ {{ order.get_cart_total }}</h5>
+        </div>
+        <button class="btn btn-primary mb-2 mt-4 ml-4 mr-4">Proceed to Checkout</button>
+        {% if items %}<button onclick="clearCart()" class="btn btn-secondary mb-4 ml-4 mr-4 mt-0" style="background-color: #FF4500 !important;border: none;font-family: 'IBM Plex Sans SemiBold'; padding: 0.5rem 0;font-size: 20px;border-radius: 6px;">Clear cart</button> {% endif %}
     </div>
 </div>
 
@@ -25,4 +29,28 @@
 $(document).ready(function() {
     $('#closeBtn').click(() => $('#sidebar').css('display', 'none'));
 })
+
+function clearCart () {
+	if (user == 'AnonymousUser'){
+		cart = {}
+        document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+		location.reload()
+	}else{
+		var url = '/delete_cart/'
+
+		fetch(url, {
+			method:'POST',
+			headers:{
+				'Content-Type':'application/json',
+				'X-CSRFToken':csrftoken,
+			}
+		})
+		.then((response) => {
+		   return response.json();
+		})
+		.then((data) => {
+		    location.reload()
+		});
+	}
+}
 </script>
