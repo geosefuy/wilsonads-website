@@ -230,6 +230,17 @@ def updateItem(req):
 
     return JsonResponse('Item was added', safe=False)
 
+def getProduct(req, product_id):
+    product = Product.objects.get(id=product_id)
+    data = {
+        'name': product.name,
+        'price': product.price,
+        'stock': product.stock,
+        'imageURL': product.imageURL,
+        'id': product.id
+    }
+    return JsonResponse(data)
+
 def deleteCart(req):
     customer = req.user.customer
     order, created = Order.objects.get_or_create(customer=customer, status='Pending')

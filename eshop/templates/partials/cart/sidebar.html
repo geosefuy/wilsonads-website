@@ -11,17 +11,17 @@
             </div>
         </div>
         {# Temporary. Use for loops and context in the future. #}
-        <div class="h-100 overflow-auto"> 
+        <div class="h-100 overflow-auto cart-card-container"> 
             {% for item in items %}
                 {% include './cart-card.html' %}
             {% endfor %}
         </div>
 
         <div class="container">
-            <h5 class="header-secondary">Total: ₱ {{ order.get_cart_total }}</h5>
+            <h5 class="header-secondary">Total: ₱ <i style="font-style: normal;" class="cart-total">{{ order.get_cart_total }}</i></h5>
         </div>
         <button class="btn btn-primary mb-2 mt-4 ml-4 mr-4">Proceed to Checkout</button>
-        {% if items %}<button onclick="clearCart()" class="btn btn-secondary mb-4 ml-4 mr-4 mt-0" style="background-color: #FF4500 !important;border: none;font-family: 'IBM Plex Sans SemiBold'; padding: 0.5rem 0;font-size: 20px;border-radius: 6px;">Clear cart</button> {% endif %}
+        <button onclick="clearCart()" class="btn btn-secondary mb-4 ml-4 mr-4 mt-0" style="background-color: #FF4500 !important;border: none;font-family: 'IBM Plex Sans SemiBold'; padding: 0.5rem 0;font-size: 20px;border-radius: 6px;">Clear cart</button>
     </div>
 </div>
 
@@ -34,7 +34,8 @@ function clearCart () {
 	if (user == 'AnonymousUser'){
 		cart = {}
         document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
-		location.reload()
+        $(".cart-item-card").remove();
+        $(".cart-total").html(0);
 	}else{
 		var url = '/delete_cart/'
 
@@ -49,7 +50,8 @@ function clearCart () {
 		   return response.json();
 		})
 		.then((data) => {
-		    location.reload()
+            $(".cart-item-card").remove();
+            $(".cart-total").html(0);
 		});
 	}
 }
