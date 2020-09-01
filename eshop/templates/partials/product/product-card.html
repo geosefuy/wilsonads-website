@@ -15,7 +15,7 @@
       <h5 class="price card-price">₱{{ product.price|floatformat:2|intcomma }}</h5>
       <div class="d-flex justify-content-between align-items-center">
         <i class="card-stock m-0"><h6>{{ product.stock }} in stock</h6></i> 
-        <button data-product="{{ product.id }}" data-action="add" type="button" class="btn btn-light add-btn update-cart">
+        <button onclick="updateCart(this)" data-product="{{ product.id }}" data-action="add" type="button" class="btn btn-light add-btn update-cart">
           <i class="fas fa-shopping-cart"></i>
         </button>
       </div>

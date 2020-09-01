@@ -212,25 +212,49 @@ def updateItem(req):
     print('Action:', action)
     print('Product:', productId)
 
+    out_of_stock = False
+    first_time = False
+    added = False
+    removed = False
+    deleted = False
+
     customer = req.user.customer
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(customer=customer, status='Pending')
 
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
-    if action == 'add':
+    if action == 'add' and product.stock <= orderItem.quantity:
+        out_of_stock = True
+    elif action == 'add':
         orderItem.quantity = (orderItem.quantity + 1)
+        added = True
+        if orderItem.quantity == 1:
+            first_time = True
     elif action == 'remove':
         orderItem.quantity = (orderItem.quantity - 1)
+        removed = True
+        if orderItem.quantity == 0:
+            deleted = True
     elif action == 'delete':
         orderItem.quantity = 0
+        deleted = True
 
     orderItem.save()
 
     if orderItem.quantity <= 0:
         orderItem.delete()
+    
+    data = {
+        'productname': product.name,
+        'out_of_stock': out_of_stock,
+        'first_time': first_time,
+        'added': added,
+        'removed': removed,
+        'deleted': deleted
+    }
 
-    return JsonResponse('Item was added', safe=False)
+    return JsonResponse(data, safe=False)
 
 def deleteCart(req):
     customer = req.user.customer
@@ -242,3 +266,14 @@ def deleteCart(req):
 def logout_view(req):
     logout(req)
     return homepage(req)
+
+def getProduct(req, product_id):
+    product = Product.objects.get(id=product_id)
+    data = {
+        'name': product.name,
+        'price': product.price,
+        'stock': product.stock,
+        'imageURL': product.imageURL,
+        'id': product.id
+    }
+    return JsonResponse(data)

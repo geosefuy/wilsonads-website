@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 
 <div class="card-shadow p-4 col-12 col-md-6 col-xl-4 h-100" id="sidebar">
     <div class="container-fluid h-100 d-flex flex-column p-0">
@@ -10,17 +11,17 @@
                 <h2 class="header-secondary m-0">My Cart</h2>
             </div>
         </div>
-        <div class="h-100 overflow-auto"> 
+        <div class="h-100 overflow-auto cart-card-container"> 
             {% for item in items %}
                 {% include './cart-card.html' %}
             {% endfor %}
         </div>
 
         <div class="container">
-            <h5 class="header-secondary">Total: ₱ {{ order.get_cart_total }}</h5>
+            <h5 class="header-secondary">Total: ₱ <i style="font-style: normal;" class="cart-total">{{ order.get_cart_total | floatformat:2 | intcomma }}</i></h5>
         </div>
         <button class="btn btn-primary mb-2 mt-4 mx-4">Proceed to Checkout</button>
-        {% if items %}<button onclick="clearCart()" class="btn btn-red mb-4 ml-4 mr-4 mt-0">Clear cart</button> {% endif %}
+        <button onclick="clearCart()" class="btn btn-red mb-4 ml-4 mr-4 mt-0">Clear cart</button>
     </div>
 </div>
 <script>
@@ -34,7 +35,8 @@ function clearCart () {
 	if (user == 'AnonymousUser'){
 		cart = {}
         document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
-		location.reload()
+		$(".cart-item-card").remove();
+        $(".cart-total").html(0);
 	}else{
 		var url = '/delete_cart/'
 
@@ -49,7 +51,8 @@ function clearCart () {
 		   return response.json();
 		})
 		.then((data) => {
-		    location.reload()
+            $(".cart-item-card").remove();
+            $(".cart-total").html(0);
 		});
 	}
 }

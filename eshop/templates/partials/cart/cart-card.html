@@ -2,7 +2,7 @@
 {% load humanize %}
 {% load itemsubtotal %}
 
-<div class="card container-fluid d-flex justify-content-center py-2 my-4">
+<div class="card container-fluid d-flex justify-content-center py-2 my-4 cart-item-card-{{ item.product.id }} cart-item-card">
     <div class="row">
         {% include "./quantity.html" %}
         <div class="col-3 d-flex align-items-center"> 
@@ -11,16 +11,16 @@
         <div class="col-5 d-flex align-items-center">
             <div class="container-fluid">
                 <h5 class="header-secondary text-truncate">{{ item.product.name }}</h5>
-                <h6 class="price">Price: ₱ {{ item.product.price | floatformat:2 | intcomma }}</h6>
-                <h6 class="price">Subtotal: ₱ {% if item.get_total %}
+                <h6 class="price">Price: ₱ <i style="font-style: normal;" class="price-{{item.product.id}}">{{ item.product.price | floatformat:2 | intcomma }}</i></h6>
+                <h6 class="price">Subtotal: ₱ <i style="font-style: normal;" class="subtotal-{{item.product.id}}">{% if item.get_total %}
                                                 {{ item.get_total | floatformat:2 | intcomma }}
                                               {% else %}
                                                 {% getsubtotal item.quantity item.product.price %}
-                                              {% endif %}</h6>
+                                              {% endif %}</i></h6>
             </div>
         </div>
         <div class="col-2 d-flex justify-content-center align-items-center"> 
-            <a data-product="{{ item.product.id }}"
+            <a data-product="{{ item.product.id }}" onclick="updateCart(this)"
             style="color: inherit;" class="update-cart" data-action="delete">
             <i class="fa fa-times" aria-hidden="true"></i>
         </a>
