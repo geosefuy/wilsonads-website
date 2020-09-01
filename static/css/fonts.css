@@ -1,31 +1,72 @@
-/* IBM Plex Sans */
-@font-face {
-  font-family: 'IBM Plex Sans';
-  src: url('../fonts/IBM_Plex_Sans/IBMPlexSans-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'IBM Plex Sans Bold';
-  src: url('../fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf');
-}
-
-@font-face {
-  font-family: 'IBM Plex Sans SemiBold';
-  src: url('../fonts/IBM_Plex_Sans/IBMPlexSans-SemiBold.ttf');
-}
-
-@font-face {
-  font-family: 'IBM Plex Sans Light';
-  src: url('../fonts/IBM_Plex_Sans/IBMPlexSans-Light.ttf');
-}
-
 /* Overpass */
 @font-face {
   font-family: OverpassEB;
-  src: url('../fonts/Overpass/Overpass-ExtraBold.ttf');
+  src: url('../fonts/Overpass/Overpass-ExtraBold.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
 }
 
 @font-face {
   font-family: OverpassBold;
   src: url('../fonts/Overpass/Overpass-Bold.ttf');
+}
+
+
+/* Source Sans Pro */
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro Italic';
+  src: url('../fonts/Source_Sans_Pro/SourceSansPro-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro Medium';
+  src: url('../fonts/Source_Sans_Pro/SourceSansPro-Medium.ttf')  format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro Medium-Italic';
+  src: url('../fonts/Source_Sans_Pro/SourceSansPro-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+
+
+@font-face {
+  font-family: 'Source Sans Pro SemiBold';
+  src: url('../fonts/Source_Sans_Pro/SourceSansPro-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro SemiBold-Italic';
+  src: url('../fonts/Source_Sans_Pro/SourceSansPro-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro Bold';
+  src: url('../fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro Bold-Italic';
+  src: url('../fonts/Source_Sans_Pro/SourceSansPro-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
 }

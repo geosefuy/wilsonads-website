@@ -1,8 +1,8 @@
 {% load static %}
 
-<div class="col-md-3 side-nav-container">
-    <h2 class="title col-sm">My Account</h2> 
-    <ul class="nav side-nav flex-column mt-3 pt-3">
+<div class="col col-md-3 mx-3 mx-md-0 border-right">
+    <h2 class="title">My Account</h2> 
+    <ul class="nav side-nav flex-column my-3 py-3">
         <li class="side-nav-item {% if account %} active {% endif %} mb-3">
             <a class="nav-link" href="{% url 'update_profile' profile.id %}">Profile</a>
         </li>

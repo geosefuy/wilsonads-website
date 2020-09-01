@@ -2,17 +2,22 @@
 {% load static %}
 
 {% block body %}
-<div class="row mt-4 px-4 flex-row">
+<div class="container px-3">
+    <div class="row d-flex justify-content-center">
     {% include "../partials/account/account-nav.html" %}
-
-    {% if account %}
-        {% include "../partials/account/profile-form.html" %} 
-    {% elif address %}
-        {% include "../partials/account/address-book-form.html" %}
-    {% elif order %}
-        {% include "../partials/account/order-history.html" %}
-    {% elif detail %}
-        {% include "../partials/account/order-details.html" %}
-    {% endif %}
+        <div class="col-md-9 col-xl-7">
+            <form role="form" method="POST">
+            {% if account %}
+                {% include "../partials/account/profile-form.html" %} 
+            {% elif address %}
+                {% include "../partials/account/address-book-form.html" %}
+            {% elif order %}
+                {% include "../partials/account/order-history.html" %}
+            {% elif detail %}
+                {% include "../partials/account/order-details.html" %}
+            {% endif %}
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -1,35 +1,36 @@
 {% load static %}
-<form action="{% url 'result' %}" method="GET">
 <div class="container-fluid my-3">
+<form action="{% url 'result' %}" method="GET">
   <div class="row align-items-center">
     <div class="col d-flex justify-content-start align-items-center mx-3">
-      <a href="{% url 'homepage' %}" class="d-flex justify-content-start align-items-center" style="color: inherit; text-decoration: none;">
+      <a href="{% url 'homepage' %}" class="d-flex justify-content-start align-items-center">
         <img id="brand-logo" src="{% static "images/wilsonads.png" %}">
         <p class="d-none d-md-block" id="brand-name">Wilsonads Computer Sales</p>
       </a>
     </div>
     <div class="col d-none d-lg-flex justify-content-center">
         <input name="q" type="text" id="search-bar" class="form-control" placeholder="What would you like to search for?">
-        <input type="submit" style="display: none" />
+        <input type="submit" class="d-none" />
     </div>
-    <div class="col d-flex justify-content-end mx-3" id="login-register">
+    <div class="col d-flex justify-content-end align-items-center mx-3">
       <i id="cart" class="fa fa-shopping-bag" type="button" aria-hidden="true"></i>
-
       {% if user.is_authenticated %}
-        <a href="{% url 'update_profile' account_id=customer_id %}" id="login" style="text-decoration: none; color: inherit;">{{ customer_fname}}</a>
-        <span id="divider">|</span>
-        <a href="{% url 'logout_view' %}" id="register" style="text-decoration: none; color: inherit;">Logout</a>
+        <a href="{% url 'update_profile' account_id=customer_id %}" class="d-none d-md-flex top-link"><i>Welcome, {{ customer_fname }}!</i></a>
+        <i id="cart" class="far fa-user d-md-none top-link" type="button" aria-hidden="true"></i>
+        <span class="top-link">|</span>
+        <a href="{% url 'logout_view' %}" class="top-link">Logout</a>
       {% else %}
-        <a href="{% url 'login_page' %}" id="login" style="text-decoration: none; color: inherit;">Login</a>
+        <a href="{% url 'login_page' %}" class="top-link">Login</a>
       {% endif %}
-      
     </div>
   </div>
-</div>
 </form>
+</div>
 
 <script>
 $(document).ready(function() {
-    $('#cart').click(() => $('#sidebar').css('display', 'flex'));
+    $('#cart').click(() => {
+      $('#sidebar').css('display', 'flex')
+    })
 })
 </script>

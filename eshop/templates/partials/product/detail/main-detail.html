@@ -1,25 +1,40 @@
 {% load static %}
+{% load humanize %}
 
 <!-- Main Image -->
-<div class="container col-lg-5 col-9 d-flex justify-content-center align-items-center" id="large-product-container">
-    {% if product.imageURL %}
-    <img src="{{ product.imageURL }}" class="img-fluid">
-    {% else %}
-    <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
-    {% endif %}
+<div class="col-lg-5 col-9 d-flex flex-column justify-content-center align-items-center">
+    <div class="row large-product-container">
+        {% if product.imageURL %}
+        <img src="{{ product.imageURL }}" class="img-fluid">
+        {% else %}
+        <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
+        {% endif %}
+    </div>
+    {% include "./image-list.html" %}
 </div>
 
 <!-- Description -->
-<div class="container col-lg-5 col-12">
-    <h1 id="product-name" class="mt-3">{{ product.name }}</h1>
-    <p class="my-4"><strong>In Stock: </strong>{{ product.stock }}</p>
-    <h2 id="specifications-header">DESCRIPTION</h2>
-    <div class="container py-2">
+<div class="col-lg-4 col-12">
+    <h1 class="header mt-0">
+        {{ product.name }}
+    </h1>
+    <p class="my-3">
+        <i>In Stock: {{ product.stock }}</i>
+    </p>
+    <h2 class="header-secondary desc-header my-3">
+        DESCRIPTION
+    </h2>
+    <div class="my-3">
         {{ product.description }}
     </div>
-    <p id="price">₱ {{ product.price|floatformat:2 }}</p>
+    <h2 class="price my-4">
+        ₱{{ product.price | floatformat:2 | intcomma }}
+    </h2>
 
-    <div class="container">
-        <button data-product="{{product.id}}" data-action="add" data-product="{{item.product.id}}" id="add-cart-button" type="button" class="btn update-cart">Add to cart</button>
-    </div>
+    <button class="btn btn-secondary btn-block" type="button"
+        data-product="{{ product.id }}" 
+        data-action="add" 
+        data-product="{{ item.product.id }}">
+        Add to cart
+    </button>
 </div>

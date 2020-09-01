@@ -1,15 +1,14 @@
 {% load static %}
 
 <section class="container product-group">
-
   {% for product in products %}
     {% if forloop.first %}
-      <div class="row">
+      <div class="row no-gutters">
     {% endif %}
     
     {% if forloop.counter0|divisibleby:"4" and not forloop.first%}
       </div>
-      <div class="row">
+      <div class="row no-gutters">
       {% include './product-card.html' %}
     {% else %}
       {% include './product-card.html' %}
@@ -20,5 +19,5 @@
     {% endif %}
     
   {% endfor %}
-  
 </section>
+

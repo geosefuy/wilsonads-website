@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,15 +14,10 @@
   <link rel="stylesheet" type="text/css" href="{% static "css/address-book.css" %}">
   <link rel="stylesheet" type="text/css" href="{% static "css/styles.css" %}">
   <link rel="stylesheet" type="text/css" href="{% static "css/card.css" %}">
-  <link rel="stylesheet" type="text/css" href="{% static "css/cart.css" %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"> 
   <link rel="stylesheet" type="text/css" href="{% static "css/main-page.css" %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/product_list.css' %}"> 
-  <link rel="stylesheet" type="text/css" href="{% static 'css/view-product.css' %}"> 
+  <link rel="stylesheet" type="text/css" href="{% static "css/normalize.css" %}">
   <link rel="stylesheet" type="text/css" href="{% static "css/util.css" %}">
-  <link rel="stylesheet" type="text/css" href="{% static "scss/main.scss" %}">
   <link rel="stylesheet" type="text/css" href="{% static "fontawesome-free-5.14.0-web/css/all.css" %}">
-  
   {# <script defer src="{% static "fontawesome-free-5.14.0-web/js/all.js" %}"></script> #}
   <title>{% block title %}{% endblock %}</title>
 
@@ -78,13 +74,14 @@
     }
       console.log('Cart:', cart)
   </script>
-
 </head>
 <body>
-  {% include './header.html' %}
-  {% block body %}{% endblock %}
-  {% include '../partials/cart/sidebar.html' %}
-
+    {% include './header.html' %}
+    <div class="wrapper mb-5">
+      {% block body %}{% endblock %}
+    </div>
+    {% include '../partials/cart/sidebar.html' %}
+  {% include '../partials/footer.html' %}
   <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 </body>
 </html>

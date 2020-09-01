@@ -2,22 +2,25 @@
 
 <div class="modal fade return-form-modal" tabindex="-1" role="dialog" aria-labelledby="returnFormModal" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content px-4">
-            <div class="modal-header">
-                <h5 class="modal-title" id="return-form-title">Return Form</h5>
+        <div class="modal-content p-4">
+            <div class="modal-header pb-2 border-0">
+                <h2 class="title modal-title" id="return-form-title">Return Form</h5>
             </div>
-            <div class="modal-body">
+            <div class="modal-body pt-2">
                 <form method="POST">
                     {% csrf_token %}                                        
-                    <p><div class="d-inline p-2" id="return-label">Reason for return:</div></p>
-                        {{ form.item }}
+                    <p>Please tell us why you'd like to return your product:</p>
+                    {{ form.item }}
                     <div class="input-group">
                         {{ form.description }}
                     </div>
-                    <div class="container mt-3 mb-1 d-flex justify-content-center">
-                        <input type="submit" class="btn btn-secondary" id="return-send-button" value="Send">
-                        <div class="container"></div>
-                        <button type="button" class="btn btn-secondary" id="return-cancel-button" data-dismiss="modal">Cancel</button>
+                    <div class="d-flex justify-content-center pt-4">
+                        <div class="col-4">
+                            <input type="submit" class="btn btn-primary w-100" id="return-send-button" value="Send">
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-secondary w-100" id="return-cancel-button" data-dismiss="modal">Cancel</button>
+                        </div>
                     </div>
                 </form>
             </div>

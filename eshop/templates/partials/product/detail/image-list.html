@@ -1,32 +1,7 @@
 {% load static %}
-{# For loop #}
-<div class="container col-lg-2 col-3">
-    <div class="container product-thumbnail-container">
-        {% if gallery.image1URL %}
-            <img src="{{ gallery.image1URL }}" class="img-fluid">
-        {% else %}
-            <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
-        {% endif %}
-    </div>
-    <div class="container product-thumbnail-container">
-        {% if gallery.image2URL %}
-            <img src="{{ gallery.image2URL }}" class="img-fluid">
-        {% else %}
-            <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
-        {% endif %}
-    </div>
-    <div class="container product-thumbnail-container">
-        {% if gallery.image3URL %}
-            <img src="{{ gallery.image3URL }}" class="img-fluid">
-        {% else %}
-            <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
-        {% endif %}
-    </div>
-    <div class="container product-thumbnail-container">
-        {% if gallery.image4URL %}
-            <img src="{{ gallery.image4URL }}" class="img-fluid">
-        {% else %}
-            <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
-        {% endif %}
-    </div>
+<div class="row mb-5">
+   {% include "./product-thumbnail.html" with img=gallery.image1URL %}
+   {% include "./product-thumbnail.html" with img=gallery.image2URL %}
+   {% include "./product-thumbnail.html" with img=gallery.image3URL %}
+   {% include "./product-thumbnail.html" with img=gallery.image4URL %}
 </div>

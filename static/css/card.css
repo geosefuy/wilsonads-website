@@ -1,39 +1,42 @@
 @import "./fonts.css";
 
-.black-card {
-  width: max-content;
-  background-image: linear-gradient(270deg, #000000, #323232);  
-  font-size: 24px;
-  color: #FFCC49;
+.product-card {
+  width: 18rem;
 }
 
 .card {
   height: max-content;
   border: 0.2px solid #EAEAEA;
   border-radius: 8px;
-  font-family: 'IBM Plex Sans';
   margin-bottom: 2rem; 
 }
 
+.card-grey {
+  background-color: #EFEFEF;
+}
+
+.card-img-top {
+  padding: 1rem;
+}
+
 .card-title {
-  font-family: 'IBM Plex Sans SemiBold';
+  font-family: 'Source Sans Pro SemiBold';
 }
 
 .card-text {
+  font-family: 'Source Sans Pro Medium';
   font-size: 1rem;
   color: #7B879E
 }
 
-.card-url {
-  font-family: 'IBM Plex Sans Light';
+.card-stock {
+  font-family: 'Source Sans Pro Medium';
+  font-size: 0.8rem;
+  color: #7B879E
 }
 
 .card-suffix {
-  font-family: 'IBM Plex Sans SemiBold';
-}
-
-.card-img-top {
-  padding: 3rem 1.5rem;
+  font-family: 'Source Sans Pro SemiBold';
 }
 
 .card-shadow {
@@ -41,9 +44,7 @@
 }
 
 .card-link {
-  margin: 1rem;
-}
-
-.icon {
-  font-size: 32px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 0;
 }

@@ -1,18 +1,39 @@
 {% load static %}
 
-<section id="footer">
-    <div class="container">
-        <div class="text-center text-white">
-            <p class = 'info '>Have an inquiry/recommendation? Connect with us:</p>
-        </div>	
-        <div class="text-center">
-            <ul class="list-unstyled list-inline social text-center">
-                <li class="list-inline-item"><a href=""><i class="fa fa-facebook"></i></a></li>
-                <li class="list-inline-item"><a href=""><i class="fa fa-twitter"></i></a></li>
-                <li class="list-inline-item"><a href=""><i class="fa fa-instagram"></i></a></li>
-                <li class="list-inline-item"><a href=""><i class="fa fa-google-plus"></i></a></li>
-                <li class="list-inline-item"><a href="" target="_blank"><i class="fa fa-envelope"></i></a></li>
-            </ul>
-        </div>	
+<footer class="container-fluid p-5">
+<div class="d-flex flex-column justify-content-center p-3 text-yellow">
+    <div class="row">
+        <div class="col col-lg-4 mb-4">
+            <h1 class="d-none d-md-flex display-4 header m-0 text-white">Let's connect.</h1>
+            <h1 class="d-flex d-md-none display-5 header m-0 text-white">Let's connect.</h1>
+            
+            <div class="d-flex flex-row flex-md-column">
+            {% include "./home/contact-info.html" with link='fb.com/WilsonadsComputer' prefix='fb.com' suffix='/WilsonadsComputer' icon='fab fa-facebook icon' %}
+            {% include "./home/contact-info.html" with link='instagr.am/wilsonads-computer' prefix='instagr.am' suffix='/wilsonads-computer' icon='fab fa-instagram icon'%}
+            {% include "./home/contact-info.html" with link='m.me/WilsonadsComputer' prefix='m.me' suffix='/WilsonadsComputer' icon='fab fa-facebook-messenger icon'%} 
+            </div>
+        </div>
+        
+        <div class="col col-lg-8">
+            <div class="row">
+                {% for category in categories %}
+                <div class="col-6 col-lg-2 text-white"> 
+                    <h5 class="footer-link text-yellow">{{ category.name | upper }}</h5> 
+                    <ul class="list-unstyled">
+                    {% if category.subcategory_set.all %}
+                        {% for subcategory in category.subcategory_set.all %}
+                            <li>
+                            <a href="{% url 'subcategory_product_list' category=category.slug subcategory=subcategory.slug %}">
+                                {{ subcategory }}
+                            </a>
+                            </li>
+                        {% endfor %} 
+                    {% endif %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-</section>
+</div>
+</footer>

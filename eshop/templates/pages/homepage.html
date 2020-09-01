@@ -4,15 +4,15 @@
 {% block title %}Home | WilsonAds{% endblock %}
 
 {% block body %}
-<!-- Banner -->
 {% include '../partials/home/banner.html' %}
 
 <!-- Product Group 1 -->
 <div class="m-md"></div>
 <section class="justify-content-between">
-    <h1 class="display-4 m-md-5 text-center header">
-        Top-Selling Laptops
-    </h1>
+    <!-- Small Screens -->
+    <h1 class="d-md-none display-5 m-md-5 text-center header">Top-Selling Laptops</h1> 
+    <!-- Large Screens -->
+    <h1 class="d-none d-md-block display-4 m-md-5 text-center header">Top-Selling Laptops</h1>
     <img src="{% static "/images/art/product-group1.svg" %}" id="imgEl1" />
 </section>
 
@@ -21,20 +21,17 @@
 {% endwith %}
 
 <!-- Product Group 2 -->
-<div class="m-big"></div>
+<div class="m-big d-none d-md-flex"></div>
 <section class="d-flex align-items-center">
     <img src="{% static "/images/art/product-group2.svg" %}" id="imgEl2" />
-    <h1 class="display-4 header text-center pr-4">
-        For the Virtual Worker
-    </h1>
+    <h1 class="d-md-none display-5 header text-center m-0 pr-4">For the Virtual Worker</h1>
+    <h1 class="d-none d-md-block display-4 header text-center pr-4">For the Virtual Worker</h1>
 </section>
-<div class="d-flex justify-content-center" id="productHeader2">
+<div class="d-none d-md-flex justify-content-center" id="productHeader2">
     <img src="{% static "/images/art/circles.svg" %}" id="imgEl2b" />
 </div>
+
 {% with products_two as products %}
 {% include '../partials/product/product-group.html' %}
 {% endwith %}
-
-<!-- Contact Us -->
-{% include '../partials/home/contact.html' %}
 {% endblock %}

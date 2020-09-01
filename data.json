@@ -1,0 +1,495 @@
+[
+    {
+        "model": "sessions.session",
+        "pk": "18515qdxnvz2bgdcopf34w29uv1bk9bu",
+        "fields": {
+            "session_data": ".eJxVjMsOgjAQAP-lZ9Ow29fWo3e-odltQVADCYWT8d9NEw56nZnMWyU-9ikdddjSXNRVobr8MuH8HJYmyoOX-6rzuuzbLLol-rRV92sZXrez_RtMXKe2jTKazotDNoIuUiYrI0R0wVtHAZht9hjQGyASyIHIEEVAC6Z0Xn2-s7I2AQ:1kABHv:DcvdSSSl5BcghM4GTFlPzXAb3Mzfw6ihEchhP98bS08",
+            "expire_date": "2020-09-07T12:09:23.451Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "35eaxt0chzamzw5rdzsiohika5tw4159",
+        "fields": {
+            "session_data": ".eJxVjMEOgyAQRP9lz40BEUFv7Y-QhV0jKcVEoZem_15tvHicNzPvAxjCUnNxb17jFJkcvzAmGHNN6QYOa5ld3Xh1kWAECxfmMTw5HwWmdODm1DX_zVlvzX1PnEsMWOKSH-froppxm3fPYAcm0QqBA3ttLE-SrPRWkVJSm3ZC1L3spVJGa-6MIGLRGpSeOjYhwPcHcvpHfQ:1k9QAM:FblhYqmownWOLNp6ZjpeTsN3xd82nXYwoeF4PLnK0cw",
+            "expire_date": "2020-09-05T09:50:26.704Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "6cu7yj6jt956f5wf6bvynnwr3wc92ms8",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAURO_C2jSF9Bdwpxchw-cbiA1NLF013t3WdKHLeTPzNhWwthzWRV6hJHVVRl1-WQQ_pR4FpunAHZjntbbuuznrpbvtSWorjFbmej9ff6qMJe8e7XxPiDxY6bUV27skJNawjDrSKFY_yBOMBrwZoyZ21lHyCQPgBlHvD7E3PFA:1kBVxX:CBY6G7mYkGlPlIP00oDLasgO6L_z9Jl4p_UHfTBNUjc",
+            "expire_date": "2020-09-11T04:25:51.858Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "il7vtilhxklhdb74p97s93s8q02lemwe",
+        "fields": {
+            "session_data": ".eJxVjMEOgyAQRP-Fc2PcogLe6o-QZVkiKcVEoZem_15tvHicNzPvI5BoqbnYN68xRPaWXxiTGHNN6SYs1jLbuvFqoxej6MWFOaQn56PAlA7cnLrmvznrrXnsiXOJhCUueTpfF9WM27x7nNFaB9COWCo5QCcdGKUAWgW-v3vpPMnQIXht0HTaBEdSBWo9DzwYEN8fb6dHlg:1k9PcX:awxR_vjzkXEnwAxMKQuTxRCzwiX4frrL-AAj6xbJRq8",
+            "expire_date": "2020-09-05T09:15:29.991Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "kqzkg7m1xz4o77zu3fwtqhlg556clpdv",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQRO-yNYr8I78OLmKt12vFwjgSsWkQd8dBaVLOm5n3ASRaay72za8YInvLT4wJ5lxTuoDFWhZbN37Z6GEGDSfmkB6c9wJT2nF36Lr_5qi37tYS5xIJS1zz_XidVAtuS_MY6UYhaeqNHngIClEZN2knXfCkxkaNuLLSYmxypZyXwpkpyEEwkuwRvj9w6UeH:1k9OJW:x2F46fwImblYFdhIbVGS9wnNBNrgST3E8tbGgJsdsN4",
+            "expire_date": "2020-09-05T07:51:46.683Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "niyspg9kep81rw2wxfw3125k32y9o0oj",
+        "fields": {
+            "session_data": ".eJxVjEEOgyAURO_CujGgiHx37UXIBz6RlGIi0E3Tu1cbNy7nzcz7MHRubbmaN20xRPKGXhgTm3NL6cYMtrqYVmgz0bOZAbswi-5J-SgwpQN3p677b866dPc9Ua7RYY1rfpyvi2rBsuyenkhZOQiYvAheOvAWeu2Ru2D1pKTWg7AAoLUauLQKRuR6HNXESQRCyb4_g7lHRg:1k9QHd:7n6ocOiLQ4oz6h7cHjYqkVQQCuWwxIAOFgwThq1qe-Y",
+            "expire_date": "2020-09-05T09:57:57.668Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "s10dkk87b149fpq8q623lk68sfuwtjkj",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hDIwCAu3XsGwsCMVE2blHbVeHdt0oVu_3vvbyrldWlp7TynoaqLcur0u1EuTx53UB95vE-6TOMyD6R3RR-069tU-XU93L-Dlnv71iTRlOpAiMkGQGsZAJFFjBEkjN5VG5ByLGjAnRmIBC34UEIW49X7A_N_OAM:1kBc7O:XtuNVX8bZFNC1oz93xwNy7NOzy-jnAM9biIXWlA0tPA",
+            "expire_date": "2020-09-11T11:00:26.277Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "sazux0safivj6ets6tp8z9o7umfz7n18",
+        "fields": {
+            "session_data": ".eJxVjMsOgyAURP-FdWMQkIe79kfI5XKJpBQTxW6a_nu1ceNyzsycDwPEeavNv2nJKVP09IJc2Fi3Um7Mw9Ymv620-BzZyDS7sAD4pHoUUMqBu1PX_TdnvXb3PVFtGaHluT7O10U1wTrtHhes6wejOGKv0RIhD4ILkg6i0UaAArJglUwok1CSRxTahOhAJ6sHx74_gaFHvA:1k9Pds:zwNmP9EqtnJ-HhoSSbk0pPyBHHnvHZjPPsqAnfrDmk4",
+            "expire_date": "2020-09-05T09:16:52.689Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "sp39gb7p11hv3d4x7k8p6424j0g0kem7",
+        "fields": {
+            "session_data": ".eJxVjE0OgyAQhe8y68YgiIC79iJkgDGSUkwEuml692rjxrd7f98H0Pu15WrftMU5UrD0wphgyi2lG1hsdbGt0GZjgAkGuGQO_ZPyUWBKR9yduO6_OevS3XdHuUaPNa75cb4uqAXLsnPEiNqTdkHv4kqS4b3TIhDrkdFstDBeaROE7NmMUnGFwcmBOVRKiZHD9wd6fkc4:1k9OWq:F2X1NyGMj7zNxHTY0DkmnWNZmT0IYhcj_CkwjcRzggI",
+            "expire_date": "2020-09-05T08:05:32.795Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "y1vpkjqq3inmvfjkrpjdgamc839ivrzl",
+        "fields": {
+            "session_data": ".eJxVjEEOgyAURO_CujEIfBR37UXIBz6RlGKi0E3Tu1cbNy7nzcz7MPR-aaXaN60pJgqWXpgym0rL-cYstjrbttFqU2ATG9iFOfRPKkeBOR-4O3Xdf3PWW3ffE5WaPNa0lMf5uqhm3Obdw0cZpY7kFMAQJEWhIVAEGCVEhU6PwnAMUQije4VceezBG6fRg-emZ98fhNlHsw:1k9PjV:_aiK8kfpD3iT1IKx8b_Lb72-_Bsk-dnwEJ2N4VqyLQ8",
+            "expire_date": "2020-09-05T09:22:41.926Z"
+        }
+    },
+    {
+        "model": "sites.site",
+        "pk": 2,
+        "fields": {
+            "domain": "127.0.0.1:8000",
+            "name": "127.0.0.1:8000"
+        }
+    },
+    {
+        "model": "sites.site",
+        "pk": 3,
+        "fields": {
+            "domain": "example.com",
+            "name": "example.com"
+        }
+    },
+    {
+        "model": "eshop.category",
+        "pk": 1,
+        "fields": {
+            "name": "Laptops",
+            "slug": "laptops"
+        }
+    },
+    {
+        "model": "eshop.category",
+        "pk": 2,
+        "fields": {
+            "name": "Desktops",
+            "slug": "desktops"
+        }
+    },
+    {
+        "model": "eshop.category",
+        "pk": 3,
+        "fields": {
+            "name": "Servers",
+            "slug": "servers"
+        }
+    },
+    {
+        "model": "eshop.category",
+        "pk": 4,
+        "fields": {
+            "name": "Audio",
+            "slug": "audio"
+        }
+    },
+    {
+        "model": "eshop.category",
+        "pk": 5,
+        "fields": {
+            "name": "Mobile",
+            "slug": "mobile"
+        }
+    },
+    {
+        "model": "eshop.category",
+        "pk": 6,
+        "fields": {
+            "name": "Network",
+            "slug": "network"
+        }
+    },
+    {
+        "model": "eshop.category",
+        "pk": 7,
+        "fields": {
+            "name": "Accessories",
+            "slug": "accessories"
+        }
+    },
+    {
+        "model": "eshop.category",
+        "pk": 8,
+        "fields": {
+            "name": "Software",
+            "slug": "software"
+        }
+    },
+    {
+        "model": "eshop.subcategory",
+        "pk": 1,
+        "fields": {
+            "category": 1,
+            "name": "Entry-level Laptops",
+            "slug": "entry-level-laptops"
+        }
+    },
+    {
+        "model": "eshop.subcategory",
+        "pk": 2,
+        "fields": {
+            "category": 1,
+            "name": "Midrange Laptops",
+            "slug": "midrange-laptops"
+        }
+    },
+    {
+        "model": "eshop.subcategory",
+        "pk": 3,
+        "fields": {
+            "category": 1,
+            "name": "Gaming Laptops",
+            "slug": "gaming-laptops"
+        }
+    },
+    {
+        "model": "eshop.subcategory",
+        "pk": 4,
+        "fields": {
+            "category": 1,
+            "name": "2-in-1 Notebooks",
+            "slug": "2-in-1-notebooks"
+        }
+    },
+    {
+        "model": "eshop.subcategory",
+        "pk": 5,
+        "fields": {
+            "category": 1,
+            "name": "MacBook",
+            "slug": "macbook"
+        }
+    },
+    {
+        "model": "eshop.subcategory",
+        "pk": 6,
+        "fields": {
+            "category": 1,
+            "name": "Chromebook",
+            "slug": "chromebook"
+        }
+    },
+    {
+        "model": "eshop.product",
+        "pk": 7,
+        "fields": {
+            "subcategory": 3,
+            "name": "MSI Modern 14 (A10M-695PH) Intel Core I3 (Silver)",
+            "price": 39995.0,
+            "stock": 4,
+            "description": "Define your own styles and enjoy every wonderful moment you create in life. Modern 14 is a perfect blend of elegance and performance. It�s powered by the latest 10th Gen. Intel� Core-TM i7 processor (Comet Lake) with NVIDIA� discrete graphics, you can work and play smoothly without fuss. It is the perfect laptop for your daily creation and entertainment.",
+            "image": "A10M-695PH_FVaAUzm.jpg"
+        }
+    },
+    {
+        "model": "eshop.product",
+        "pk": 8,
+        "fields": {
+            "subcategory": 3,
+            "name": "MSI Modern 14 (A10RB-492PH) Intel Core I7",
+            "price": 49995.0,
+            "stock": 8,
+            "description": "Define your own styles and enjoy every wonderful moment you create in life. Modern 14 is a perfect blend of elegance and performance. It�s powered by the latest 10th Gen. Intel� CoreTM i7 processor (Comet Lake) with NVIDIA� discrete graphics, you can work and play smoothly without fuss. It is the perfect laptop for your daily creation and entertainment.",
+            "image": "A10RB-492PH_lEI3TF1.jpg"
+        }
+    },
+    {
+        "model": "eshop.product",
+        "pk": 9,
+        "fields": {
+            "subcategory": 3,
+            "name": "ACER NITRO5 AN515-54-53AF BLACK INTEL CORE I5 9300H",
+            "price": 59995.0,
+            "stock": 3,
+            "description": "ACER NITRO5 AN515-54-53AF BLACK INTEL CORE I5 9300H/4GB DDR4/256GB NVME SSD+1TB HDD/NVIDIA GEFORCE GTX1660TI 6GB GDDR6/15.6\" FHD IPS 120HZ/WINDOWS 10 HOME SL/WEBCAM/BACKLIT KB/WIFI/BT/LAN/USB TYPE-C/H",
+            "image": "AN515-54-53AF_VAjXBea.jpg"
+        }
+    },
+    {
+        "model": "eshop.product",
+        "pk": 10,
+        "fields": {
+            "subcategory": 3,
+            "name": "MSI Modern 14 (A10M-493PH) INTEL CORE I5 (Silver)",
+            "price": 45995.0,
+            "stock": 4,
+            "description": "Define your own styles and enjoy every wonderful moment you create in life. Modern 14 is a perfect blend of elegance and performance. It�s powered by the latest 10th Gen. Intel� CoreTM i7 processor (Comet Lake) with NVIDIA� discrete graphics, you can work and play smoothly without fuss. It is the perfect laptop for your daily creation and entertainment.",
+            "image": "A10M-493PH_tC6hB5j.jpg"
+        }
+    },
+    {
+        "model": "eshop.product",
+        "pk": 11,
+        "fields": {
+            "subcategory": 3,
+            "name": "ASUS FX505DD-AL272T R5-3550H GTX1050/3GB 1TB + 512GB SSD 8GB WIN10",
+            "price": 40995.0,
+            "stock": 6,
+            "description": "AMD Ryzen 5 3550H Processor, NVIDIA GeForce GTX 1050 , with 3GB GDDR5 VRAM, 15.6\" (16:9) LED-backlit FHD (1920x1080) 120Hz Anti-Glare IPS-level Panel with 45% NTSC, \tBuilt-in 2 W Stereo Speakers with Microphone DTS Headphone: X, 1 x COMBO audio jack, 1 x Type-A USB2.0, 2 x Type-A USB 3.1 (Gen 1), 1 x RJ45 LAN jack for LAN insert, 1 x HDMI, HDMI support 2.0",
+            "image": "fx505dd.jpg"
+        }
+    },
+    {
+        "model": "eshop.product",
+        "pk": 12,
+        "fields": {
+            "subcategory": 3,
+            "name": "ASUS FX505DT-AL226T R5-3550H GTX1650/4GB 1TB + 250GB SSD 8GB",
+            "price": 42995.0,
+            "stock": 11,
+            "description": "AMD Ryzen 5 3550H Processor, NVIDIA GeForce GTX 1050 , with 3GB GDDR5 VRAM, 1TB HDD + 512GB SDD, 15.6\" (16:9) LED-backlit FHD (1920x1080) 120Hz Anti-Glare IPS-level Panel with 45% NTSC, Built-in 2 W Stereo Speakers with Microphone DTS Headphone: X, 1 x COMBO audio jack, 1 x Type-A USB2.0, 2 x Type-A USB 3.1 (Gen 1), 1 x RJ45 LAN jack for LAN insert, 1 x HDMI, HDMI support 2.0",
+            "image": "fx505dt.jpg"
+        }
+    },
+    {
+        "model": "eshop.order",
+        "pk": 10,
+        "fields": {
+            "customer": null,
+            "date_ordered": "2020-08-28T04:24:00.661Z",
+            "status": "Pending",
+            "transaction_id": null,
+            "fname": null,
+            "lname": null,
+            "address": null,
+            "city": null,
+            "state": null,
+            "zipcode": null,
+            "phone": null,
+            "instructions": null
+        }
+    },
+    {
+        "model": "eshop.order",
+        "pk": 11,
+        "fields": {
+            "customer": null,
+            "date_ordered": "2020-08-28T04:25:10.650Z",
+            "status": "Pending",
+            "transaction_id": "1182342",
+            "fname": "Isser",
+            "lname": "Gagan",
+            "address": "18B Cendana",
+            "city": "Pasay",
+            "state": "Metro Manila",
+            "zipcode": "1300",
+            "phone": 9165745248,
+            "instructions": "call me"
+        }
+    },
+    {
+        "model": "eshop.order",
+        "pk": 12,
+        "fields": {
+            "customer": null,
+            "date_ordered": "2020-08-28T10:41:05.660Z",
+            "status": "Pending",
+            "transaction_id": null,
+            "fname": null,
+            "lname": null,
+            "address": null,
+            "city": null,
+            "state": null,
+            "zipcode": null,
+            "phone": null,
+            "instructions": null
+        }
+    },
+    {
+        "model": "eshop.order",
+        "pk": 13,
+        "fields": {
+            "customer": null,
+            "date_ordered": "2020-08-28T11:00:26.322Z",
+            "status": "Pending",
+            "transaction_id": null,
+            "fname": null,
+            "lname": null,
+            "address": null,
+            "city": null,
+            "state": null,
+            "zipcode": null,
+            "phone": null,
+            "instructions": null
+        }
+    },
+    {
+        "model": "eshop.gallery",
+        "pk": 2,
+        "fields": {
+            "image1": "695ph-1.jpg",
+            "image2": "695ph-2.jpg",
+            "image3": "695ph-3.jpg",
+            "image4": "695ph-4.jpg",
+            "productid": 7
+        }
+    },
+    {
+        "model": "eshop.gallery",
+        "pk": 3,
+        "fields": {
+            "image1": "492ph-1.jpg",
+            "image2": "492ph-2.jpg",
+            "image3": "492ph-3.jpg",
+            "image4": "492ph-4.jpg",
+            "productid": 8
+        }
+    },
+    {
+        "model": "eshop.gallery",
+        "pk": 4,
+        "fields": {
+            "image1": "AN515-1.jpg",
+            "image2": "AN515-2.jpg",
+            "image3": "AN515-3.jpg",
+            "image4": "AN515-54-53AF_ZXltMLE.jpg",
+            "productid": 9
+        }
+    },
+    {
+        "model": "eshop.gallery",
+        "pk": 5,
+        "fields": {
+            "image1": "493ph-1.jpg",
+            "image2": "493ph-2.jpg",
+            "image3": "493ph-3.jpg",
+            "image4": "493ph-4.jpg",
+            "productid": 10
+        }
+    },
+    {
+        "model": "eshop.gallery",
+        "pk": 6,
+        "fields": {
+            "image1": "fx505dd-1.jpg",
+            "image2": "",
+            "image3": "",
+            "image4": "",
+            "productid": 11
+        }
+    },
+    {
+        "model": "eshop.gallery",
+        "pk": 7,
+        "fields": {
+            "image1": "fx505dt-1.jpg",
+            "image2": "fx505dt-2.jpg",
+            "image3": "fx505dt-3.jpg",
+            "image4": "fx505dt-4.jpg",
+            "productid": 12
+        }
+    },
+    {
+        "model": "eshop.orderitem",
+        "pk": 23,
+        "fields": {
+            "product": 8,
+            "order": 11,
+            "quantity": 1,
+            "date_added": "2020-08-28T04:25:34.166Z"
+        }
+    },
+    {
+        "model": "eshop.orderitem",
+        "pk": 24,
+        "fields": {
+            "product": 9,
+            "order": 11,
+            "quantity": 2,
+            "date_added": "2020-08-28T04:25:41.980Z"
+        }
+    },
+    {
+        "model": "eshop.shippingaddress",
+        "pk": 1,
+        "fields": {
+            "customer": null,
+            "fname": "Isser",
+            "lname": "Gagan",
+            "address": "18B Cendana",
+            "city": "Pasay",
+            "state": "Philippines",
+            "zipcode": "1301",
+            "phone": 9165745248,
+            "instructions": "",
+            "date_added": "2020-08-27T15:03:20.413Z"
+        }
+    },
+    {
+        "model": "socialaccount.socialapp",
+        "pk": 1,
+        "fields": {
+            "provider": "google",
+            "name": "Google API",
+            "client_id": "493820609487-72q6735e25uubkg5s0oa2m10tbtt2i2i.apps.googleusercontent.com",
+            "secret": "EMWekgsLh5fqJO3rad9oXEWz",
+            "key": "",
+            "sites": [
+                [
+                    "127.0.0.1:8000"
+                ]
+            ]
+        }
+    },
+    {
+        "model": "socialaccount.socialapp",
+        "pk": 2,
+        "fields": {
+            "provider": "facebook",
+            "name": "Facebook API",
+            "client_id": "306328070625160",
+            "secret": "dc7e108b0be0dba38736f58e5e1008fe",
+            "key": "",
+            "sites": [
+                [
+                    "127.0.0.1:8000"
+                ]
+            ]
+        }
+    }
+    ]
+    

@@ -1,0 +1,32 @@
+{% load static %}
+
+<tr class="order-details text-center">
+    <td class="product-image">
+        {% if detail.product.imageURL %}
+            <img src="{{ detail.product.imageURL }}" class="img-fluid" style="width: 6rem;"> 
+        {% else %}
+            <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid" style="width: 6rem;">
+        {% endif %}
+    </td>
+    <td class="product-name text-left">
+        {{ detail.product.name }}
+    </td>
+    <td class="order-price">
+        &#8369;{{ detail.product.price|floatformat:2 }}
+    </td>
+    <td class="order-quantity">
+        {{detail.quantity}}
+    </td>
+    <td class="order-total">
+        &#8369;{{ detail.get_total|floatformat:2 }}
+    </td>
+    <td class="order-return">
+        <a role="button" data-orderitem="{{ detail.id }}"
+            class="btn-link"
+            data-toggle="modal" 
+            data-target=".return-form-modal" 
+            data-backdrop="false">
+            Return Item
+        </a>
+    </td>
+</tr>

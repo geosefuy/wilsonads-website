@@ -1,43 +1,145 @@
 @import "./fonts.css";
 
+* {
+  font-family: 'Source Sans Pro';  
+}
+
+html, body {
+  padding: 0;
+  min-height: 100%;
+}
+
 body {
-  background-color: #F8F9FA;
-  font-family: 'IBM Plex Sans';
-  color: #424242
+  background-color: #F8F9FA; 
+  color: #424242;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none; 
+  color: inherit;
 }
 
 nav {
   height: 6rem;
 }
 
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-  background-color: #FFCC49 !important;
-  border: none;
-  font-family: 'IBM Plex Sans SemiBold'; 
-  padding: 0.5rem 0;
-  font-size: 20px;
+footer {
+  background: #424242 !important;
+  width: 100%;
+  font-size: 15px;
+}
+
+.wrapper {
+  min-height: 100vh; 
+  height: 100%;
+}
+
+.icon {
+  font-size: 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0 0.5rem;
+  vertical-align: middle;
+}
+
+.footer-link {
+  font-family: "Source Sans Pro SemiBold";  
+}
+
+.container {
+  padding: 2.5rem 0 !important; 
+}
+
+.btn,
+.btn:hover {
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  font-family: "Source Sans Pro SemiBold";
   border-radius: 6px;
+  border: none;
+  color: #FFFFFF; 
+}
+
+.btn-primary, 
+.btn-primary:hover, 
+.btn-primary:active, 
+.btn-primary:visited {
+  background-color: #FFCC49 !important;
+}
+
+.btn-secondary, 
+.btn-secondary:hover, 
+.btn-secondary:active, 
+.btn-secondary:visited {
+  background-color: #505050 !important;
 }
 
 .btn-blue {
   background-color: #2E48D9;
-  color: white; 
+}
+
+.btn-red {
+  background-color: #FF4500
+}
+
+.btn-link {
+  background-color: inherit;
+  color: #2E48D9; 
+}
+
+.btn-social {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 1.25rem;  
+}
+
+.btn-fb { 
+  background-color: #FFFFFF;
+  border: 1px solid #2E48D9; 
+  color: #2E48D9
+}
+
+.btn-google {
+  background-color: #FFFFFF; 
+  border: 1px solid #E73549; 
+  color: #E73549
+}
+
+.btn-qty {
+  font-size: 12px; 
+  color: #C4C4C4
+}
+
+.top-link {
+  font-size: 1.2rem;
+  margin-left: 20px;
+}
+
+.navbar-collapse {
+  background-color: #F8F9FA
 }
 
 .nav-item {
-  margin: 0 2rem;
-  font-size: 16px;
+  margin: 0 1rem;
 }
 
+.nav-item:hover,
 .nav-item.active {
-  font-weight: 500;
-  border-bottom: 3px solid #FFCC49;
+  border-bottom: 2px solid #FFCC49;
 }
 
-.dropdown-menu 
+.nav-link {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.dropdown-menu,
 .dropdown-item {
   padding: 1rem;
-  font-size: 16px;
+  font-size: 1rem;
   color: #424242;
   background-color: #FBFBFB;
   border-radius: 8px;
@@ -58,6 +160,7 @@ nav {
   z-index: 1;
 }
 
+
 #brand-logo {
   height: 64px;
   width: 64px;
@@ -70,24 +173,61 @@ nav {
   padding-left: 1rem;
 }
 
-#login, 
-#divider, 
-#register {
-  font-family: 'IBM Plex Sans';
-  font-size: 15px;
-  margin-left: 20px;
+#search-bar {
+  border: 0.2px solid #CDCDCD;
+  border-radius: 6px;
+  height: 2.5rem;
+  padding: 0.75rem;
+  /* margin: 1.5rem; */
 }
 
 #search-bar::placeholder {
   color: #CDCDCD;
-  font-family: 'IBM Plex Sans';
-  font-size: 14px;
 }
 
-#search-bar {
-  border: 0.2px solid #CDCDCD;
-  border-radius: 6px;
-  font-family: 'IBM Plex Sans';
-  height: 40px;
-  padding: 12px;
+
+/* Cart */
+@keyframes slide-in-right {
+  0% { right: -20% }
+  100% { right: 0 }
+}
+
+#sidebar {
+  position: fixed; 
+  top: 0;
+  right: 0; 
+  z-index: 1010; 
+  display: none;
+  background-color: #FFFFFF;
+  animation-name: slide-in-right;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+}
+
+
+#cart {
+  font-size: 1.5rem;
+}
+
+#closeBtn {
+  position: absolute;
+  z-index: 1002;
+  font-size: 24px;
+}
+
+/* View Product */
+.product-thumbnail {
+	max-height: 7.5rem;
+	max-width: 7.5rem;
+	min-height: 3.125rem;
+	min-width: 3.125rem;
+	padding: 0.5rem;
+	margin: 0.5rem 0;
+}
+
+.large-product-container {
+	max-height: 30rem;
+	max-width: 30rem;
+	min-height: 10rem;
+	min-width: 10rem;
 }

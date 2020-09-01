@@ -5,13 +5,18 @@
 }
 
 .header-secondary {
-  font-family: 'IBM Plex Sans Bold';
+  font-family: 'Source Sans Pro Bold'; 
 }
 
 .price {
-  font-family: 'IBM Plex Sans SemiBold';
+  font-family: 'Source Sans Pro SemiBold';
 }
 
+.desc-header {
+  font-size: 1.5rem;
+}
+
+/* Margins and Padding */
 .m-md {
   margin: 3rem;
 }
@@ -34,4 +39,9 @@
 
 .my-big {
   margin: 6.5rem 0;
+}
+
+/* Colors */
+.text-yellow {
+  color: #FFCC49;
 }

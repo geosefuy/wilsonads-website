@@ -1,53 +1,25 @@
 {% load static %}
-
-<!-- current viewed account information -->
-<div class="col-md ml-2 pl-2 mb-5">
-    <div class="container orders-container mb-5">               
-            <div class="pt-5 pb-3">
-                <h2 class="title col-sm">Order history</h2>
-            </div>
-            
-            <hr class="pt-0 mt-0 ml-3">
-            
-            <div class="table-responsive">
-            <table class="table order-history">
-                <thead>
-                    <tr>
-                        <th class="product-order">Order Address</th>
-                        <th class="order-date">Date Ordered</th>
-                        <th class="order-status">Status</th>
-                        <th class="transaction">Transaction ID</th>
-                        <th class="order-details">Action/s</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% if orders %}
-                    {% for order in orders %}
-                    <tr class="orders">
-                            <td class="product-order">
-                                {{ order.fname }} {{ order.lname }} {{ order.address }} {{ order.city }} {{ order.state }} {{ order.zipcode }}
-                            </td>
-                            <td class="order-date">
-                                {{ order.date_ordered }}
-                            </td>
-                            <td class="order-status">
-                                {{ order.status }}
-                            </td>
-                            <td class="transaction">
-                                {{ order.transaction_id }}
-                            </td>
-                            <td class="order-details">
-                                <a href="{% url 'order_details' profile.id order.id %}">Details</a>
-                            </td>
-                    </tr>
-                    {% endfor %}
-                {% else %}
-                </tbody>
-            </table>
-            No orders made yet.
-            {% endif %}
-            </div>
-    </div>
+        
+<div class="table-responsive col">
+    <h2 class="title col-sm mb-3">Order history</h2>
+    <table class="table order-history mx-3">
+        <thead>
+            <tr class="text-center"> 
+                <th class="product-order">Order Address</th>
+                <th class="order-date">Date Ordered</th>
+                <th class="order-status">Status</th>
+                <th class="order-details">Action/s</th>
+            </tr>
+        </thead>
+        {% if orders %}
+        <tbody>
+            {% for order in orders %}
+                {% include './order-item.html' with order=order %}
+            {% endfor %}
+        </tbody>
+        {% else %}
+        No orders made yet.
+        {% endif %}
+    </table>
 </div>
-
 {% include "../account/return-form.html" %}

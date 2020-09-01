@@ -1,0 +1,20 @@
+{% load static %}
+<tr class="orders">
+    <td class="product-order">
+        <b>{{ order.fname }}</b> 
+        <b>{{ order.lname }}</b> | 
+        {{ order.address }} 
+        {{ order.city }} 
+        {{ order.state }} 
+        {{ order.zipcode }}
+    </td>
+    <td class="order-date">
+        {{ order.date_ordered }}
+    </td>
+    <td class="order-status">
+        {{ order.status }}
+    </td>
+    <td class="order-details">
+        <a href="{% url 'order_details' profile.id order.id %}" class="btn-link">Details</a>
+    </td>
+</tr>

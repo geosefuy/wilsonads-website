@@ -1,12 +1,12 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg navbar-light container d-flex justify-content-center p-0">
+<nav class="navbar navbar-expand-lg navbar-light container-fluid d-flex justify-content-center p-0 my-3">
   {# For Smaller Screens #}
-  <div class="container-fluid">
+  <div class="d-lg-none container-fluid mx-3">
     <div class="d-flex d-lg-none col-9 justify-content-center">
       <input type="text" id="search-bar" class="form-control" placeholder="What would you like to search for?">
     </div>  
-    <div class="d-flex container-fluid col-3 justify-content-end">
+    <div class="d-flex d-lg-none col-3 justify-content-end">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -14,28 +14,30 @@
   </div>
 
   {# For Larger Screens #}
-  <div class="collapse navbar-collapse" id="navbarNavDropdown" style="background-color: #F8F9FA">
-    <ul class="navbar-nav">
-
-      {% for category in categories %}
-      <li class="nav-item {% if category.subcategory_set.all %}dropdown {% endif %}{% if category.slug in request.path %}active{% endif %}">
-        <a href="{% url 'category_product_list' category=category.slug %}" class="nav-link {% if category.subcategory_set.all %}dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{% else %}" {% endif %}>
-          {{ category.name }}
-        </a>
-        {% if category.subcategory_set.all %}
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          {% for subcategory in category.subcategory_set.all  %}
-          <a class="dropdown-item" href="{% url 'subcategory_product_list' category=category.slug subcategory=subcategory.slug %}">{{ subcategory.name}}</a>
-          {% endfor %}
-        </div>
-        {% endif %}
-      </li>
-      {% endfor %}
-
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">Desktops</a>
-      </li> -->
-      
-    </ul>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="container-fluid d-md-flex justify-content-center">
+      <ul class="navbar-nav">
+        {% for category in categories %}
+        <li class="nav-item {% if category.subcategory_set.all %} dropdown {% endif %} {% if category.slug in request.path %} active {% endif %}">
+          <a href="{% url 'category_product_list' category=category.slug %}" 
+            {% if category.subcategory_set.all %}
+              class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            {% else %}
+              class="nav-link"
+            {% endif %}
+          >
+            {{ category.name | upper }}
+          </a>
+          {% if category.subcategory_set.all %}
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            {% for subcategory in category.subcategory_set.all  %}
+            <a class="dropdown-item" href="{% url 'subcategory_product_list' category=category.slug subcategory=subcategory.slug %}">{{ subcategory.name }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </nav>

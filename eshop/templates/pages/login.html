@@ -1,6 +1,31 @@
 {% extends '../partials/base.html' %}
 {% load static %}
+{% load socialaccount %}
 
 {% block body %}
-{% include "../partials/login/login-form.html" %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-10 col-md-8 col-lg-6 card card-grey card-shadow p-5">
+            <div class="mb-4">
+                <h1 class="header mt-0 mb-4">Create an Account</h1>
+                <h5>Create an account at Wilsonads today to enjoy the following benefits:</h5>
+                <ul>
+                    <li>Be able to save your billing address and contact info</li>
+                    <li>Save your credit card details</li>
+                    <li>Receive priority for orders and return fulfillments</li>
+                </ul>
+            </div>
+            <div class="login-form">
+                <form action="" method="post">
+                    <a href="{% provider_login_url 'facebook' process='login' %}" class="btn btn-block btn-social btn-fb">
+                        <i class="fab fa-facebook icon"></i> Sign in with Facebook
+                    </a>
+                    <a href="{% provider_login_url 'google' process='login' %}" class="btn btn-block btn-social btn-google">
+                        <i class="fab fa-google icon"></i> Sign in with Google
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

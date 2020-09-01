@@ -1,11 +1,12 @@
 {% load static %}
 
- <span class="card-link d-flex">
+<div>
+<span class="card-link d-flex">
     <a class="text-decoration-none text-reset d-flex align-items-center" href="{{ link }}"> 
         <i class="{{ icon }}"></i>
     </a>
     <a class="d-none d-md-flex mx-4 mr-5 text-decoration-none text-reset" href="{{ link }}">
-        <span class="card-url">{{ prefix }}<span>
-        <b class="card-suffix">{{ suffix }}</b>
+        <h5 class="m-0">{{ prefix }}<b class="card-suffix">{{ suffix }}</b></h5>
     </a>
 </span>
+</div>

@@ -25,10 +25,12 @@ def homepage(req):
     # Limits query to 8 products for each group
     group_one = Product.objects.all()
     group_two = Product.objects.all()
+    categories = Category.objects.all()
 
     context = { 
         'products_one': group_one,
         'products_two': group_two,
+        'categories': categories
     }
 
     return render(req, 'pages/homepage.html', context)

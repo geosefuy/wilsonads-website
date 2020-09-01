@@ -3,8 +3,9 @@
 
 
 {% block body %}
-<div class="row mt-5 px-5">
-{% include "../partials/product/detail/image-list.html" %}
-{% include "../partials/product/detail/main-detail.html" %}
+<div class="container-fluid mt-5 px-5">
+    <div class="row d-flex justify-content-center">
+    {% include "../partials/product/detail/main-detail.html" %}
+    </div>
 </div>
 {% endblock %}

@@ -1,16 +1,15 @@
 {% load static %}
 
-<div id="sidebar" class="card-shadow p-4 col-12 col-md-6 col-xl-4 h-100">
+<div class="card-shadow p-4 col-12 col-md-6 col-xl-4 h-100" id="sidebar">
     <div class="container-fluid h-100 d-flex flex-column p-0">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col" id="closeBtn">
                 <i class="fas fa-times mx-2" type="button"></i>
             </div>
-            <div class="row d-flex justify-content-cente">
+            <div class="row d-flex justify-content-center">
                 <h2 class="header-secondary m-0">My Cart</h2>
             </div>
         </div>
-        {# Temporary. Use for loops and context in the future. #}
         <div class="h-100 overflow-auto"> 
             {% for item in items %}
                 {% include './cart-card.html' %}
@@ -20,14 +19,15 @@
         <div class="container">
             <h5 class="header-secondary">Total: ₱ {{ order.get_cart_total }}</h5>
         </div>
-        <button class="btn btn-primary mb-2 mt-4 ml-4 mr-4">Proceed to Checkout</button>
-        {% if items %}<button onclick="clearCart()" class="btn btn-secondary mb-4 ml-4 mr-4 mt-0" style="background-color: #FF4500 !important;border: none;font-family: 'IBM Plex Sans SemiBold'; padding: 0.5rem 0;font-size: 20px;border-radius: 6px;">Clear cart</button> {% endif %}
+        <button class="btn btn-primary mb-2 mt-4 mx-4">Proceed to Checkout</button>
+        {% if items %}<button onclick="clearCart()" class="btn btn-red mb-4 ml-4 mr-4 mt-0">Clear cart</button> {% endif %}
     </div>
 </div>
-
 <script>
 $(document).ready(function() {
-    $('#closeBtn').click(() => $('#sidebar').css('display', 'none'));
+    $('#closeBtn').click(() => {
+        $('#sidebar').css('display', 'none');
+    });
 })
 
 function clearCart () {
