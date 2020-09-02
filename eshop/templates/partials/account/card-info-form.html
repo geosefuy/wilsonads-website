@@ -1,0 +1,63 @@
+{% load static %}
+
+
+<h2 class="title col-sm mb-3">Address book</h2>
+{% csrf_token %}
+<div class="form-row d-flex justify-content-between m-3">
+    <div class="form-group col pl-0 pr-1">
+        <label for="firstName" class="label-field">First name</label>
+        {{ form.fname }}
+        <span>{{ form.fname.errors|striptags }}</span>
+    </div>
+
+    <div class="form-group col px-1">
+        <label for="lastName" class="label-field">Last name</label>
+        {{ form.lname }}
+        <span>{{ form.lname.errors|striptags }}</span>
+    </div>
+</div>
+<div class="form-group m-3">
+    <div class="label mr-1">
+        <label for="address" class="label-field">Address</label>
+        <div class="col px-0">{{ form.address }}</div>
+        <span>{{ form.address.errors|striptags }}</span>
+    </div>
+</div>
+<div class="form-group m-3">
+    <div class="label mr-1">
+        <label for="city" class="label-field">City</label>
+        <div class="col px-0">{{ form.city }}</div>
+        <span>{{ form.city.errors|striptags }}</span>
+    </div>
+</div>
+<div class="form-group m-3">
+    <div class="label mr-1">
+        <label for="state" class="label-field">Region</label>
+        <div class="col px-0">{{ form.state }}</div>
+        <span>{{ form.state.errors|striptags }}</span>
+    </div>
+</div>
+<div class="form-group m-3">
+    <div class="label mr-1">
+        <label for="zipcode" class="label-field">Zip code</label>
+        <div class="col px-0">{{ form.zipcode }}</div>
+        <span>{{ form.zipcode.errors|striptags }}</span>
+    </div>
+</div>
+<div class="form-group m-3">
+    <div class="label mr-1">
+        <label for="phoneNumber" class="label-field">Phone number</label>
+        <div class="col px-0">{{ form.phone }}</div>
+        <span>{{ form.phone.errors|striptags }}</span>
+    </div>
+</div>
+<div class="form-group m-3">
+    <div class="label mr-1">
+        <label for="instructions" class="label-field">Special Instructions</label>
+        <div class="col px-0">{{ form.instructions }}</div>
+        <span>{{ form.instructions.errors|striptags }}</span>
+    </div>
+</div>
+<div class="form-inline m-3 py-3 pr-0">
+    <button type="submit" class="btn btn-primary btn-block">Save</button>
+</div>
