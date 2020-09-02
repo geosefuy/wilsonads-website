@@ -1,0 +1,409 @@
+{% load static %}
+
+<style>
+	#header {
+		height: 104px;
+	}
+
+	#brand-logo {
+		height: 64px;
+		width: 64px;
+	}
+
+	#brand-name {
+		
+		font-style: normal;
+		font-weight: 900;
+		font-size: 20px;
+		margin: 0;
+		padding-left: 15px;
+	}
+
+	#login, #divider, #register {
+		font-family: Rubik;
+		font-size: 15px;
+		margin-left: 20px;
+	}
+
+	#search-bar {
+		border-color: #ABABAB;
+		border-radius: 6px;
+		height: 40px;
+		padding: 12px;
+		margin: 24px
+	}
+
+	body {
+		background-color: #F8F9FA;
+		font-family: Overpass;
+	}
+	
+	nav {
+		height: 100px;
+	}
+
+	.nav-item {
+		margin-left: 60px;
+		font-family: Source Sans Pro;
+		font-size: 16px;
+	}
+
+	.nav-item.active {
+		font-weight: 500;
+		border-bottom: 3px solid #FFCC49;
+	}
+
+	#search-bar::placeholder {
+		color: #CDCDCD;
+		font-family: Source Sans Pro;
+		font-size: 12px;
+		font-weight: 500;
+	}
+	
+	.dropdown-menu .dropdown-item {
+		font-family: Raleway;
+		font-size: 12px;
+		color: #444444;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		padding-left: 15px;
+		padding-right: 15px;
+		background-color: #FBFBFB;
+	}
+
+	.dropdown-menu.show {
+		margin-top: 18px;
+
+		padding: 0;
+		border: 0px;
+
+		filter: drop-shadow(0px 4px 48px rgba(0, 0, 0, 0.08));
+	}
+
+	.dropdown-item:hover {
+		background-color: #FAF6A5;
+	}
+
+	#checkout-info{
+		background-color: rgb(187, 186, 186);
+		display: flex;
+	}
+	.steps {
+		font-family: Source Sans Pro;
+		font-size: 13px;
+		font-weight: 1000;
+		display:inline-block;
+		margin:20px auto;
+		color: #dfdfdf;
+	}
+	.step-active{
+		color: #000000;
+	}
+	.fillup-area{
+		background-color: rgb(238, 238, 238);
+		font-family: Source Sans Pro;
+	}
+	.col-form-label{
+		text-align: right;
+	}
+	.fillup-group{
+		justify-content: center;
+		vertical-align: middle;
+		text-align: center;
+	}
+
+	@media screen and (max-width: 768px) {
+		.container {
+		padding: 0;
+		}
+		.table td, .table th{
+		padding: 2px;
+		}
+		.prod-img{
+			height: 35px;
+			width: auto;
+		}
+		form,
+		.table td, .table th, .fillup-submit{
+		font-size: 10px;
+		} 
+		ul li span {
+		font-size: 10px !important;
+		}
+		.steps{
+			font-size: 7px;
+			padding: 2px;
+		}
+		.col-form-label{
+			text-align: left;
+		}
+		.header-info{
+			font-size: 15px !important;
+			text-align: center;
+		}
+		.method-details{
+			font-size: 7px;
+		}
+		.order{
+			padding-left: 2px !important;
+		}
+		.order-method{
+			padding: 10px !important;
+		}
+	}
+
+</style>
+
+<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Fill out your Shipping Information</h4>
+<form action="#" class="fillup-area p-4 form-horizontal" method="POST">
+	<div id="step1">
+		<div class="form-group row fillup-group">
+			<label for="first_name" class="col-lg-2 col-sm-3 col-form-label">First Name</label>
+			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+		</div>
+		<div class="form-group row fillup-group">
+			<label for="last_name" class="col-lg-2 col-sm-3 col-form-label">Last Name</label>
+			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+		</div>
+		<div class="form-group row fillup-group">
+			<label for="address" class="col-lg-2 col-sm-3 col-form-label">Address</label>
+			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+		</div>
+		<div class="form-group row fillup-group">
+			<label for="city" class="col-lg-2 col-sm-3 col-form-label">City</label>
+			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+		</div>
+		<div class="form-group row fillup-group">
+			<label for="state" class="col-lg-2 col-sm-3 col-form-label">State/Country</label>
+			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+		</div>
+		<div class="form-group row fillup-group">
+			<label for="zip_code" class="col-lg-2 col-sm-3 col-form-label">Zip Code</label>
+			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+		</div>
+		<div class="form-group row fillup-group">
+			<label for="phone" class="col-lg-2 col-sm-3 col-form-label">Phone Number</label>
+			<div class="col-lg-5 col-sm-4" style="display: grid;">
+				<input class="form-control" type="text" placeholder="" required>
+				<small class="text-muted">In case we need to call you about your order.</small>
+			</div>
+		</div>
+		<div class="form-group row fillup-group">
+			<label for="special_instructions" class="col-lg-2 col-sm-3 col-form-label">Special Instructions</label>
+			<div class="col-lg-5 col-sm-4" style="display: grid;">
+				<textarea class="form-control" type="text" placeholder="" required></textarea>
+				<small class="text-muted">Tell us anything we should know when delivering your order.</small>
+			</div>
+		</div>
+		<br><br>
+		<div class="form-inline fillup-group">
+			<button class="btn btn-secondary inline-block" style="font-size: 20px;" id="btn-step1">Continue</button>
+			<span class="ml-1" style="font-size: 13px;">or <a class="inline-block" href="#">return to shop</a></span>
+		</div>
+	</div>
+	<div id="step2">
+		<div class="form-check fillup-group">
+			<input class="form-check-input" type="radio" name="shipping" value="260">
+			<label for="lbc_shipping" class="form-check-label">LBC Express</label>
+			<label for="lbc_price" class="form-check-label">(₱260.00)</label>
+		</div>
+		<br>
+		<div class="form-check fillup-group">
+			<input class="form-check-input" type="radio" name="shipping" value="150">
+			<label for="lalamove_shipping" class="form-check-label">Lalamove</label>
+			<label for="lalamove_price" class="form-check-label">(₱150.00)</label>
+		</div>
+	
+		<br><br>
+		<div class="form-inline fillup-group">
+			<button class="btn btn-secondary inline-block" style="font-size: 20px;" id="btn-step2">Continue</button>
+			<span class="ml-1" style="font-size: 13px;">or <a class="inline-block" href="#">return to cart</a></span>
+		</div>
+	</div>
+	<div id="step3">
+		<div class="row">
+			<div class="form-check form-check-inline col-sm-2 col-lg-3 fillup-group">
+				<input class="form-check-input" type="radio" name="paymentOptions" value="credit">
+				<div style="display: grid; text-align: center;">
+					<img src="credit.png" class="payment-image ml-1" alt="">
+					<small class="form-check-label" for="credit_card">Credit Card</small>
+				</div>
+			</div>
+			<div class="form-check form-check-inline col-sm-2 col-lg-4 fillup-group">
+				<input class="form-check-input" type="radio" name="paymentOptions" value="paypal">
+				<div style="display: grid; text-align: center;">
+					<img src="paypal.png" class="payment-paypal" alt="">
+					<small class="form-check-label" for="paypal">PayPal</small>
+				</div>
+			</div>
+			<div class="form-check form-check-inline col-sm-2 col-lg-4 fillup-group">
+				<input class="form-check-input" type="radio" name="paymentOptions" value="cod" disabled>
+				<div style="display: grid; text-align: center;">
+					<img src="cod.png" class="payment-image" alt="">
+					<small class="form-check-label" for="cash_on_delivery">Cash on Delivery</small>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="form-inline card-types p-2">
+			<p class="pl-4 mb-0">Accepted Card Types:</p>
+			<img src="mastercard.jpg" class="payment-type ml-2 mr-2" alt="">
+			<img src="visa.png" class="payment-type" alt="">
+		</div>
+		<br>
+		<div class="form-group">
+			<label for="card_number">Card number</label>
+			<input type="text" class="form-control input-sm" placeholder="1234000056780000">
+		</div>
+		<br>
+		<div class="form-inline row">
+			<div class="form-group col-lg-4">
+				<label for="expmonth">Expiration Month</label>
+				<input type="number" class="form-control" id="" placeholder=" ">
+			</div>
+			<div class="form-group col-lg-4">
+				<label for="expyear">Expiration Year</label>
+				<input type="number" class="form-control" id="" placeholder=" ">
+			</div>
+			<div class="form-group col-lg-4">
+				<label for="seccode">Security Code</label>
+				<input type="text" class="form-control" id="" placeholder=" ">
+			</div>
+		</div>
+		<br><br>
+		<div class="form-inline fillup-group">
+			<button class="btn btn-secondary inline-block" style="font-size: 20px;" id="btn-step3">Proceed to secure payment</button>
+			<span class="ml-1" style="font-size: 13px;">or <a class="inline-block" href="#">return to shipping method</a></span>
+		</div>
+	</div>
+	<div id="step4">
+		<div class="form-group row fillup-group">
+			<div class="col-5 p-1">
+				<h5 class="header-info">Shipping</h5>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-5 p-1">
+				<h5 class="header-info">Payment</h5>
+			</div>
+		</div>
+		<div class="form-group row fillup-group">
+			<div class="col-5 p-4 order-method">
+				<div class="method-info">
+					<span>Address</span>
+					<a href="#"><small >Change</small></a>
+				</div>
+				<br><br>
+				<div class="method-details">
+					<p class="ml-lg-2">Singalong St.</p>
+					<p class="ml-lg-2">Taft Avenue</p>
+					<p class="ml-lg-2">1402</p>
+					<p class="ml-lg-2">Philippines</p>
+				</div>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-5 p-4 order-method">
+				<div class="method-info">
+					<span>Payment method</span>
+					<a href="#"><small >Change</small></a>
+				</div>
+				<br><br>
+				<div class="method-details">
+					<p class="ml-lg-2">Credit Card</p>
+					<p class="ml-lg-2">Card Number: *1234</p>
+				</div>
+			</div>
+		</div>
+		<div class="form-group order-method">
+			<div class="method-info p-4">
+				<span>Shipping method: </span>
+				<span>LBC Express</span>
+				<a href="#"><small>Change</small></a>
+			</div>
+		</div>
+		<div class="form-group fillup-group">
+			<div class="order pl-5 pt-4">
+				<h4 class="header-info">Order contents</h4>
+			</div>
+		</div>
+		<div class="form-group row fillup-group p-2">
+			<table class="table" style="text-align: center;">
+				<thead class="prod-header">
+					<tr>
+					<th scope="col" ></th>
+					<th scope="col">NAME</th>
+					<th scope="col">PRICE</th>
+					<th scope="col">QUANTITY</th>
+					<th scope="col">TOTAL</th>
+					</tr>
+				</thead>
+				<tbody class="prod-details" >
+					<tr>
+					<th scope="row" ><img class="prod-img" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp16touch-space-select-201911?wid=1808&hei=1686&fmt=jpeg" alt=""></th>
+					<td>Pear McBook Laptop (PRMB-10724DY)</td>
+					<td>₱12,345.67</td>
+					<td>2</td>
+					<td>₱24,691.34</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="form-group row fillup-group p-2">
+			<div class="col-lg-8 col-sm-8"></div>
+			<div class="col-lg-4 col-sm-4">
+				<table class="table" style="text-align: center;">
+					<tbody class="prod-details">
+						<tr>
+							<th scope="col" class="prod-header">CART TOTAL</th>
+							<td scope="col" class="prod-details">₱24,691.34</td>
+						</tr>
+						<tr>
+							<th scope="col" class="prod-header">SHIPPING</th>
+							<td scope="col" class="prod-details">₱260.00</td>
+						</tr>
+						<tr>
+							<th scope="col" class="prod-header">ORDER TOTAL</th>
+							<td scope="col" class="prod-details">₱24,951.34</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br>
+		<div class="form-inline fillup-submit">
+			<input type="submit" class="btn btn-secondary inline-block" value="Place Order">
+		</div>
+	</div>
+	
+	
+</form>
+<script>
+	$(document).ready(function(){
+		$('#step1').css('display', 'block');
+		$('#step2').css('display', 'none');
+		$('#step3').css('display', 'none');
+		$('#step4').css('display', 'none');
+		$("#info-step1").addClass("step-active");
+		$('#btn-step1').click(() => {
+			$('#step1').css('display', 'none');
+			$('#step2').css('display', 'block');
+			$("#info-step1").removeClass("step-active");
+			$("#info-step2").addClass("step-active");
+    	});
+		$('#btn-step2').click(() => {
+			$('#step2').css('display', 'none');
+			$('#step3').css('display', 'block');
+			$("#info-step2").removeClass("step-active");
+			$("#info-step3").addClass("step-active");
+    	});
+		$('#btn-step3').click(() => {
+			$('#step3').css('display', 'none');
+			$('#step4').css('display', 'block');
+			$("#info-step3").removeClass("step-active");
+			$("#info-step4").addClass("step-active");
+    	});
+		window.onbeforeunload = function(event){
+			event.returnValue = "Your current information will not be saved.";
+		}
+	})
+
+</script>
