@@ -5,9 +5,9 @@
 <div class="col-lg-5 col-9 d-flex flex-column justify-content-center align-items-center">
     <div class="row large-product-container">
         {% if product.imageURL %}
-        <img src="{{ product.imageURL }}" class="img-fluid">
+        <img src="{{ product.imageURL }}" class="img-fluid main-image">
         {% else %}
-        <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
+        <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid main-image">
         {% endif %}
     </div>
     {% include "./image-list.html" %}

@@ -1,8 +1,17 @@
 {% load static %}
 <div class="col-3 product-thumbnail">
     {% if img %}
-        <img src="{{ img }}" class="img-fluid">
+        <img src="{{ img }}" class="img-fluid" onclick="changeMainImage(this)">
     {% else %}
         <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
     {% endif %}
 </div>
+
+<script type="text/javascript">
+
+function changeMainImage(thumbnail) {
+    var imgSrc = thumbnail.getAttribute("src")
+    $(".main-image").attr("src", imgSrc)
+} 
+
+</script>

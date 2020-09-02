@@ -1,7 +1,8 @@
 {% load static %}
 <div class="row mb-5">
+   {% include "./product-thumbnail.html" with img=product.imageURL %}
    {% include "./product-thumbnail.html" with img=gallery.image1URL %}
    {% include "./product-thumbnail.html" with img=gallery.image2URL %}
    {% include "./product-thumbnail.html" with img=gallery.image3URL %}
-   {% include "./product-thumbnail.html" with img=gallery.image4URL %}
+   <!-- {% include "./product-thumbnail.html" with img=gallery.image4URL %} -->
 </div>
