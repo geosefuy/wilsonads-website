@@ -7,7 +7,38 @@ from django.contrib.auth import logout
 
 # Create your views here.
 
+# INCOMPLETE
 def checkout(req):
+    customer = Customer.objects.filter(user=req.user)
+
+    if customer:
+        customer = Customer.objects.get(user=req.user)
+        order = Order.objects.get(customer=customer, status='Ordering')
+
+        form = CheckoutForm(instance=order)
+        if ShippingAddress.objects.filter(customer=customer).exists() and form.fname is None:
+            address = ShippingAddress.objects.get(customer=customer)
+            form.fname = address.fname
+            form.lname = address.lname
+            form.address = address.address
+            form.city = address.city 
+            form.state = address.state
+            form.zipcode = address.zipcode
+            form.phone = address.phone
+            form.instruction = address.instruction
+            #if req.method == 'POST':
+                #form = CheckoutForm(req.POST, instance=)
+
+    #         context = {
+    #             'form': form
+    #         }
+    #         return render(req, 'pages/account-page.html', context)
+    #     else:
+    #         return render(req, 'pages/403.html')
+    # else:
+    #     return render(req, 'pages/404.html')
+
+
     context = {}
     return render(req, 'pages/checkout.html', context)
 
