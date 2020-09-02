@@ -154,8 +154,8 @@
 
 </style>
 
-<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Fill out your Shipping Information</h4>
 <form action="#" class="fillup-area p-4 form-horizontal" method="POST">
+	<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Step 1: Fill out your Shipping Information</h4>
 	<div id="step1">
 		<div class="form-group row fillup-group">
 			<label for="first_name" class="col-lg-2 col-sm-3 col-form-label">First Name</label>
@@ -196,11 +196,9 @@
 			</div>
 		</div>
 		<br><br>
-		<div class="form-inline fillup-group">
-			<button class="btn btn-secondary inline-block" style="font-size: 20px;" id="btn-step1">Continue</button>
-			<span class="ml-1" style="font-size: 13px;">or <a class="inline-block" href="#">return to shop</a></span>
-		</div>
 	</div>
+	<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Step 2: Choose your Shipping Method</h4>
+	<br>
 	<div id="step2">
 		<div class="form-check fillup-group">
 			<input class="form-check-input" type="radio" name="shipping" value="260">
@@ -215,11 +213,9 @@
 		</div>
 	
 		<br><br>
-		<div class="form-inline fillup-group">
-			<button class="btn btn-secondary inline-block" style="font-size: 20px;" id="btn-step2">Continue</button>
-			<span class="ml-1" style="font-size: 13px;">or <a class="inline-block" href="#">return to cart</a></span>
-		</div>
 	</div>
+	<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Step 3: Choose your payment method</h4>
+	<br>
 	<div id="step3">
 		<div class="row">
 			<div class="form-check form-check-inline col-sm-2 col-lg-3 fillup-group">
@@ -230,7 +226,7 @@
 				</div>
 			</div>
 			<div class="form-check form-check-inline col-sm-2 col-lg-4 fillup-group">
-				<input class="form-check-input" type="radio" name="paymentOptions" value="paypal">
+				<input class="form-check-input" type="radio" name="paymentOptions" value="paypal" disabled>
 				<div style="display: grid; text-align: center;">
 					<img src="paypal.png" class="payment-paypal" alt="">
 					<small class="form-check-label" for="paypal">PayPal</small>
@@ -271,136 +267,14 @@
 			</div>
 		</div>
 		<br><br>
-		<div class="form-inline fillup-group">
-			<button class="btn btn-secondary inline-block" style="font-size: 20px;" id="btn-step3">Proceed to secure payment</button>
-			<span class="ml-1" style="font-size: 13px;">or <a class="inline-block" href="#">return to shipping method</a></span>
-		</div>
 	</div>
-	<div id="step4">
-		<div class="form-group row fillup-group">
-			<div class="col-5 p-1">
-				<h5 class="header-info">Shipping</h5>
-			</div>
-			<div class="col-1"></div>
-			<div class="col-5 p-1">
-				<h5 class="header-info">Payment</h5>
-			</div>
-		</div>
-		<div class="form-group row fillup-group">
-			<div class="col-5 p-4 order-method">
-				<div class="method-info">
-					<span>Address</span>
-					<a href="#"><small >Change</small></a>
-				</div>
-				<br><br>
-				<div class="method-details">
-					<p class="ml-lg-2">Singalong St.</p>
-					<p class="ml-lg-2">Taft Avenue</p>
-					<p class="ml-lg-2">1402</p>
-					<p class="ml-lg-2">Philippines</p>
-				</div>
-			</div>
-			<div class="col-1"></div>
-			<div class="col-5 p-4 order-method">
-				<div class="method-info">
-					<span>Payment method</span>
-					<a href="#"><small >Change</small></a>
-				</div>
-				<br><br>
-				<div class="method-details">
-					<p class="ml-lg-2">Credit Card</p>
-					<p class="ml-lg-2">Card Number: *1234</p>
-				</div>
-			</div>
-		</div>
-		<div class="form-group order-method">
-			<div class="method-info p-4">
-				<span>Shipping method: </span>
-				<span>LBC Express</span>
-				<a href="#"><small>Change</small></a>
-			</div>
-		</div>
-		<div class="form-group fillup-group">
-			<div class="order pl-5 pt-4">
-				<h4 class="header-info">Order contents</h4>
-			</div>
-		</div>
-		<div class="form-group row fillup-group p-2">
-			<table class="table" style="text-align: center;">
-				<thead class="prod-header">
-					<tr>
-					<th scope="col" ></th>
-					<th scope="col">NAME</th>
-					<th scope="col">PRICE</th>
-					<th scope="col">QUANTITY</th>
-					<th scope="col">TOTAL</th>
-					</tr>
-				</thead>
-				<tbody class="prod-details" >
-					<tr>
-					<th scope="row" ><img class="prod-img" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp16touch-space-select-201911?wid=1808&hei=1686&fmt=jpeg" alt=""></th>
-					<td>Pear McBook Laptop (PRMB-10724DY)</td>
-					<td>₱12,345.67</td>
-					<td>2</td>
-					<td>₱24,691.34</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="form-group row fillup-group p-2">
-			<div class="col-lg-8 col-sm-8"></div>
-			<div class="col-lg-4 col-sm-4">
-				<table class="table" style="text-align: center;">
-					<tbody class="prod-details">
-						<tr>
-							<th scope="col" class="prod-header">CART TOTAL</th>
-							<td scope="col" class="prod-details">₱24,691.34</td>
-						</tr>
-						<tr>
-							<th scope="col" class="prod-header">SHIPPING</th>
-							<td scope="col" class="prod-details">₱260.00</td>
-						</tr>
-						<tr>
-							<th scope="col" class="prod-header">ORDER TOTAL</th>
-							<td scope="col" class="prod-details">₱24,951.34</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<br>
-		<div class="form-inline fillup-submit">
-			<input type="submit" class="btn btn-secondary inline-block" value="Place Order">
-		</div>
+	<div class="form-inline fillup-group">
+		<input type="submit" class="btn btn-secondary inline-block" style="font-size: 20px;" value="Continue">
+		<span class="ml-1" style="font-size: 13px;">or <a class="inline-block" href="{% url 'homepage' %}">return to shop</a></span>
 	</div>
-	
-	
 </form>
 <script>
 	$(document).ready(function(){
-		$('#step1').css('display', 'block');
-		$('#step2').css('display', 'none');
-		$('#step3').css('display', 'none');
-		$('#step4').css('display', 'none');
-		$("#info-step1").addClass("step-active");
-		$('#btn-step1').click(() => {
-			$('#step1').css('display', 'none');
-			$('#step2').css('display', 'block');
-			$("#info-step1").removeClass("step-active");
-			$("#info-step2").addClass("step-active");
-    	});
-		$('#btn-step2').click(() => {
-			$('#step2').css('display', 'none');
-			$('#step3').css('display', 'block');
-			$("#info-step2").removeClass("step-active");
-			$("#info-step3").addClass("step-active");
-    	});
-		$('#btn-step3').click(() => {
-			$('#step3').css('display', 'none');
-			$('#step4').css('display', 'block');
-			$("#info-step3").removeClass("step-active");
-			$("#info-step4").addClass("step-active");
-    	});
 		window.onbeforeunload = function(event){
 			event.returnValue = "Your current information will not be saved.";
 		}
