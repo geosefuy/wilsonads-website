@@ -56,13 +56,15 @@ class Product(models.Model):
 
 class Order(models.Model):
     STATUS = (
+        ('Ordering', 'Ordering')
         ('Pending', 'Pending'),
+        ('Processing', 'Processing')
         ('Delivered', 'Delivered'),
     )
 
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=200, null=True, choices=STATUS, default="Pending")
+    status = models.CharField(max_length=200, null=True, choices=STATUS, default="Ordering")
     transaction_id = models.CharField(max_length=200, null=True, unique=True)
 
     fname = models.CharField(max_length=200, null=True)
