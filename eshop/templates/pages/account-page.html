@@ -11,14 +11,15 @@
                 {% include "../partials/account/profile-form.html" %} 
             {% elif address %}
                 {% include "../partials/account/address-book-form.html" %}
-            {% elif credit %}
-                {% include "../partials/account/card-info-form.html" %}
             {% elif order %}
                 {% include "../partials/account/order-history.html" %}
             {% elif detail %}
                 {% include "../partials/account/order-details.html" %}
             {% endif %}
             </form>
+            {% if credit %}
+                {% include "../partials/account/card-info-form.html" %}
+            {% endif %}
         </div>
     </div>
 </div>
