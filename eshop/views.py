@@ -236,6 +236,44 @@ def create_and_update_address(req, account_id):
     else:
         return render(req, 'pages/404.html')
 
+def create_and_update_credit(req, account_id):
+    profile = Customer.objects.filter(id=account_id)
+    if profile:
+        profile = Customer.objects.get(id=account_id)
+        if req.user == profile.user:
+            address = ShippingAddress.objects.filter(customer=account_id)
+            context = {}
+            if ShippingAddress.objects.filter(customer=account_id).exists():
+                address = ShippingAddress.objects.get(customer=account_id)
+                form = ShippingAddressForm(instance=address)
+                if req.method == 'POST':
+                    form = ShippingAddressForm(req.POST, instance=address)
+                    if form.is_valid():
+                        form.save()
+                        return HttpResponseRedirect(req.path_info)
+            else:
+                form = ShippingAddressForm()
+                if req.method == 'POST':
+                    form = ShippingAddressForm(req.POST)
+                    if form.is_valid():
+                        form = form.save(commit=False)
+                        form.customer = profile
+                        form.save()
+                        return HttpResponseRedirect(req.path_info)
+            context = {
+                'account': False,
+                'address': True,
+                'order': False,
+                'detail': False,
+                'profile': profile,
+                'form': form
+            }
+            return render(req, 'pages/account-page.html', context)
+        else:
+            return render(req, 'pages/403.html')
+    else:
+        return render(req, 'pages/404.html')
+
 # For add to cart functionality
 def updateItem(req):
     data = json.loads(req.body)

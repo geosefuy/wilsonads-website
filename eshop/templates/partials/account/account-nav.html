@@ -9,6 +9,9 @@
         <li class="side-nav-item {% if address %} active {% endif %} mb-3">
             <a class="nav-link" href="{% url 'create_and_update_address' profile.id %}">Address book</a>
         </li>
+        <li class="side-nav-item {% if credit %} active {% endif %} mb-3">
+            <a class="nav-link" href="{% url 'create_and_update_credit' profile.id %}">Payment Information</a>
+        </li>
         <li class="side-nav-item {% if order or detail %} active {% endif %} mb-3">
             <a class="nav-link" href="{% url 'account_orders' profile.id %}">Order history</a>
         </li>
