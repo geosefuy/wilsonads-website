@@ -9,6 +9,7 @@ class Customer(models.Model):
     fname = models.CharField(max_length=200, null=True)
     lname = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True, unique=True)
+    stripe_id = models.CharField(max_length=200, null=True, default='')
 
     def __str__(self):
         return str(self.user)
