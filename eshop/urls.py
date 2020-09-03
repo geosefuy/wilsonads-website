@@ -18,5 +18,6 @@ urlpatterns = [
     path('account/<int:account_id>/orders', account_orders, name = 'account_orders'),
     path('account/<int:account_id>/orders/<int:order_id>', order_details, name = 'order_details'),
     path('logout/', logout_view, name='logout_view'),
-    path('search/', result, name='result')
+    path('search/', result, name='result'),
+    path('save_card/', save_card, name='save_card'),
 ]

@@ -5,7 +5,10 @@ from .forms import *
 import json
 from django.contrib.auth import logout
 from django.conf import settings
+from django.contrib.auth.signals import user_logged_in
+import stripe
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
 # Create your views here.
 
 # INCOMPLETE
@@ -262,7 +265,8 @@ def create_and_update_credit(req, account_id):
                         return HttpResponseRedirect(req.path_info)
             context = {
                 'account': False,
-                'address': True,
+                'address': False,
+                'credit': True,
                 'order': False,
                 'detail': False,
                 'profile': profile,
@@ -347,3 +351,21 @@ def getProduct(req, product_id):
         'id': product.id
     }
     return JsonResponse(data)
+
+def save_card(req):
+    if req.method == 'POST':
+        print(req.body)
+    else:
+        print('ok')
+    context = {}
+    return create_and_update_credit(req, req.user.id)
+
+
+# for signal
+def stripeCallback(sender, user, **kwargs):
+    customer = Customer.objects.get(user=user)
+    if customer.stripe_id is None or customer.stripe_id == '' and customer.email is not None:
+        new_stripe_customer = stripe.Customer.create(email=customer.email)
+        customer.stripe_id = new_stripe_customer['id']
+        customer.save()
+user_logged_in.connect(stripeCallback)
