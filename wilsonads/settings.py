@@ -153,11 +153,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-
 MEDIA_URL = '/images/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+# Stripe
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51HNJujJVWnIKAGtwoGBT2WNyLI3R1lx3flRHSEU4miDcaQglxS4d22iH911ZipmMHvf6jw8H8zjQ7f58OXPVcTua00Wk9LH18b'
+STRIPE_SECRET_KEY = 'sk_test_51HNJujJVWnIKAGtw4dP4ZClqTq1tfXGw4LRiFLWcBSKPixzaiPGdXlp3uMn9w7nam9CTw1vDpIp0E0TLtVKMWTCZ00TsmDBu3q'
