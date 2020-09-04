@@ -74,7 +74,7 @@ class Order(models.Model):
     city = models.CharField(max_length=200, null=True)
     state = models.CharField(max_length=200, null=True)
     zipcode = models.CharField(max_length=200, null=True)
-    phone = models.PositiveIntegerField(null=True)
+    phone = models.CharField(max_length=11, null=True)
     instructions = models.TextField(max_length=500, null=True)
 
     def __str__(self):
@@ -157,7 +157,7 @@ class ShippingAddress(models.Model):
     city = models.CharField(max_length=200, null=False)
     state = models.CharField(max_length=200, null=False)
     zipcode = models.CharField(max_length=200, null=False)
-    phone = models.PositiveIntegerField(null=False)
+    phone = models.CharField(max_length=11, null=False)
     instructions = models.TextField(max_length=500, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 

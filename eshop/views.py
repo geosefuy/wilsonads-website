@@ -14,37 +14,64 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # INCOMPLETE
 def checkout(req):
-        #customer = Customer.objects.filter(user=req.user)
+    customer = False
+    if req.user.is_authenticated:
+        print(req.user)
+        customer = Customer.objects.filter(user=req.user)
+    form = CheckoutForm()
+    if customer:
+        customer = Customer.objects.get(user=req.user)
+        order = Order.objects.get(customer=customer, status='Ordering')
 
-    # if customer:
-    #     customer = Customer.objects.get(user=req.user)
-    #     order = Order.objects.get(customer=customer, status='Ordering')
+        if ShippingAddress.objects.filter(customer=customer).exists():
+            address = ShippingAddress.objects.get(customer=customer)
+            form.fname = address.fname
+            form.lname = address.lname
+            form.address = address.address
+            form.city = address.city 
+            form.state = address.state
+            form.zipcode = address.zipcode
+            form.phone = address.phone
+            form.instructions = address.instructions
+            if req.method == 'POST':
+                form = CheckoutForm(req.POST)
+                if form.is_valid():
+                    form = form.save(commit=False)
+                    form.customer = profile
+                    form.status = 'Pending'
+                    form.save()
+                    return redirect('/')
+        else:
+            if req.method == 'POST':
+                form = CheckoutForm(req.POST)
+                if form.is_valid():
+                    form = form.save(commit=False)
+                    form.customer = profile
+                    form.status = 'Pending'
+                    form.save()
+                    return redirect('/')
+        context = {
+            'form': form,
+            'guest': False
+        }
+    else:
+    #GUEST CHECKOUT
+        # customer = Customer.objects.get(user=req.user)
+        # order = Order.objects.get(customer=customer, status='Ordering')
 
-    #     form = CheckoutForm(instance=order)
-    #     if ShippingAddress.objects.filter(customer=customer).exists() and form.fname is None:
-    #         address = ShippingAddress.objects.get(customer=customer)
-    #         form.fname = address.fname
-    #         form.lname = address.lname
-    #         form.address = address.address
-    #         form.city = address.city 
-    #         form.state = address.state
-    #         form.zipcode = address.zipcode
-    #         form.phone = address.phone
-    #         form.instruction = address.instruction
-            #if req.method == 'POST':
-                #form = CheckoutForm(req.POST, instance=)
+        # form = CheckoutForm()
+        # if req.method == 'POST':
+        #     form = CheckoutForm(req.POST)
 
-    #         context = {
-    #             'form': form
-    #         }
-    #         return render(req, 'pages/account-page.html', context)
-    #     else:
-    #         return render(req, 'pages/403.html')
-    # else:
-    #     return render(req, 'pages/404.html')
-
-
-    context = {}
+        # context = {
+        #     'form': form
+        # }
+        # return render(req, 'pages/checkout.html', context)
+        pass
+        context = {
+            'form': form,
+            'guest': True
+        }
     return render(req, 'pages/checkout.html', context)
 
 def product_details(req, product_id):

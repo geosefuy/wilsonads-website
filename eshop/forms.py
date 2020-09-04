@@ -21,7 +21,7 @@ class ShippingAddressForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'class': 'form-control'}),
             'state': forms.TextInput(attrs={'class': 'form-control'}),
             'zipcode': forms.TextInput(attrs={'class': 'form-control'}),
-            'phone': forms.NumberInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'instructions': forms.Textarea(attrs={'class': 'form-control'}),
             
         }
@@ -57,10 +57,10 @@ class ShippingAddressForm(forms.ModelForm):
 
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
-        if len(str(phone)) != 10:
-            raise forms.ValidationError("Phone number must be 10 numbers (9234567890).")
-        elif str(phone)[0] != '9':
-            raise forms.ValidationError("Phone number must start with 9 (9234567890).")
+        if len(phone) != 11 or not phone.isdecimal():
+            raise forms.ValidationError("Phone number must be 11 numbers (09234567890).")
+        elif phone[0] != '0' or phone[1] != '9':
+            raise forms.ValidationError("Phone number must start with 0 and 9 (09234567890).")
         return phone
 
 class CustomerForm(forms.ModelForm):
@@ -118,7 +118,7 @@ class CheckoutForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'class': 'form-control col-lg-5 col-sm-4'}),
             'state': forms.TextInput(attrs={'class': 'form-control col-lg-5 col-sm-4'}),
             'zipcode': forms.TextInput(attrs={'class': 'form-control col-lg-5 col-sm-4'}),
-            'phone': forms.NumberInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'instructions': forms.Textarea(attrs={'class': 'form-control'}),
         }
     def clean_fname(self):
@@ -153,8 +153,8 @@ class CheckoutForm(forms.ModelForm):
 
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
-        if len(str(phone)) != 10:
-            raise forms.ValidationError("Phone number must be 10 numbers (9234567890).")
-        elif str(phone)[0] != '9':
-            raise forms.ValidationError("Phone number must start with 9 (9234567890).")
+        if len(phone) != 11 and phone.isdecimal():
+            raise forms.ValidationError("Phone number must be 11 numbers (09234567890).")
+        elif phone[0] != '0' and phone[1] != '9':
+            raise forms.ValidationError("Phone number must start with 0 (09234567890).")
         return phone

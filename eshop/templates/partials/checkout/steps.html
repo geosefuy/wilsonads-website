@@ -1,6 +1,6 @@
 {% load static %}
 
-<style>
+<style type="text/css">
 	#header {
 		height: 104px;
 	}
@@ -152,119 +152,126 @@
 		}
 	}
 
+
+    /**
+    * The CSS shown here will not be introduced in the Quickstart guide, but shows
+    * how you can use CSS to style your Element's container.
+    */
+    .StripeElement {
+    box-sizing: border-box;
+    
+    height: 40px;
+
+    padding: 10px 12px;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+    }
+
+    .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    .StripeElement--invalid {
+    border-color: #fa755a;
+    }
+
+    .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;}
 </style>
 
+<script src="https://js.stripe.com/v3/"></script>
+
+
+<h1 class="display-4 header">Checkout{% if guest %} as Guest{% endif %}</h1>
+
 <form action="#" class="fillup-area p-4 form-horizontal" method="POST">
+	{% csrf_token %}
 	<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Step 1: Fill out your Shipping Information</h4>
+	<br>
 	<div id="step1">
 		<div class="form-group row fillup-group">
 			<label for="first_name" class="col-lg-2 col-sm-3 col-form-label">First Name</label>
-			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+			{{ form.fname }}
+			<span>{{ form.fname.errors|striptags }}</span>
 		</div>
 		<div class="form-group row fillup-group">
 			<label for="last_name" class="col-lg-2 col-sm-3 col-form-label">Last Name</label>
-			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+			{{ form.lname }}
+			<span>{{ form.lname.errors|striptags }}</span>
 		</div>
 		<div class="form-group row fillup-group">
 			<label for="address" class="col-lg-2 col-sm-3 col-form-label">Address</label>
-			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+			{{ form.address }}
+			<span>{{ form.address.errors|striptags }}</span>
 		</div>
 		<div class="form-group row fillup-group">
 			<label for="city" class="col-lg-2 col-sm-3 col-form-label">City</label>
-			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+			{{ form.city }}
+			<span>{{ form.city.errors|striptags }}</span>
 		</div>
 		<div class="form-group row fillup-group">
 			<label for="state" class="col-lg-2 col-sm-3 col-form-label">State/Country</label>
-			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+			{{ form.state }}
+			<span>{{ form.state.errors|striptags }}</span>
 		</div>
 		<div class="form-group row fillup-group">
 			<label for="zip_code" class="col-lg-2 col-sm-3 col-form-label">Zip Code</label>
-			<input class="form-control col-lg-5 col-sm-4" type="text" placeholder="" required>
+			{{ form.zipcode }}
+			<span>{{ form.zipcode.errors|striptags }}</span>
 		</div>
 		<div class="form-group row fillup-group">
 			<label for="phone" class="col-lg-2 col-sm-3 col-form-label">Phone Number</label>
 			<div class="col-lg-5 col-sm-4" style="display: grid;">
-				<input class="form-control" type="text" placeholder="" required>
+				{{ form.phone }}
+				<span>{{ form.phone.errors|striptags }}</span>
 				<small class="text-muted">In case we need to call you about your order.</small>
 			</div>
 		</div>
 		<div class="form-group row fillup-group">
 			<label for="special_instructions" class="col-lg-2 col-sm-3 col-form-label">Special Instructions</label>
 			<div class="col-lg-5 col-sm-4" style="display: grid;">
-				<textarea class="form-control" type="text" placeholder="" required></textarea>
+				{{ form.instructions }}
+				<span>{{ form.instructions.errors|striptags }}</span>
 				<small class="text-muted">Tell us anything we should know when delivering your order.</small>
 			</div>
 		</div>
 		<br><br>
 	</div>
-	<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Step 2: Choose your Shipping Method</h4>
+	<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Step 2: Choose your payment method</h4>
 	<br>
 	<div id="step2">
-		<div class="form-check fillup-group">
-			<input class="form-check-input" type="radio" name="shipping" value="260">
-			<label for="lbc_shipping" class="form-check-label">LBC Express</label>
-			<label for="lbc_price" class="form-check-label">(₱260.00)</label>
-		</div>
-		<br>
-		<div class="form-check fillup-group">
-			<input class="form-check-input" type="radio" name="shipping" value="150">
-			<label for="lalamove_shipping" class="form-check-label">Lalamove</label>
-			<label for="lalamove_price" class="form-check-label">(₱150.00)</label>
-		</div>
-	
-		<br><br>
-	</div>
-	<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Step 3: Choose your payment method</h4>
-	<br>
-	<div id="step3">
 		<div class="row">
 			<div class="form-check form-check-inline col-sm-2 col-lg-3 fillup-group">
-				<input class="form-check-input" type="radio" name="paymentOptions" value="credit">
+				<input class="form-check-input" type="radio" name="paymentOptions" id="credit_card" value="credit">
 				<div style="display: grid; text-align: center;">
-					<img src="credit.png" class="payment-image ml-1" alt="">
+					<!-- <img src="" class="payment-image ml-1" alt=""> -->
 					<small class="form-check-label" for="credit_card">Credit Card</small>
 				</div>
 			</div>
 			<div class="form-check form-check-inline col-sm-2 col-lg-4 fillup-group">
-				<input class="form-check-input" type="radio" name="paymentOptions" value="paypal" disabled>
+				<input class="form-check-input" type="radio" name="paymentOptions" id="cod" value="cod" disabled>
 				<div style="display: grid; text-align: center;">
-					<img src="paypal.png" class="payment-paypal" alt="">
-					<small class="form-check-label" for="paypal">PayPal</small>
-				</div>
-			</div>
-			<div class="form-check form-check-inline col-sm-2 col-lg-4 fillup-group">
-				<input class="form-check-input" type="radio" name="paymentOptions" value="cod" disabled>
-				<div style="display: grid; text-align: center;">
-					<img src="cod.png" class="payment-image" alt="">
+					<!-- <img src="cod.png" class="payment-image" alt=""> -->
 					<small class="form-check-label" for="cash_on_delivery">Cash on Delivery</small>
 				</div>
 			</div>
 		</div>
 		<br>
-		<div class="form-inline card-types p-2">
-			<p class="pl-4 mb-0">Accepted Card Types:</p>
-			<img src="mastercard.jpg" class="payment-type ml-2 mr-2" alt="">
-			<img src="visa.png" class="payment-type" alt="">
-		</div>
 		<br>
-		<div class="form-group">
-			<label for="card_number">Card number</label>
-			<input type="text" class="form-control input-sm" placeholder="1234000056780000">
-		</div>
-		<br>
-		<div class="form-inline row">
-			<div class="form-group col-lg-4">
-				<label for="expmonth">Expiration Month</label>
-				<input type="number" class="form-control" id="" placeholder=" ">
+		<div id="card-element" class="container-fluid col-6" >
+			<!-- A Stripe Element will be inserted here. -->
 			</div>
-			<div class="form-group col-lg-4">
-				<label for="expyear">Expiration Year</label>
-				<input type="number" class="form-control" id="" placeholder=" ">
-			</div>
-			<div class="form-group col-lg-4">
-				<label for="seccode">Security Code</label>
-				<input type="text" class="form-control" id="" placeholder=" ">
-			</div>
+	
+			<div class="d-flex justify-content-center my-2">
+			<!-- Used to display form errors. -->
+				<div id="card-errors" role="alert"></div>
+			<!-- </div> -->
 		</div>
 		<br><br>
 	</div>
@@ -275,9 +282,96 @@
 </form>
 <script>
 	$(document).ready(function(){
+		$('#card-element').css('display', 'none');
+		if($('#credit_card').is(':checked'))
+			$('#card-element').show();
 		window.onbeforeunload = function(event){
 			event.returnValue = "Your current information will not be saved.";
 		}
+		$('#credit_card').click(function(){
+			if($('#credit_card').is(':checked'))
+				$('#card-element').show();
+		})
+		$('#paypal').click(function(){
+			if($('#paypal').is(':checked'))
+				$('#card-element').hide();
+		})
+		$('#cod').click(function(){
+			if($('#cod').is(':checked'))
+				$('#card-element').hide();
+		})
 	})
 
+</script>
+
+<script type="text/javascript">
+    // Create a Stripe client.
+    var stripe = Stripe('pk_test_51HNJujJVWnIKAGtwoGBT2WNyLI3R1lx3flRHSEU4miDcaQglxS4d22iH911ZipmMHvf6jw8H8zjQ7f58OXPVcTua00Wk9LH18b');
+
+    // Create an instance of Elements.
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+    base: {
+        color: '#32325d',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+        color: '#aab7c4'
+        }
+    },
+    invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+    }
+    };
+
+    // Create an instance of the card Element.
+    var card = elements.create('card', {style: style});
+
+    // Add an instance of the card Element into the `card-element` <div>.
+    card.mount('#card-element');
+    // Handle real-time validation errors from the card Element.
+    card.on('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+        displayError.textContent = event.error.message;
+    } else {
+        displayError.textContent = '';
+    }
+    });
+
+    // Handle form submission.
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        stripe.createToken(card).then(function(result) {
+            if (result.error) {
+            // Inform the user if there was an error.
+            var errorElement = document.getElementById('card-errors');
+            errorElement.textContent = result.error.message;
+            } else {
+            // Send the token to your server.
+            stripeTokenHandler(result.token);
+            }
+        });
+    });
+
+    // Submit the form with the token ID.
+    function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var form = document.getElementById('payment-form');
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+
+    // Submit the form
+    form.submit();
+    }
 </script>
