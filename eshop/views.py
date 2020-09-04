@@ -155,7 +155,7 @@ def account_orders(req, account_id):
     if profile:
         profile = Customer.objects.get(id=account_id)
         if req.user == profile.user:
-            orders = Order.objects.filter(customer=account_id).order_by('-date_ordered')
+            orders = Order.objects.filter(customer=account_id).order_by('-date_ordered').exclude(status='Ordering')
             context = {
                 'profile': profile,
                 'account': False,
