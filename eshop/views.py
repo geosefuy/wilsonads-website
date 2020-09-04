@@ -240,29 +240,38 @@ def create_and_update_address(req, account_id):
         return render(req, 'pages/404.html')
 
 def create_and_update_credit(req, account_id):
+    hasCard = False
+    last4creditnumber = '0000'
     profile = Customer.objects.filter(id=account_id)
+    
     if profile:
         profile = Customer.objects.get(id=account_id)
         if req.user == profile.user:
             address = ShippingAddress.objects.filter(customer=account_id)
-            context = {}
-            if ShippingAddress.objects.filter(customer=account_id).exists():
-                address = ShippingAddress.objects.get(customer=account_id)
-                form = ShippingAddressForm(instance=address)
-                if req.method == 'POST':
-                    form = ShippingAddressForm(req.POST, instance=address)
-                    if form.is_valid():
-                        form.save()
-                        return HttpResponseRedirect(req.path_info)
-            else:
-                form = ShippingAddressForm()
-                if req.method == 'POST':
-                    form = ShippingAddressForm(req.POST)
-                    if form.is_valid():
-                        form = form.save(commit=False)
-                        form.customer = profile
-                        form.save()
-                        return HttpResponseRedirect(req.path_info)
+            if req.method == 'GET':
+                customer = stripe.Customer.retrieve(profile.stripe_id)
+                card = (stripe.Customer.list_sources(
+                    profile.stripe_id,
+                    object="card",
+                    limit=1,
+                    ))
+                if len(card) >= 1:
+                    hasCard = True
+                    last4creditnumber = card.data[0].last4
+            elif req.method == 'POST':
+                card = stripe.Customer.create_source(
+                profile.stripe_id,
+                source=req.POST['stripeToken'],
+                )
+                # print(stripe.Charge.create(
+                # amount=2000,
+                # currency="usd",
+                # source=card.id,
+                # description="My First Test Charge (created for API docs)",
+                # customer=profile.stripe_id,
+                # ))
+                return HttpResponseRedirect(req.path_info)
+
             context = {
                 'account': False,
                 'address': False,
@@ -270,7 +279,8 @@ def create_and_update_credit(req, account_id):
                 'order': False,
                 'detail': False,
                 'profile': profile,
-                'form': form
+                'last4creditnumber': last4creditnumber,
+                'hasCard': hasCard
             }
             return render(req, 'pages/account-page.html', context)
         else:
@@ -352,14 +362,21 @@ def getProduct(req, product_id):
     }
     return JsonResponse(data)
 
-def save_card(req):
+def remove_card(req):
     if req.method == 'POST':
-        print(req.body)
-    else:
-        print('ok')
-    context = {}
-    return create_and_update_credit(req, req.user.id)
-
+        customer = Customer.objects.get(user=req.user)
+        card = (stripe.Customer.list_sources(
+                customer.stripe_id,
+                object="card",
+                limit=1,
+                ))
+        if len(card) >= 1:
+            stripe.Customer.delete_source(
+            customer.stripe_id,
+            card.data[0].id,
+            )
+        req.method = 'GET'
+    return create_and_update_credit(req, customer.id)
 
 # for signal
 def stripeCallback(sender, user, **kwargs):
