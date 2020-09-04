@@ -23,9 +23,11 @@ def cookieCart(request):
 	for i in cart:
 		#We use try block to prevent items in cart that may have been removed from causing error
 		try:
-			cartItems += cart[i]['quantity']
-
 			product = Product.objects.get(id=i)
+			if product.stock < cart[i]['quantity']:
+				cart[i]['quantity'] = product.stock
+
+			cartItems += cart[i]['quantity']
 			total = (product.price * cart[i]['quantity'])
 
 			order['get_cart_total'] += total
@@ -51,6 +53,11 @@ def cartData(req):
 		customer = req.user.customer
 		order, created = Order.objects.get_or_create(customer=customer, status='Ordering')
 		items = order.orderitem_set.all()
+
+		for item in items:
+			if item.product.stock < item.quantity:
+				item.quantity = item.product.stock
+
 		cartItems = order.get_cart_items
 	else:
 		cookieData = cookieCart(req)
