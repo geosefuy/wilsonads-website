@@ -18,21 +18,23 @@ def checkout(req):
     if req.user.is_authenticated:
         print(req.user)
         customer = Customer.objects.filter(user=req.user)
-    form = CheckoutForm()
+    #form = CheckoutForm()
     if customer:
         customer = Customer.objects.get(user=req.user)
         order = Order.objects.get(customer=customer, status='Ordering')
 
         if ShippingAddress.objects.filter(customer=customer).exists():
             address = ShippingAddress.objects.get(customer=customer)
-            form.fname = address.fname
-            form.lname = address.lname
-            form.address = address.address
-            form.city = address.city 
-            form.state = address.state
-            form.zipcode = address.zipcode
-            form.phone = address.phone
-            form.instructions = address.instructions
+            form = CheckoutForm(initial={
+                'fname': address.fname,
+                'lname': address.lname,
+                'address': address.address,
+                'city': address.city,
+                'state': address.state,
+                'zipcode': address.zipcode,
+                'phone': address.phone,
+                'instructions': address.instructions,
+            })
             if req.method == 'POST':
                 form = CheckoutForm(req.POST)
                 if form.is_valid():
