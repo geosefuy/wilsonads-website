@@ -18,7 +18,7 @@ def checkout(req):
     if req.user.is_authenticated:
         print(req.user)
         customer = Customer.objects.filter(user=req.user)
-    #form = CheckoutForm()
+    form = CheckoutForm()
     if customer:
         customer = Customer.objects.get(user=req.user)
         order = Order.objects.get(customer=customer, status='Ordering')
@@ -36,7 +36,9 @@ def checkout(req):
                 'instructions': address.instructions,
             })
             if req.method == 'POST':
-                form = CheckoutForm(req.POST)
+                form = CheckoutForm(req.POST, instance=order)
+                token = form.cleaned_data.get('stripeToken')
+                use_default = form.cleaned_data.get('use_default')
                 if form.is_valid():
                     form = form.save(commit=False)
                     form.customer = profile
@@ -45,17 +47,29 @@ def checkout(req):
                     return redirect('/')
         else:
             if req.method == 'POST':
-                form = CheckoutForm(req.POST)
+                form = CheckoutForm(req.POST, instance=order)
                 if form.is_valid():
                     form = form.save(commit=False)
                     form.customer = profile
                     form.status = 'Pending'
                     form.save()
                     return redirect('/')
+        cards = stripe.Customer.list_sources(
+            customer.stripe_id,
+            limit=3,
+            object='card'
+        )
+        card_list = cards['data']
+        
         context = {
             'form': form,
             'guest': False
+            
         }
+        if len(card_list) > 0:
+            context.update({
+                'card': card_list[0]
+            })
     else:
     #GUEST CHECKOUT
         # customer = Customer.objects.get(user=req.user)
