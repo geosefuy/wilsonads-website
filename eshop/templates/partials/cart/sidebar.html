@@ -20,7 +20,7 @@
         <div class="container">
             <h5 class="header-secondary">Total: ₱ <i style="font-style: normal;" class="cart-total">{{ order.get_cart_total | floatformat:2 | intcomma }}</i></h5>
         </div>
-        <a class="btn btn-primary mb-2 mt-4 mx-4" href="{% url 'checkout' %}">Proceed to Checkout</a>
+        <a class="btn btn-primary mb-2 mt-4 mx-4" href="{% url 'checkout' %}">{% if user.is_authenticated %}Proceed to Checkout{% else %} Checkout as Guest {% endif %}</a>
         <button onclick="clearCart()" class="btn btn-red mb-4 ml-4 mr-4 mt-0">Clear cart</button>
     </div>
 </div>

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.http import JsonResponse, HttpResponseRedirect
 from .forms import *
+from .context_processor import cookieCart
 import json
 from django.contrib.auth import logout
 from django.conf import settings
@@ -304,7 +305,7 @@ def updateItem(req):
 
     customer = req.user.customer
     product = Product.objects.get(id=productId)
-    order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+    order, created = Order.objects.get_or_create(customer=customer, status='Ordering')
 
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
@@ -342,9 +343,9 @@ def updateItem(req):
 
 def deleteCart(req):
     customer = req.user.customer
-    order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+    order, created = Order.objects.get_or_create(customer=customer, status='Ordering')
     order.delete()
-    order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+    order, created = Order.objects.get_or_create(customer=customer, status='Ordering')
     return JsonResponse('Order was deleted', safe=False)
 
 def logout_view(req):
@@ -385,4 +386,19 @@ def stripeCallback(sender, user, **kwargs):
         new_stripe_customer = stripe.Customer.create(email=customer.email)
         customer.stripe_id = new_stripe_customer['id']
         customer.save()
+
+def cookieCartToOrder(sender, user, request, **kwargs):
+        cookieData = cookieCart(request)
+        items = cookieData['items']
+        customer = Customer.objects.get(user=user)
+        order, created = Order.objects.get_or_create(customer=customer, status='Ordering')
+        
+        for item in items:
+            product = Product.objects.get(id=item['id'])
+            orderItem, created = OrderItem.objects.get_or_create(
+                order=order, 
+                product=product,
+                quantity=item['quantity'],
+            )
 user_logged_in.connect(stripeCallback)
+user_logged_in.connect(cookieCartToOrder)

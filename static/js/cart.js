@@ -39,20 +39,24 @@ function addCookieItem(productId, action){
 		if (cart[productId] == undefined){
 			cart[productId] = {'quantity':1}
 			addItemToCart(productId);
+			updateCookie()
 		}
-		else{
+		else {
 			var url = '/get_product/' + productId
 
-			fetch(url, {method:'GET'}).then((response) => {return response.json();			})
+			fetch(url, {method:'GET'}).then((response) => {return response.json();})
 			.then((data) => {
 				var name = data.name;
 				var stock = data.stock;
 				
-				if (stock >= cart[productId]['quantity']+1) {
+				if (stock > cart[productId]['quantity']) {
 					cart[productId]['quantity'] += 1
+					updateCookie()
 					updateAdd(productId)
 				}
-				else alert(name + " is out of stock");
+				else {
+					alert(name + " is out of stock");
+				}
 			});
 		}
 	}
@@ -60,6 +64,7 @@ function addCookieItem(productId, action){
 	else if (action == 'remove'){
 		updateRemove(productId)
 		cart[productId]['quantity'] -= 1
+		updateCookie()
 
 		if (cart[productId]['quantity'] <= 0){
 			action = 'delete'
@@ -69,10 +74,8 @@ function addCookieItem(productId, action){
 	if (action == 'delete') {
 		updateDelete(productId)
 		delete cart[productId];
+		updateCookie()
 	}
-	
-	console.log('CART:', cart)
-	document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
 }
 
 function addItemToCart(productId) {
@@ -163,4 +166,10 @@ function updateDelete(productId) {
 	total.html(parseFloat(newTotal.toFixed(2)).toLocaleString('en'))
 	var className1 = ".cart-item-card-" + productId;
 	$(className1).remove();
+}
+
+function updateCookie() {
+	console.log('CART:', cart)
+	document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+	console.log(document.cookie)
 }
