@@ -193,7 +193,7 @@
 
 <h1 class="display-4 header">Checkout{% if guest %} as Guest{% endif %}</h1>
 
-<form action="#" class="fillup-area p-4 form-horizontal" id="payment-form" method="POST">
+<form action="#" class="fillup-area p-4 form-horizontal" id="stripe-form" method="POST">
 	{% csrf_token %}
 	<h4 class="mb-0 p-3 pt-5 pl-5 fillup-area">Step 1: Fill out your Shipping Information</h4>
 	<br>
@@ -388,6 +388,16 @@
 				$('#default-card').hide();
 				}
 		})
+		$('#use_default_card').change(function() {
+			if ($(this).is(':checked')) {
+				$('.new-card-form').hide()
+				$('.current-card-form').show()
+			}	
+			else {
+				$('.new-card-form').show()
+				$('.current-card-form').hide()
+			}
+		})
 	})
 
 </script>
@@ -465,17 +475,17 @@
 	  form.submit();
 	}
   
-	var currentCardForm = $('.current-card-form');
-	var newCardForm = $('.new-card-form');
-	var use_default_card = document.querySelector("input[name=use_default_card]");
-	use_default_card.addEventListener('change', function() {
-	  if (this.checked) {
-		newCardForm.hide();
-		currentCardForm.show()
-	  } else {
-		newCardForm.show();
-		currentCardForm.hide()
-	  }
-	})
+	// var currentCardForm = $('.current-card-form');
+	// var newCardForm = $('.new-card-form');
+	// var use_default_card = document.querySelector("input[name=use_default_card]");
+	// use_default_card.addEventListener('change', function() {
+	//   if (this.checked) {
+	// 	newCardForm.hide();
+	// 	currentCardForm.show()
+	//   } else {
+	// 	newCardForm.show();
+	// 	currentCardForm.hide()
+	//   }
+	// })
   
   </script>

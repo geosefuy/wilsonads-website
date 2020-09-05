@@ -38,8 +38,11 @@ def checkout(req):
             if req.method == 'POST':
                 print("Data: ", req.POST)
                 form = CheckoutForm(req.POST, instance=order)
-                token = form.cleaned_data.get('stripeToken')
-                use_default = form.cleaned_data.get('use_default')
+                token = req.POST['stripeToken']
+                print(token)    
+                #use_default = form.cleaned_data.get('use_default')
+                use_default = req.POST['use_default']
+                print(use_default)
                 if form.is_valid():
                     form = form.save(commit=False)
                     form.customer = profile
