@@ -4,11 +4,7 @@
 {% block body %}
 <div class="row mt-5 px-4">
 	<div class="container bg-light">
-        {% if confirm %}
-            {% include "../partials/checkout/confirm-order.html" %}
-        {% else %}
-            {% include "../partials/checkout/steps.html" %}
-        {% endif %}
+        {% include "../partials/checkout/steps.html" %}
 	</div>
 </div>
 {% endblock %}

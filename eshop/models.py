@@ -75,7 +75,7 @@ class Order(models.Model):
     state = models.CharField(max_length=200, null=True)
     zipcode = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=11, null=True)
-    instructions = models.TextField(max_length=500, null=True)
+    instructions = models.TextField(max_length=500, null=True, blank=True)
 
     def __str__(self):
         return str(self.id)

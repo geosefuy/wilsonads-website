@@ -36,6 +36,7 @@ def checkout(req):
                 'instructions': address.instructions,
             })
             if req.method == 'POST':
+                print("Data: ", req.POST)
                 form = CheckoutForm(req.POST, instance=order)
                 token = form.cleaned_data.get('stripeToken')
                 use_default = form.cleaned_data.get('use_default')
@@ -47,6 +48,7 @@ def checkout(req):
                     return redirect('/')
         else:
             if req.method == 'POST':
+                print("Data: ", req.POST)
                 form = CheckoutForm(req.POST, instance=order)
                 if form.is_valid():
                     form = form.save(commit=False)

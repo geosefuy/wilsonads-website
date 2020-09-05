@@ -112,12 +112,12 @@ class CheckoutForm(forms.ModelForm):
             'instructions'
         ]
         widgets = {
-            'fname': forms.TextInput(attrs={'class': 'form-control col-lg-5 col-sm-4'}),
-            'lname': forms.TextInput(attrs={'class': 'form-control col-lg-5 col-sm-4'}),
-            'address': forms.TextInput(attrs={'class': 'form-control col-lg-5 col-sm-4'}),
-            'city': forms.TextInput(attrs={'class': 'form-control col-lg-5 col-sm-4'}),
-            'state': forms.TextInput(attrs={'class': 'form-control col-lg-5 col-sm-4'}),
-            'zipcode': forms.TextInput(attrs={'class': 'form-control col-lg-5 col-sm-4'}),
+            'fname': forms.TextInput(attrs={'class': 'form-control'}),
+            'lname': forms.TextInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'state': forms.TextInput(attrs={'class': 'form-control'}),
+            'zipcode': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'instructions': forms.Textarea(attrs={'class': 'form-control'}),
         }
