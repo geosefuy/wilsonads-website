@@ -431,10 +431,10 @@ def remove_card(req):
 def cookie_to_order(req):
     cookieData = cookieCart(req)
     items = cookieData['items']
-    order, created = GuestOrder.objects.create(status='Pending')
+    order = Order.objects.create(status='Pending')
     for item in items:
             product = Product.objects.get(id=item['id'])
-            orderItem, created = GuestOrderItem.objects.create(
+            orderItem = OrderItem.objects.create(
                 order=order, 
                 product=product,
                 quantity=item['quantity'],
