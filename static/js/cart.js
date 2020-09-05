@@ -1,3 +1,5 @@
+
+
 function updateUserOrder(productId, action){
 	console.log('User is authenticated, sending data...')
 
@@ -30,6 +32,7 @@ function updateUserOrder(productId, action){
 			else if (data.removed) {
 				updateRemove(productId)
 			}
+			updateCheckoutBtn()
 		});
 }
 
@@ -53,6 +56,7 @@ function addCookieItem(productId, action){
 					cart[productId]['quantity'] += 1
 					updateCookie()
 					updateAdd(productId)
+					updateCheckoutBtn()
 				}
 				else {
 					alert(name + " is out of stock");
@@ -65,6 +69,7 @@ function addCookieItem(productId, action){
 		updateRemove(productId)
 		cart[productId]['quantity'] -= 1
 		updateCookie()
+		updateCheckoutBtn()
 
 		if (cart[productId]['quantity'] <= 0){
 			action = 'delete'
@@ -75,6 +80,7 @@ function addCookieItem(productId, action){
 		updateDelete(productId)
 		delete cart[productId];
 		updateCookie()
+		updateCheckoutBtn()
 	}
 }
 
@@ -116,6 +122,8 @@ function addItemToCart(productId) {
 			var total = $(".cart-total")
 			var newTotal = parseFloat(total.html().replace(',','')) + parseFloat(price)
 			total.html(parseFloat(newTotal.toFixed(2)).toLocaleString('en'))
+			
+			updateCheckoutBtn()
 		});
 }
 
@@ -172,4 +180,10 @@ function updateCookie() {
 	console.log('CART:', cart)
 	document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
 	console.log(document.cookie)
+}
+
+function updateCheckoutBtn() {
+	if ($('.cart-item-card').length)
+		$("#checkout-btn").attr("disabled", false)
+	else $("#checkout-btn").attr("disabled", true)
 }

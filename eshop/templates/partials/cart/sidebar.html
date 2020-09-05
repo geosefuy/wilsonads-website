@@ -20,15 +20,25 @@
         <div class="container">
             <h5 class="header-secondary">Total: ₱ <i style="font-style: normal;" class="cart-total">{{ order.get_cart_total | floatformat:2 | intcomma }}</i></h5>
         </div>
-        <a class="btn btn-primary mb-2 mt-4 mx-4" href="{% url 'checkout' %}">{% if user.is_authenticated %}Proceed to Checkout{% else %} Checkout as Guest {% endif %}</a>
+        <form action="{% url 'checkout' %}" id="checkout-form" style="display: flex;flex-flow: column;"></form>
+            <button class="btn btn-primary mb-2 mt-4 mx-4" id='checkout-btn'>{% if user.is_authenticated %}Proceed to Checkout{% else %} Checkout as Guest {% endif %}</button>
+        </form>
         <button onclick="clearCart()" class="btn btn-red mb-4 ml-4 mr-4 mt-0">Clear cart</button>
     </div>
 </div>
 <script>
 $(document).ready(function() {
+    $("#checkout-btn").click(function(){        
+        $("#checkout-form").submit(); // Submit the form
+    });
+
     $('#closeBtn').click(() => {
         $('#sidebar').css('display', 'none');
     });
+
+    if ($('.cart-item-card').length)
+		$("#checkout-btn").attr("disabled", false)
+	else $("#checkout-btn").attr("disabled", true)
 })
 
 function clearCart () {
@@ -37,6 +47,7 @@ function clearCart () {
         document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
 		$(".cart-item-card").remove();
         $(".cart-total").html(0);
+        updateCheckoutBtn()
 	}else{
 		var url = '/delete_cart/'
 
@@ -53,6 +64,7 @@ function clearCart () {
 		.then((data) => {
             $(".cart-item-card").remove();
             $(".cart-total").html(0);
+            updateCheckoutBtn()
 		});
 	}
 }
