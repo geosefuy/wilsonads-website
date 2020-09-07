@@ -439,6 +439,22 @@ def cookie_to_order(req):
                 product=product,
                 quantity=item['quantity'],
             )
+            product.stock = product.stock - orderItem.quantity
+            product.save()
+    return order
+
+def readyOrderForCheckout(req):
+    customer = Customer.objects.get(user=req.user)
+    order = Order.objects.get(status="Ordering")
+    order.status = "Pending"
+    items = order.orderitem_set.all()
+
+    for item in items:
+        product = Product.objects.get(id=item.product.id)
+        product.stock = product.stock - item.quantity
+        product.save()
+
+    order.save()
     return order
 
 # for signal
