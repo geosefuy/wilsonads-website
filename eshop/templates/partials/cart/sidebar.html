@@ -18,7 +18,7 @@
         </div>
 
         <div class="container">
-            <h5 class="header-secondary">Total: ₱ <i style="font-style: normal;" class="cart-total">{{ order.get_cart_total | floatformat:2 | intcomma }}</i></h5>
+            <h5 class="header-secondary">Total: ₱ <i style="font-style: normal;" class="cart-total">{{ order_.get_cart_total | floatformat:2 | intcomma }}</i></h5>
         </div>
         <form action="{% url 'checkout' %}" id="checkout-form" style="display: flex;flex-flow: column;"></form>
             <button class="btn btn-primary mb-2 mt-4 mx-4" id='checkout-btn'>{% if user.is_authenticated %}Proceed to Checkout{% else %} Checkout as Guest {% endif %}</button>
