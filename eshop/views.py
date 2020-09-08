@@ -18,10 +18,15 @@ def checkout(req):
     if req.user.is_authenticated:
         print(req.user)
         customer = Customer.objects.filter(user=req.user)
-    form = CheckoutForm()
     if customer:
         customer = Customer.objects.get(user=req.user)
-        order = Order.objects.get(customer=customer, status='Ordering')
+        if req.method == 'GET':
+            order = readyOrderForCheckout(customer)
+        elif req.method == 'POST':
+            order = Order.objects.filter(customer=customer, status='Pending').latest('date_ordered')    
+
+        order_items = OrderItem.objects.filter(order=order)
+
         cards = stripe.Customer.list_sources(
             customer.stripe_id,
             limit=1,
@@ -68,10 +73,12 @@ def checkout(req):
                             amount=int(total),
                             currency='php',
                         )
+                    
                     form = form.save(commit=False)
                     form.customer = customer
                     form.email = customer.email
-                    form.status = 'Pending'
+                    if charge["status"] == 'succeeded':
+                        form.status = 'Processing'
                     form.save()
                     return redirect('/')
         else:
@@ -104,16 +111,18 @@ def checkout(req):
                             amount=int(total),
                             currency='php',
                         )
+                    
                     form = form.save(commit=False)
                     form.customer = customer
                     form.email = customer.email
-                    form.status = 'Pending'
+                    if charge["status"] == 'succeeded':
+                        form.status = 'Processing'
                     form.save()
                     return redirect('/')
         context = {
             'form': form,
-            'guest': False
-            
+            'guest': False,
+            'order_items': order_items
         }
         if len(card_list) > 0:
             context.update({
@@ -121,32 +130,44 @@ def checkout(req):
             })
     else:
         #GUEST CHECKOUT
-        #TODO: Get customer
-        #TODO: Get order
+        if req.method == 'GET':
+            order = cookie_to_order(req)
+            order_items = OrderItem.objects.filter(order=order)
+            req.session['order_id'] = order.id
+            form = CheckoutForm()
+        elif req.method == 'POST':
+            order_id = req.session['order_id']
+            order = Order.objects.get(id=order_id)
+            try:
+                del req.session['transaction_id']
+            except KeyError:
+                pass
+            form = CheckoutForm(req.POST, instance=order)
+            token = req.POST['stripeToken']
+            total = order.get_cart_total * 100
+            if form.is_valid():
+                cust = stripe.Customer.create(
+                    email=req.POST['email'],
+                    source=req.POST['stripeToken']
+                )
+                charge = stripe.Charge.create(
+                    customer=cust,
+                    amount=int(total),
+                    currency='php',
+                )
+                if charge["status"] == 'succeeded':
+                    order.status = 'Processing'
+                    order.save()
 
-        #POST REQUEST FOR GUEST
-        # if req.method == 'POST':
-        #     form = CheckoutForm(req.POST, instance=order)
-        #     token = req.POST['stripeToken']
-        #     total = order.get_cart_total * 100
-        #     if form.is_valid():
-        #         cust = stripe.Customer.create(
-        #             email=req.POST['email'],
-        #             source=req.POST['stripeToken']
-        #         )
-        #         charge = stripe.Charge.create(
-        #             customer=cust,
-        #             amount=int(total),
-        #             currency='php',
-        #         )
-        #         form = form.save(commit=False)
-        #         form.customer = customer
-        #         form.status = 'Pending'
-        #         form.save()
-        #         return redirect('/')
+                form = form.save(commit=False)
+                if charge["status"] == 'succeeded':
+                        form.status = 'Processing'
+                form.save()
+                return redirect('/')
         context = {
             'form': form,
-            'guest': True
+            'guest': True,
+            'order_items': order_items
         }
     return render(req, 'pages/checkout.html', context)
 
@@ -498,9 +519,8 @@ def cookie_to_order(req):
             product.save()
     return order
 
-def readyOrderForCheckout(req):
-    customer = Customer.objects.get(user=req.user)
-    order = Order.objects.get(status="Ordering")
+def readyOrderForCheckout(customer):
+    order = Order.objects.get(customer=customer, status="Ordering")
     order.status = "Pending"
     items = order.orderitem_set.all()
 
