@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.core.validators import validate_email
+import uuid
 
 # Create your models here.
 
@@ -67,7 +68,7 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     date_ordered = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS, default="Ordering")
-    transaction_id = models.CharField(max_length=200, null=True, unique=True)
+    # transaction_id = models.UUIDField(default=uuid.uuid4, editable=False)
 
     email = models.EmailField(max_length=200, null=True, validators=[validate_email])
     fname = models.CharField(max_length=200, null=True)
