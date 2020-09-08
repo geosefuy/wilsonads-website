@@ -212,6 +212,23 @@
 				<span class="error-message">{{ form.lname.errors|striptags }}</span>
 			</div>
 		</div>
+		{% if guest %}
+			<div class="form-group row fillup-group">
+				<label for="email" class="col-lg-2 col-sm-3 col-form-label">E-mail</label>
+				<div class="col-lg-5 col-sm-4" style="display: grid;">
+					{{ form.email }}
+					<span class="error-message">{{ form.email.errors|striptags }}</span>
+				</div>
+			</div>
+		{% else %}
+			<div class="form-group row fillup-group" style="display: none;">
+				<label for="email" class="col-lg-2 col-sm-3 col-form-label">E-mail</label>
+				<div class="col-lg-5 col-sm-4" style="display: grid;">
+					{{ form.email }}
+					<span class="error-message">{{ form.email.errors|striptags }}</span>
+				</div>
+			</div>
+		{% endif %}
 		<div class="form-group row fillup-group">
 			<label for="address" class="col-lg-2 col-sm-3 col-form-label">Address</label>
 			<div class="col-lg-5 col-sm-4" style="display: grid;">
@@ -265,23 +282,22 @@
 			<div class="form-check form-check-inline col-sm-2 col-lg-3 fillup-group">
 				<input class="form-check-input" type="radio" name="paymentOptions" id="credit_card" value="credit">
 				<div style="display: grid; text-align: center;">
-					<!-- <img src="" class="payment-image ml-1" alt=""> -->
 					<small class="form-check-label" for="credit_card">Credit Card</small>
 				</div>
 			</div>
 			<div class="form-check form-check-inline col-sm-2 col-lg-4 fillup-group">
 				<input class="form-check-input" type="radio" name="paymentOptions" id="cod" value="cod" disabled>
 				<div style="display: grid; text-align: center;">
-					<!-- <img src="cod.png" class="payment-image" alt=""> -->
 					<small class="form-check-label" for="cash_on_delivery">Cash on Delivery</small>
 				</div>
 			</div>
 		</div>
 		<br>
-		<div class="current-card-form">
-				<input type="hidden" name="use_default" value="true">
-				<div id="card-errors" role="alert"></div>
-		</div>
+		{% if guest == False %}
+			<div class="current-card-form">
+					<input type="hidden" name="use_default" id="use_default" value="true">
+			</div>
+		{% endif %}
 
 		<div class="new-card-form">
 			<div class="stripe-form-row" id="creditCard">
@@ -290,7 +306,7 @@
 			<div id="card-errors" role="alert"></div>
 		</div>
 		<br>
-		{% if card %}
+		{% if guest == False and card %}
 		<div id="default-card" style="padding: 5px 30px; text-align: center;">
 		<div class="custom-control custom-checkbox">
 			<input type="checkbox" class="custom-control-input" name="use_default_card" id="use_default_card">
@@ -361,6 +377,16 @@
 		if($('#credit_card').is(':checked')){
 			$('#card-element').show();
 			$('#default-card').show();
+			if ($('#use_default_card').is(':checked')) {
+				$('.new-card-form').hide()
+				$('.current-card-form').show()
+				$("#use_default").val(true)
+			}	
+			else {
+				$('.new-card-form').show()
+				$('.current-card-form').hide()
+				$("#use_default").val(false)
+			}
 		}
 		else{
 			$('#card-element').hide();
@@ -392,10 +418,12 @@
 			if ($(this).is(':checked')) {
 				$('.new-card-form').hide()
 				$('.current-card-form').show()
+				$("#use_default").val(true)
 			}	
 			else {
 				$('.new-card-form').show()
 				$('.current-card-form').hide()
+				$("#use_default").val(false)
 			}
 		})
 	})
@@ -435,30 +463,33 @@
   
 	// Handle real-time validation errors from the card Element.
 	card.addEventListener('change', function(event) {
-	  var displayError = document.getElementById('card-errors');
-	  if (event.error) {
-		displayError.textContent = event.error.message;
-	  } else {
-		displayError.textContent = '';
+	  if  (!$('#use_default_card').is(':checked')){
+		var displayError = document.getElementById('card-errors');
+		if (event.error) {
+			displayError.textContent = event.error.message;
+		} else {
+			displayError.textContent = '';
+		}
 	  }
 	});
   
 	// Handle form submission.
 	var form = document.getElementById('stripe-form');
 	form.addEventListener('submit', function(event) {
-	  event.preventDefault();
-  
-	  stripe.createToken(card).then(function(result) {
-		if (result.error) {
-		  // Inform the user if there was an error.
-		  print("ERROR STRIPE FORM")
-		  var errorElement = document.getElementById('card-errors');
-		  errorElement.textContent = result.error.message;
-		} else {
-		  // Send the token to your server.
-		  stripeTokenHandler(result.token);
+		if (!$('#use_default_card').is(':checked')){
+			event.preventDefault();
+			stripe.createToken(card).then(function(result) {
+				if (result.error) {
+				// Inform the user if there was an error.
+				var errorElement = document.getElementById('card-errors');
+				errorElement.textContent = result.error.message;
+				} else {
+				// Send the token to your server.
+				stripeTokenHandler(result.token);
+				}
+			});
 		}
-	  });
+	  
 	});
   
 	// Submit the form with the token ID.

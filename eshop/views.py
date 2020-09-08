@@ -22,12 +22,19 @@ def checkout(req):
     if customer:
         customer = Customer.objects.get(user=req.user)
         order = Order.objects.get(customer=customer, status='Ordering')
+        cards = stripe.Customer.list_sources(
+            customer.stripe_id,
+            limit=1,
+            object='card'
+        )
+        card_list = cards['data']
 
         if ShippingAddress.objects.filter(customer=customer).exists():
             address = ShippingAddress.objects.get(customer=customer)
             form = CheckoutForm(initial={
                 'fname': address.fname,
                 'lname': address.lname,
+                'email': customer.email,
                 'address': address.address,
                 'city': address.city,
                 'state': address.state,
@@ -36,36 +43,73 @@ def checkout(req):
                 'instructions': address.instructions,
             })
             if req.method == 'POST':
-                print("Data: ", req.POST)
                 form = CheckoutForm(req.POST, instance=order)
-                token = req.POST['stripeToken']
-                print(token)    
-                #use_default = form.cleaned_data.get('use_default')
+                token = False
                 use_default = req.POST['use_default']
-                print(use_default)
+                if not use_default:
+                    token = req.POST['stripeToken']
+                total = order.get_cart_total * 100
                 if form.is_valid():
+                    if use_default:
+                        charge = stripe.Charge.create(
+                            customer=customer.stripe_id,
+                            amount=int(total),
+                            currency="php"
+                        )
+                    else:
+                        cust = stripe.Customer.retrieve(customer.stripe_id)
+                        if not cust:
+                            cust = stripe.Customer.create(
+                                email=customer.email,
+                                source=req.POST['stripeToken']
+                            )
+                        charge = stripe.Charge.create(
+                            customer=cust,
+                            amount=int(total),
+                            currency='php',
+                        )
                     form = form.save(commit=False)
-                    form.customer = profile
+                    form.customer = customer
+                    form.email = customer.email
                     form.status = 'Pending'
                     form.save()
                     return redirect('/')
         else:
+            form = CheckoutForm(initial={
+                'email': customer.email,
+            })
             if req.method == 'POST':
-                print("Data: ", req.POST)
                 form = CheckoutForm(req.POST, instance=order)
+                token = False
+                use_default = req.POST['use_default']
+                if not use_default:
+                    token = req.POST['stripeToken']
+                total = order.get_cart_total * 100
                 if form.is_valid():
+                    if use_default:
+                        charge = stripe.Charge.create(
+                            customer=customer.stripe_id,
+                            amount=int(total),
+                            currency="php"
+                        )
+                    else:
+                        cust = stripe.Customer.retrieve(customer.stripe_id)
+                        if not cust:
+                            cust = stripe.Customer.create(
+                                email=customer.email,
+                                source=req.POST['stripeToken']
+                            )
+                        charge = stripe.Charge.create(
+                            customer=cust,
+                            amount=int(total),
+                            currency='php',
+                        )
                     form = form.save(commit=False)
-                    form.customer = profile
+                    form.customer = customer
+                    form.email = customer.email
                     form.status = 'Pending'
                     form.save()
                     return redirect('/')
-        cards = stripe.Customer.list_sources(
-            customer.stripe_id,
-            limit=3,
-            object='card'
-        )
-        card_list = cards['data']
-        
         context = {
             'form': form,
             'guest': False
@@ -76,19 +120,30 @@ def checkout(req):
                 'card': card_list[0]
             })
     else:
-    #GUEST CHECKOUT
-        # customer = Customer.objects.get(user=req.user)
-        # order = Order.objects.get(customer=customer, status='Ordering')
+        #GUEST CHECKOUT
+        #TODO: Get customer
+        #TODO: Get order
 
-        # form = CheckoutForm()
+        #POST REQUEST FOR GUEST
         # if req.method == 'POST':
-        #     form = CheckoutForm(req.POST)
-
-        # context = {
-        #     'form': form
-        # }
-        # return render(req, 'pages/checkout.html', context)
-        pass
+        #     form = CheckoutForm(req.POST, instance=order)
+        #     token = req.POST['stripeToken']
+        #     total = order.get_cart_total * 100
+        #     if form.is_valid():
+        #         cust = stripe.Customer.create(
+        #             email=req.POST['email'],
+        #             source=req.POST['stripeToken']
+        #         )
+        #         charge = stripe.Charge.create(
+        #             customer=cust,
+        #             amount=int(total),
+        #             currency='php',
+        #         )
+        #         form = form.save(commit=False)
+        #         form.customer = customer
+        #         form.status = 'Pending'
+        #         form.save()
+        #         return redirect('/')
         context = {
             'form': form,
             'guest': True

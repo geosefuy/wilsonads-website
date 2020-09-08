@@ -104,6 +104,7 @@ class CheckoutForm(forms.ModelForm):
         fields = [
             'fname',
             'lname',
+            'email',
             'address',
             'city',
             'state',
@@ -114,6 +115,7 @@ class CheckoutForm(forms.ModelForm):
         widgets = {
             'fname': forms.TextInput(attrs={'class': 'form-control'}),
             'lname': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'city': forms.TextInput(attrs={'class': 'form-control'}),
             'state': forms.TextInput(attrs={'class': 'form-control'}),

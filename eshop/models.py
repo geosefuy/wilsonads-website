@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.core.validators import validate_email
 
 # Create your models here.
 
@@ -8,7 +9,7 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     fname = models.CharField(max_length=200, null=True)
     lname = models.CharField(max_length=200, null=True)
-    email = models.CharField(max_length=200, null=True, unique=True)
+    email = models.EmailField(max_length=200, null=True, unique=True, validators=[validate_email])
     stripe_id = models.CharField(max_length=200, null=True, default='')
 
     def __str__(self):
@@ -68,6 +69,7 @@ class Order(models.Model):
     status = models.CharField(max_length=200, null=True, choices=STATUS, default="Ordering")
     transaction_id = models.CharField(max_length=200, null=True, unique=True)
 
+    email = models.EmailField(max_length=200, null=True, validators=[validate_email])
     fname = models.CharField(max_length=200, null=True)
     lname = models.CharField(max_length=200, null=True)
     address = models.CharField(max_length=200, null=True)
