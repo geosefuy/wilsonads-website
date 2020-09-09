@@ -81,6 +81,7 @@ def checkout(req):
                     form = form.save(commit=False)
                     form.customer = customer
                     form.email = customer.email
+                    form.charge_id = charge["id"]
                     if charge["status"] == 'succeeded':
                         form.status = 'Processing'
                     form.save()
@@ -119,6 +120,7 @@ def checkout(req):
                     form = form.save(commit=False)
                     form.customer = customer
                     form.email = customer.email
+                    form.charge_id = charge["id"]
                     if charge["status"] == 'succeeded':
                         form.status = 'Processing'
                     form.save()
@@ -126,7 +128,8 @@ def checkout(req):
         context = {
             'form': form,
             'guest': False,
-            'order_items': order_items
+            'order_items': order_items,
+            'order': order
         }
         if len(card_list) > 0:
             context.update({
@@ -167,6 +170,7 @@ def checkout(req):
                     order.save()
 
                 form = form.save(commit=False)
+                form.charge_id = charge["id"]
                 if charge["status"] == 'succeeded':
                         form.status = 'Processing'
                 form.save()
@@ -174,7 +178,8 @@ def checkout(req):
         context = {
             'form': form,
             'guest': True,
-            'order_items': order_items
+            'order_items': order_items,
+            'order': order
         }
     return render(req, 'pages/checkout.html', context)
 
@@ -395,13 +400,6 @@ def create_and_update_credit(req, account_id):
                 profile.stripe_id,
                 source=req.POST['stripeToken'],
                 )
-                # print(stripe.Charge.create(
-                # amount=2000,
-                # currency="usd",
-                # source=card.id,
-                # description="My First Test Charge (created for API docs)",
-                # customer=profile.stripe_id,
-                # ))
                 return HttpResponseRedirect(req.path_info)
 
             context = {

@@ -341,7 +341,7 @@
 				<tbody class="prod-details" >
 					{% for item in order_items %}
 					<tr>
-					<th scope="row" ><img class="prod-img" src="{{ item.product.imageURL }}" alt=""></th>
+					<th scope="row" ><img class="prod-img" src="{{ item.product.imageURL }}" alt="{{ item.product.name }}" style="max-width: 200px;"></th>
 					<td>{{ item.product.name }}</td>
 					<td>₱{{ item.product.price | floatformat:2 | intcomma }}</td>
 					<td>{{ item.quantity }}</td>
