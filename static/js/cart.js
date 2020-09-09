@@ -24,7 +24,11 @@ function updateUserOrder(productId, action){
 				updateAdd(productId)
 			}
 			else if (data.out_of_stock) {
-				alert(data.productname + " is out of stock")
+				var alert = ".alert-card-" + productId
+				$(alert).show();
+				setTimeout(function() {
+					$(alert).hide();
+				}, 2000);
 			}
 			else if (data.deleted) {
 				updateDelete(productId)
@@ -59,7 +63,11 @@ function addCookieItem(productId, action){
 					updateCheckoutBtn()
 				}
 				else {
-					alert(name + " is out of stock");
+					var alert = ".alert-card-" + productId
+					$(alert).show();
+					setTimeout(function() {
+						$(alert).hide();
+					}, 2000);
 				}
 			});
 		}
@@ -114,6 +122,9 @@ function addItemToCart(productId) {
 									<div class='col-2 d-flex justify-content-center align-items-center'>
 									<a data-product='` + product_id + `' style='color: inherit;' onclick='updateCart(this)' class='update-cart' data-action='delete'><i class='fa fa-times' aria-hidden='true'></i></a>
 									</div>
+								</div>
+								<div class="alert alert-warning alert-card-` + product_id + `" role="alert" style="display: none;">
+									Out of stock!
 								</div>
 							</div>`;
 
