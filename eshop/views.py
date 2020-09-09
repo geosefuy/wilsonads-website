@@ -22,6 +22,10 @@ def checkout(req):
         customer = Customer.objects.get(user=req.user)
         if req.method == 'GET':
             order = readyOrderForCheckout(customer)
+            if not OrderItem.objects.filter(order=order).exists():
+                order.delete()
+                return redirect('/')
+
         elif req.method == 'POST':
             order = Order.objects.filter(customer=customer, status='Pending').latest('date_ordered')    
 
@@ -132,6 +136,9 @@ def checkout(req):
         #GUEST CHECKOUT
         if req.method == 'GET':
             order = cookie_to_order(req)
+            if not OrderItem.objects.filter(order=order).exists():
+                order.delete()
+                return redirect('/')
             order_items = OrderItem.objects.filter(order=order)
             req.session['order_id'] = order.id
             form = CheckoutForm()

@@ -57,6 +57,7 @@ def cartData(req):
 		for item in items:
 			if item.product.stock < item.quantity:
 				item.quantity = item.product.stock
+				item.save()
 
 		cartItems = order.get_cart_items
 	else:
