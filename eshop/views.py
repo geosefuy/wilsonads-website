@@ -8,6 +8,8 @@ from django.contrib.auth import logout
 from django.conf import settings
 from django.contrib.auth.signals import user_logged_in
 import stripe
+from .utils import *
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 # Create your views here.
@@ -84,6 +86,8 @@ def checkout(req):
                     form.charge_id = charge["id"]
                     if charge["status"] == 'succeeded':
                         form.status = 'Processing'
+                    
+                    sendReceipt(order, charge["status"])
                     form.save()
                     return redirect('/')
         else:
@@ -123,6 +127,7 @@ def checkout(req):
                     form.charge_id = charge["id"]
                     if charge["status"] == 'succeeded':
                         form.status = 'Processing'
+                    sendReceipt(order, charge["status"])
                     form.save()
                     return redirect('/')
         context = {
@@ -173,6 +178,7 @@ def checkout(req):
                 form.charge_id = charge["id"]
                 if charge["status"] == 'succeeded':
                         form.status = 'Processing'
+                sendReceipt(order, charge["status"])
                 form.save()
                 return redirect('/')
         context = {

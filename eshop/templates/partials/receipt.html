@@ -1,0 +1,75 @@
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		  border: 1px solid black;
+		}
+		
+		th, td {
+		  padding: 5px;
+		}
+	</style>
+</head>
+<body>
+    
+    <div>
+		<h1>Transaction Receipt</h1>
+		<h3>Order ID: {{ order }}</h3>
+		<h4>Payment status: {{ payment_status }} </h4>
+		<h4>Order status: {{ order.status }} </h4>
+		<br>
+
+		<h3>Shipping Details</h3>
+		<p>First name: {{ order.fname }} </p>
+		<p>Last name: {{ order.lname }} </p>
+		<p>Email: {{ order.email }} </p>
+		<p>Address: {{ order.address }} </p>
+		<p>City: {{ order.city }} </p>
+		<p>State: {{ order.state }} </p>
+		<p>Zip code: {{ order.zipcode }} </p>
+		<p>Phone number: {{ order.phone }} </p>
+		<p>Instructions: {{ order.instructions }} </p>
+		<br>
+		<div>
+				<table style="text-align: center;">
+					<thead>
+						<tr>
+						<th scope="col">NAME</th>
+						<th scope="col">PRICE</th>
+						<th scope="col">QUANTITY</th>
+						<th scope="col">TOTAL</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in items %}
+						<tr>
+						<td>{{ item.product.name }}</td>
+						<td>₱{{ item.product.price | floatformat:2 | intcomma }}</td>
+						<td>{{ item.quantity }}</td>
+						<td>₱{{ item.get_total | floatformat:2 | intcomma }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<br>
+				<table style="text-align: center;">
+					<tbody>
+						<tr>
+							<th scope="col" class="prod-header">ORDER TOTAL</th>
+							<td scope="col" class="prod-details">₱{{ order.get_cart_total | floatformat:2 | intcomma }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br>
+		</div>
+    </div>
+    
+  {% include '../partials/footer.html' %}
+</body>
+</html>
+

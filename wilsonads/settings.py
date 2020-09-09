@@ -167,3 +167,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # Stripe
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51HNJujJVWnIKAGtwoGBT2WNyLI3R1lx3flRHSEU4miDcaQglxS4d22iH911ZipmMHvf6jw8H8zjQ7f58OXPVcTua00Wk9LH18b'
 STRIPE_SECRET_KEY = 'sk_test_51HNJujJVWnIKAGtw4dP4ZClqTq1tfXGw4LRiFLWcBSKPixzaiPGdXlp3uMn9w7nam9CTw1vDpIp0E0TLtVKMWTCZ00TsmDBu3q'
+
+# Google SMTP
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'wilsonads.computer.sales.xd@gmail.com'
+EMAIL_HOST_PASSWORD = 'Wilson1234'
