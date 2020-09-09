@@ -153,6 +153,7 @@ def checkout(req):
         elif req.method == 'POST':
             order_id = req.session['order_id']
             order = Order.objects.get(id=order_id)
+            order_items = OrderItem.objects.filter(order=order)
             try:
                 del req.session['transaction_id']
             except KeyError:
