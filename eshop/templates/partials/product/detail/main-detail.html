@@ -31,10 +31,12 @@
         ₱{{ product.price | floatformat:2 | intcomma }}
     </h2>
 
+    {% if product.stock > 0 %}
     <button class="btn btn-secondary btn-block" type="button"
         data-product="{{ product.id }}" 
-        data-action="add" 
-        data-product="{{ item.product.id }}">
+        data-action="add"
+        onclick="updateCart(this)">
         Add to cart
     </button>
+    {% endif %}
 </div>
