@@ -181,14 +181,18 @@ def checkout(req):
                         form.status = 'Processing'
                 sendReceipt(order, charge["status"])
                 form.save()
-                return redirect('/')
+                response = redirect('/')
+                response.delete_cookie('cart')
+                return response
         context = {
             'form': form,
             'guest': True,
             'order_items': order_items,
             'order': order
         }
-    return render(req, 'pages/checkout.html', context)
+        response = render(req, 'pages/checkout.html', context)
+        response.delete_cookie('cart')
+    return response
 
 def product_details(req, product_id):
     product = Product.objects.get(id=product_id)
@@ -202,8 +206,8 @@ def product_details(req, product_id):
 def homepage(req):
     # TODO include filter for each group
     # Limits query to 8 products for each group
-    group_one = Product.objects.all()
-    group_two = Product.objects.all()
+    group_one = Product.objects.filter(stock__gt=0)
+    group_two = Product.objects.filter(stock__gt=0)
     categories = Category.objects.all()
 
     context = { 
@@ -230,7 +234,7 @@ def category_product_list(req, category):
 def subcategory_product_list(req, category, subcategory):
     category = Category.objects.get(slug=category)
     subcategory = SubCategory.objects.get(slug=subcategory)
-    products = Product.objects.filter(subcategory=subcategory)
+    products = Product.objects.filter(subcategory=subcategory, stock__gt=0)
     context = {
         'category': category,
         'subcategory': subcategory,
@@ -307,7 +311,7 @@ def order_details2(req, account_id, order_id):
 def result(req):
     query = req.GET['q']
     if query != '' and query != ' ':
-        products = Product.objects.filter(name__contains=query)
+        products = Product.objects.filter(name__contains=query, stock__gt=0)
     else:
         products = None
     context = {
@@ -529,6 +533,8 @@ def cookie_to_order(req):
             )
             product.stock = product.stock - orderItem.quantity
             product.save()
+            if orderItem.quantity == 0:
+                orderItem.delete()
     return order
 
 def readyOrderForCheckout(customer):
@@ -536,10 +542,12 @@ def readyOrderForCheckout(customer):
     order.status = "Pending"
     items = order.orderitem_set.all()
 
-    for item in items:
+    for item in reversed(items):
         product = Product.objects.get(id=item.product.id)
         product.stock = product.stock - item.quantity
         product.save()
+        if item.quantity == 0:
+                item.delete()
 
     order.save()
     return order
