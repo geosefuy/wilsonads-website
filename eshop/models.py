@@ -60,6 +60,7 @@ class Product(models.Model):
 class Order(models.Model):
     STATUS = (
         ('Ordering', 'Ordering'),
+        ('Checkout', 'Checkout'),
         ('Pending', 'Pending'),
         ('Processing', 'Processing'),
         ('Delivered', 'Delivered'),

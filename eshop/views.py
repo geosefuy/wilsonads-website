@@ -17,11 +17,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # INCOMPLETE
 def checkout(req):
-    customer = False
     if req.user.is_authenticated:
-        print(req.user)
-        customer = Customer.objects.filter(user=req.user)
-    if customer:
         customer = Customer.objects.get(user=req.user)
         if req.method == 'GET':
             order = readyOrderForCheckout(customer)
@@ -30,7 +26,7 @@ def checkout(req):
                 return redirect('/')
 
         elif req.method == 'POST':
-            order = Order.objects.filter(customer=customer, status='Pending').latest('date_ordered')    
+            order = Order.objects.filter(customer=customer, status='Checkout').latest('date_ordered')    
 
         order_items = OrderItem.objects.filter(order=order)
 
@@ -43,51 +39,41 @@ def checkout(req):
 
         if ShippingAddress.objects.filter(customer=customer).exists():
             address = ShippingAddress.objects.get(customer=customer)
-            form = CheckoutForm(initial={
-                'fname': address.fname,
-                'lname': address.lname,
-                'email': customer.email,
-                'address': address.address,
-                'city': address.city,
-                'state': address.state,
-                'zipcode': address.zipcode,
-                'phone': address.phone,
+            form = CheckoutForm(initial={'fname': address.fname,'lname': address.lname,
+                'email': customer.email, 'address': address.address,'city': address.city,
+                'state': address.state, 'zipcode': address.zipcode, 'phone': address.phone,
                 'instructions': address.instructions,
             })
             if req.method == 'POST':
                 form = CheckoutForm(req.POST, instance=order)
                 token = False
                 use_default = req.POST['use_default']
-                if not use_default:
+                if use_default == 'false':
                     token = req.POST['stripeToken']
                 total = order.get_cart_total * 100
                 if form.is_valid():
-                    if use_default:
+                    if use_default == 'true':
                         charge = stripe.Charge.create(
                             customer=customer.stripe_id,
                             amount=int(total),
-                            currency="php"
+                            currency="php",
+                            description="order id: " + str(order.id),
                         )
                     else:
-                        cust = stripe.Customer.retrieve(customer.stripe_id)
-                        if not cust:
-                            cust = stripe.Customer.create(
-                                email=customer.email,
-                                source=req.POST['stripeToken']
-                            )
                         charge = stripe.Charge.create(
-                            customer=cust,
+                            source=token,
                             amount=int(total),
                             currency='php',
+                            description="order id: " + str(order.id),
+                            metadata={"email": customer.email},
                         )
-                    
                     form = form.save(commit=False)
                     form.customer = customer
                     form.email = customer.email
                     form.charge_id = charge["id"]
                     if charge["status"] == 'succeeded':
                         form.status = 'Pending'
-                    
+                
                     sendReceipt(order, charge["status"])
                     form.save()
                     return redirect('/')
@@ -99,32 +85,24 @@ def checkout(req):
                 form = CheckoutForm(req.POST, instance=order)
                 token = False
                 use_default = req.POST['use_default']
-                if not use_default:
+                if use_default == 'false':
                     token = req.POST['stripeToken']
                 total = order.get_cart_total * 100
                 if form.is_valid():
-                    if not use_default:
-                        cust = stripe.Customer.retrieve(customer.stripe_id)
-                        if not cust:
-                            cust = stripe.Customer.create(
-                                email=customer.email,
-                                source=req.POST['stripeToken']
-                            )
+                    if use_default =='false':
                         charge = stripe.Charge.create(
-                            customer=cust,
+                            source=token,
                             amount=int(total),
                             currency='php',
+                            description="order id: " + str(order.id),
+                            metadata={"email": customer.email},
                         )
                     else:
-                        # cust = stripe.Customer.delete(customer.stripe_id)
-                        # cust = stripe.Customer.create(
-                        #     email=customer.email,
-                        #     id=customer.stripe_id
-                        # )
                         charge = stripe.Charge.create(
                             customer=customer.stripe_id,
                             amount=int(total),
-                            currency="php"
+                            currency="php",
+                            description="order id: " + str(order.id),
                         )
                     form = form.save(commit=False)
                     form.customer = customer
@@ -160,21 +138,19 @@ def checkout(req):
             order = Order.objects.get(id=order_id)
             order_items = OrderItem.objects.filter(order=order)
             try:
-                del req.session['transaction_id']
+                del req.session['order_id']
             except KeyError:
                 pass
             form = CheckoutForm(req.POST, instance=order)
             token = req.POST['stripeToken']
             total = order.get_cart_total * 100
             if form.is_valid():
-                cust = stripe.Customer.create(
-                    email=req.POST['email'],
-                    source=req.POST['stripeToken']
-                )
                 charge = stripe.Charge.create(
-                    customer=cust,
+                    source=token,
                     amount=int(total),
                     currency='php',
+                    description="order id: " + str(order.id),
+                    metadata={"email": req.POST['email']},
                 )
                 if charge["status"] == 'succeeded':
                     order.status = 'Pending'
@@ -518,7 +494,7 @@ def remove_card(req):
 def cookie_to_order(req):
     cookieData = cookieCart(req)
     items = cookieData['items']
-    order = Order.objects.create(status='Pending')
+    order = Order.objects.create(status='Checkout')
     for item in items:
             product = Product.objects.get(id=item['id'])
             orderItem = OrderItem.objects.create(
@@ -534,7 +510,7 @@ def cookie_to_order(req):
 
 def readyOrderForCheckout(customer):
     order = Order.objects.get(customer=customer, status="Ordering")
-    order.status = "Pending"
+    order.status = "Checkout"
     items = order.orderitem_set.all()
 
     for item in reversed(items):
