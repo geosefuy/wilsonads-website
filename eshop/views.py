@@ -431,9 +431,11 @@ def updateItem(req):
         orderItem.quantity = (orderItem.quantity - 1)
         removed = True
         if orderItem.quantity == 0:
+            orderItem.delete()
             deleted = True
     elif action == 'delete':
         orderItem.quantity = 0
+        orderItem.delete()
         deleted = True
 
     orderItem.save()
@@ -452,9 +454,49 @@ def updateItem(req):
 
     return JsonResponse(data, safe=False)
 
+# For add to cart functionality
+def update_quantity(req):
+    data = json.loads(req.body)
+    productId = data['productId']
+    quantity = int(data['quantity'])
+
+    out_of_stock = False
+    first_time = False
+    added = False
+
+    customer = req.user.customer
+    product = Product.objects.get(id=productId)
+    order, created = Order.objects.get_or_create(customer=customer, status='Ordering')
+
+    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
+
+    if quantity != 0:
+        if orderItem.quantity == 0:
+            first_time = True
+
+        if product.stock < orderItem.quantity + quantity:
+            out_of_stock = True
+        else:
+            orderItem.quantity = (orderItem.quantity + quantity)
+            orderItem.save()
+            added = True
+    
+    if orderItem.quantity == 0:
+        orderItem.delete()
+    
+    data = {
+        'productname': product.name,
+        'out_of_stock': out_of_stock,
+        'first_time': first_time,
+        'added': added,
+    }
+
+    return JsonResponse(data, safe=False)
+
 def deleteCart(req):
     customer = req.user.customer
     order, created = Order.objects.get_or_create(customer=customer, status='Ordering')
+    OrderItem.objects.filter(order=order).delete()
     order.delete()
     order, created = Order.objects.get_or_create(customer=customer, status='Ordering')
     return JsonResponse('Order was deleted', safe=False)

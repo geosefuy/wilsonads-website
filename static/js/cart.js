@@ -190,7 +190,7 @@ function updateDelete(productId) {
 function updateCookie() {
 	console.log('CART:', cart)
 	document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
-	console.log(document.cookie)
+	//console.log(document.cookie)
 }
 
 function updateCheckoutBtn() {
