@@ -9,8 +9,8 @@ class MyCronJob(CronJobBase):
     code = 'eshop.my_cron_job'    # a unique code
 
     def do(self):
-        time_threshold = datetime.now() - timedelta(minutes=15)
-        orders = Order.objects.filter(status='Pending',date_ordered__lte=time_threshold)
+        time_threshold = datetime.now() - timedelta(minutes=45)
+        orders = Order.objects.filter(status='Checkout',date_ordered__lte=time_threshold)
         
         for order in orders:
             items = order.orderitem_set.all()
