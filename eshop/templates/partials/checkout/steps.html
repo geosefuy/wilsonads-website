@@ -377,20 +377,20 @@
 		if($('#credit_card').is(':checked')){
 			$('#card-element').show();
 			$('#default-card').show();
-			if ($('#use_default_card').is(':checked')) {
-				$('.new-card-form').hide()
-				$('.current-card-form').show()
-				$("#use_default").val(true)
-			}	
-			else {
-				$('.new-card-form').show()
-				$('.current-card-form').hide()
-				$("#use_default").val(false)
-			}
 		}
 		else{
 			$('#card-element').hide();
 			$('#default-card').hide();
+		}
+		if ($('#use_default_card').is(':checked')) {
+				$('.new-card-form').hide()
+				$('.current-card-form').show()
+				$("#use_default").val(true)
+		}	
+		else {
+			$('.new-card-form').show()
+			$('.current-card-form').hide()
+			$("#use_default").val(false)
 		}
 			
 		window.onbeforeunload = function(){

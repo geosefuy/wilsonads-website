@@ -63,6 +63,7 @@ class Order(models.Model):
         ('Pending', 'Pending'),
         ('Processing', 'Processing'),
         ('Delivered', 'Delivered'),
+        ('Cancelled', 'Cancelled'),
     )
 
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)

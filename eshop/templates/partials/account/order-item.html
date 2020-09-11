@@ -16,5 +16,14 @@
     </td>
     <td class="order-details">
         <a href="{% url 'order_details' profile.id order.id %}" class="btn-link">Details</a>
+        {% if order.status == 'Pending' %}
+        <a role="button" data-order="{{ order.id }}"
+            class="btn-link"
+            data-toggle="modal" 
+            data-target=".cancel-form-modal" 
+            data-backdrop="false">
+            Cancel Order
+        </a>
+        {% endif %}
     </td>
 </tr>

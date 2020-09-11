@@ -5,6 +5,7 @@ from .forms import *
 from .context_processor import cookieCart
 import json
 from django.contrib.auth import logout
+from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.signals import user_logged_in
 import stripe
@@ -85,7 +86,7 @@ def checkout(req):
                     form.email = customer.email
                     form.charge_id = charge["id"]
                     if charge["status"] == 'succeeded':
-                        form.status = 'Processing'
+                        form.status = 'Pending'
                     
                     sendReceipt(order, charge["status"])
                     form.save()
@@ -102,13 +103,7 @@ def checkout(req):
                     token = req.POST['stripeToken']
                 total = order.get_cart_total * 100
                 if form.is_valid():
-                    if use_default:
-                        charge = stripe.Charge.create(
-                            customer=customer.stripe_id,
-                            amount=int(total),
-                            currency="php"
-                        )
-                    else:
+                    if not use_default:
                         cust = stripe.Customer.retrieve(customer.stripe_id)
                         if not cust:
                             cust = stripe.Customer.create(
@@ -120,13 +115,23 @@ def checkout(req):
                             amount=int(total),
                             currency='php',
                         )
-                    
+                    else:
+                        # cust = stripe.Customer.delete(customer.stripe_id)
+                        # cust = stripe.Customer.create(
+                        #     email=customer.email,
+                        #     id=customer.stripe_id
+                        # )
+                        charge = stripe.Charge.create(
+                            customer=customer.stripe_id,
+                            amount=int(total),
+                            currency="php"
+                        )
                     form = form.save(commit=False)
                     form.customer = customer
                     form.email = customer.email
                     form.charge_id = charge["id"]
                     if charge["status"] == 'succeeded':
-                        form.status = 'Processing'
+                        form.status = 'Pending'
                     sendReceipt(order, charge["status"])
                     form.save()
                     return redirect('/')
@@ -190,8 +195,8 @@ def checkout(req):
             'order_items': order_items,
             'order': order
         }
-        response = render(req, 'pages/checkout.html', context)
-        response.delete_cookie('cart')
+    response = render(req, 'pages/checkout.html', context)
+    response.delete_cookie('cart')
     return response
 
 def product_details(req, product_id):
@@ -274,6 +279,8 @@ def account_orders(req, account_id):
         profile = Customer.objects.get(id=account_id)
         if req.user == profile.user:
             orders = Order.objects.filter(customer=account_id).order_by('-date_ordered').exclude(status='Ordering')
+            if req.method == 'POST':
+                pass
             context = {
                 'profile': profile,
                 'account': False,
@@ -281,26 +288,6 @@ def account_orders(req, account_id):
                 'order': True,
                 'detail': False,
                 'orders': orders
-            }
-            return render(req, 'pages/account-page.html', context)
-        else:
-            return render(req, 'pages/403.html')
-    else:
-        return render(req, 'pages/404.html')
-
-def order_details2(req, account_id, order_id):
-    profile = Customer.objects.filter(id=account_id)
-    if profile:
-        profile = Customer.objects.get(id=account_id)
-        if req.user == profile.user:
-            details = OrderItem.objects.filter(order=order_id)
-            context = {
-                'profile': profile,
-                'account': False,
-                'address': False,
-                'order': False,
-                'detail': True,
-                'details': details,
             }
             return render(req, 'pages/account-page.html', context)
         else:

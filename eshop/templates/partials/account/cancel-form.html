@@ -1,0 +1,25 @@
+{% load static %}
+
+<div class="modal fade cancel-form-modal" tabindex="-1" role="dialog" aria-labelledby="cancelFormModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content p-4">
+            <div class="modal-header pb-2 border-0">
+                <h2 class="title modal-title" id="cancel-form-title">Cancel Order Form</h5>
+            </div>
+            <div class="modal-body pt-2">
+                <form method="POST">
+                    {% csrf_token %}                                        
+                    <p>Are you sure you want to cancel this order?</p>
+                    <div class="d-flex justify-content-center pt-4">
+                        <div class="col-4">
+                            <input type="submit" class="btn btn-primary w-100" id="cancel-send-button" value="Yes">
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-secondary w-100" id="cancel-cancel-button" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

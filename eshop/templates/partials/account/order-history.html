@@ -17,9 +17,18 @@
                 {% include './order-item.html' with order=order %}
             {% endfor %}
         </tbody>
-        {% else %}
-        No orders made yet.
-        {% endif %}
     </table>
+        {% else %}
+    </table>
+        <p style="text-align: center;">No orders made yet.</p>
+        {% endif %}
 </div>
-{% include "../account/return-form.html" %}
+
+{% include "../account/cancel-form.html" %}
+<script type="text/javascript">
+    $('.cancel-form-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var order = button.data('order') // Extract info from data-* attributes
+        $('#order-id').val(order)
+    })
+</script>
