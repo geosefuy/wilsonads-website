@@ -8,7 +8,8 @@
             </div>
             <div class="modal-body pt-2">
                 <form method="POST">
-                    {% csrf_token %}                                        
+                    {% csrf_token %}             
+                    <input type="hidden" id="order-id" name="id" value="">                           
                     <p>Are you sure you want to cancel this order?</p>
                     <div class="d-flex justify-content-center pt-4">
                         <div class="col-4">

@@ -177,13 +177,13 @@ def checkout(req):
                     currency='php',
                 )
                 if charge["status"] == 'succeeded':
-                    order.status = 'Processing'
+                    order.status = 'Pending'
                     order.save()
 
                 form = form.save(commit=False)
                 form.charge_id = charge["id"]
                 if charge["status"] == 'succeeded':
-                        form.status = 'Processing'
+                    form.status = 'Pending'
                 sendReceipt(order, charge["status"])
                 form.save()
                 response = redirect('/')
@@ -280,14 +280,22 @@ def account_orders(req, account_id):
         if req.user == profile.user:
             orders = Order.objects.filter(customer=account_id).order_by('-date_ordered').exclude(status='Ordering')
             if req.method == 'POST':
-                pass
+                order = Order.objects.get(id=req.POST.get('id'))
+                order.status = 'Cancelled'
+                order.save()
+                refund = stripe.Refund.create(
+                    charge=order.charge_id,
+                )
+                if refund['status'] == "succeeded":
+                    order.status = 'Cancelled'
+                    order.save()
             context = {
                 'profile': profile,
                 'account': False,
                 'address': False,
                 'order': True,
                 'detail': False,
-                'orders': orders
+                'orders': orders,
             }
             return render(req, 'pages/account-page.html', context)
         else:
