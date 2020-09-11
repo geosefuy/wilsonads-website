@@ -23,7 +23,7 @@ def checkout(req):
             order = readyOrderForCheckout(customer)
             if not OrderItem.objects.filter(order=order).exists():
                 order.delete()
-                return redirect('/')
+                return redirect('/403')
 
         elif req.method == 'POST':
             order = Order.objects.filter(customer=customer, status='Checkout').latest('date_ordered')    
@@ -76,7 +76,7 @@ def checkout(req):
                 
                     sendReceipt(order, charge["status"])
                     form.save()
-                    return redirect('/')
+                    return redirect('/success')
         else:
             form = CheckoutForm(initial={
                 'email': customer.email,
@@ -112,7 +112,7 @@ def checkout(req):
                         form.status = 'Pending'
                     sendReceipt(order, charge["status"])
                     form.save()
-                    return redirect('/')
+                    return redirect('/success')
         context = {
             'form': form,
             'guest': False,
@@ -129,7 +129,7 @@ def checkout(req):
             order = cookie_to_order(req)
             if not OrderItem.objects.filter(order=order).exists():
                 order.delete()
-                return redirect('/')
+                return redirect('/403')
             order_items = OrderItem.objects.filter(order=order)
             req.session['order_id'] = order.id
             form = CheckoutForm()
@@ -162,7 +162,7 @@ def checkout(req):
                     form.status = 'Pending'
                 sendReceipt(order, charge["status"])
                 form.save()
-                response = redirect('/')
+                response = redirect('/success')
                 response.delete_cookie('cart')
                 return response
         context = {
@@ -244,9 +244,9 @@ def update_profile(req, account_id):
             }
             return render(req, 'pages/account-page.html', context)  
         else:
-            return render(req, 'pages/403.html')
+            return redirect('/403')
     else:
-        return render(req, 'pages/404.html')
+        return redirect('/404')
     
 
 def account_orders(req, account_id):
@@ -275,9 +275,9 @@ def account_orders(req, account_id):
             }
             return render(req, 'pages/account-page.html', context)
         else:
-            return render(req, 'pages/403.html')
+            return redirect('/403')
     else:
-        return render(req, 'pages/404.html')
+        return redirect('/404')
 
 def result(req):
     query = req.GET['q']
@@ -316,9 +316,9 @@ def order_details(req, account_id, order_id):
             }
             return render(req, 'pages/account-page.html', context)
         else:
-            return render(req, 'pages/403.html')
+            return redirect('/403')
     else:
-        return render(req, 'pages/404.html')
+        return redirect('/404')
 
 def create_and_update_address(req, account_id):
     profile = Customer.objects.filter(id=account_id)
@@ -354,9 +354,9 @@ def create_and_update_address(req, account_id):
             }
             return render(req, 'pages/account-page.html', context)
         else:
-            return render(req, 'pages/403.html')
+            return redirect('/403')
     else:
-        return render(req, 'pages/404.html')
+        return redirect('/404')
 
 def create_and_update_credit(req, account_id):
     hasCard = False
@@ -396,9 +396,9 @@ def create_and_update_credit(req, account_id):
             }
             return render(req, 'pages/account-page.html', context)
         else:
-            return render(req, 'pages/403.html')
+            return redirect('/403')
     else:
-        return render(req, 'pages/404.html')
+        return redirect('/404')
 
 # For add to cart functionality
 def updateItem(req):
@@ -522,6 +522,15 @@ def readyOrderForCheckout(customer):
 
     order.save()
     return order
+
+def success(req):
+    return render(req, 'pages/success.html')
+
+def error_403(req):
+    return render(req, 'pages/403.html')
+    
+def error_404(req):
+    return render(req, 'pages/404.html')
 
 # for signal
 def stripeCallback(sender, user, **kwargs):

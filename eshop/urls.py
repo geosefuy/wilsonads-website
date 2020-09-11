@@ -20,4 +20,7 @@ urlpatterns = [
     path('logout/', logout_view, name='logout_view'),
     path('search/', result, name='result'),
     path('remove_card/', remove_card, name='remove_card'),
+    path('403/', error_403, name='error_403'),
+    path('404/', error_404, name='error_404'),
+    path('success/', success, name='success'),
 ]

@@ -3,6 +3,17 @@
 
 {% block body %}
 <div class="container">
-    HTTP 404 Not Found
+    <div class="container py-5">
+        <div class="row">
+             <div class="col-md-2 text-center">
+                  <p><i class="fa fa-exclamation-triangle fa-5x"></i><br/>Status Code: 404</p>
+             </div>
+             <div class="col-md-10">
+                  <h3>Wait.....</h3>
+                  <p>Sorry about that. This page does not exist in our website.<br/>Please go back to the homepage to continue browsing.</p>
+                  <a class="btn btn-danger" href="{% url 'homepage' %}">Back to homepage</a>
+             </div>
+        </div>
+   </div>
 </div>
 {% endblock %}
