@@ -1,0 +1,50 @@
+@import "./fonts.css";
+
+.product-card {
+  width: 18rem;
+}
+
+.card {
+  height: max-content;
+  border: 0.2px solid #EAEAEA;
+  border-radius: 8px;
+  margin-bottom: 2rem; 
+}
+
+.card-grey {
+  background-color: #EFEFEF;
+}
+
+.card-img-top {
+  padding: 1rem;
+}
+
+.card-title {
+  font-family: 'Source Sans Pro SemiBold';
+}
+
+.card-text {
+  font-family: 'Source Sans Pro Medium';
+  font-size: 1rem;
+  color: #7B879E
+}
+
+.card-stock {
+  font-family: 'Source Sans Pro Medium';
+  font-size: 0.8rem;
+  color: #7B879E
+}
+
+.card-suffix {
+  font-family: 'Source Sans Pro SemiBold';
+}
+
+.card-shadow {
+  box-shadow: 0px 4px 32px rgba(0, 0, 0, 0.08)
+}
+
+.card-link {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 0;
+}

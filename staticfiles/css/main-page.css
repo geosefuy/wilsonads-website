@@ -1,0 +1,32 @@
+@import "./fonts.css";
+
+#productHeader1 {
+  margin: 6.5rem;  
+  position: relative; 
+  z-index: -1
+}
+
+#productHeader2 {
+  margin: 1rem; 
+  position: relative; 
+  z-index: -1
+}
+
+#imgEl1 {
+  position: absolute; 
+  width: 100%;
+}
+
+#imgEl2 {
+  width: 40%;
+}
+
+#imgEl2b {
+  position: absolute; 
+  width: 50%;
+}
+
+#header {
+  height: 6.5rem;
+  width: 100vw;
+}

@@ -1,0 +1,66 @@
+.title {
+    font-family: 'Source Sans Pro Bold';
+}
+
+.subtitle {
+    font-weight: 400
+}
+
+.side-nav {
+    margin-left: 0;
+}
+
+.side-nav-item {
+    width: 8rem;
+}
+
+.side-nav-item.active {
+    border-right: 3px solid #FFCC49;
+}
+
+.side-nav-item > a{
+    font-family: Source Sans Pro;
+    font-size: 16px;
+    color: #424242;
+    font-weight: 600;
+    padding: 0;
+}
+
+.label-field {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #424242;
+    font-weight: 600;
+    float: left;
+    min-width: max-content;
+}
+
+.label-field.right {
+    display: inline-block;
+    width: inherit;
+    text-align: right;
+}
+
+.form-inline {
+    padding: 10px 10px 10px 0px;
+}
+
+@media (min-width: 576px) {
+    .form-inline .form-control {
+        display: inline-block;
+        width: inherit;
+        vertical-align: middle;
+    }
+}
+
+@media screen and (max-width: 992px){
+    .side-nav-container {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .label-field.right {
+        display: inline-block;
+        width: inherit;
+        text-align: left;
+    }
+}

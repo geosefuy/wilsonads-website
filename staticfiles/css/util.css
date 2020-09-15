@@ -1,0 +1,47 @@
+@import './fonts.css';
+
+.header { 
+  font-family: OverpassEB;
+}
+
+.header-secondary {
+  font-family: 'Source Sans Pro Bold'; 
+}
+
+.price {
+  font-family: 'Source Sans Pro SemiBold';
+}
+
+.desc-header {
+  font-size: 1.5rem;
+}
+
+/* Margins and Padding */
+.m-md {
+  margin: 3rem;
+}
+
+.mx-md {
+  margin: 0 3rem;
+}
+
+.my-md {
+  margin: 3rem 0;
+}
+
+.m-big {
+  margin: 6.5rem;
+}
+
+.mx-big {
+  margin: 0 6.5rem;
+}
+
+.my-big {
+  margin: 6.5rem 0;
+}
+
+/* Colors */
+.text-yellow {
+  color: #FFCC49;
+}
