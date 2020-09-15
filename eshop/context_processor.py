@@ -74,3 +74,12 @@ def customerData(req):
 		return {'customer_id': customer.id, 'customer_fname': customer.fname, 'customer_lname': customer.lname, 'customer_email': customer.email}
 	else:
 		return {}
+
+def footer_contact_info(req):
+	contacts = FooterContactInfo.objects.all()
+	return {'footer_contact_infos':contacts}
+
+def homepage_banner(req):
+	banners = HomepageBanner.objects.all()
+	return {'homepage_banners':banners}
+

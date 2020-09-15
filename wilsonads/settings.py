@@ -97,6 +97,8 @@ TEMPLATES = [
                 'eshop.context_processor.product_categories',
                 'eshop.context_processor.cartData',
                 'eshop.context_processor.customerData',
+                'eshop.context_processor.footer_contact_info',
+                'eshop.context_processor.homepage_banner',
             ],
         },
     },

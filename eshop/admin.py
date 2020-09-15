@@ -10,6 +10,8 @@ admin.site.register(OrderItem)
 admin.site.register(ShippingAddress)
 admin.site.register(Gallery)
 admin.site.register(Return)
+admin.site.register(FooterContactInfo)
+admin.site.register(HomepageBanner)
 
 class CategoryAdmin(admin.ModelAdmin):
     exclude = ('slug',)

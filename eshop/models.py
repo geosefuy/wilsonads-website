@@ -168,3 +168,27 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+class FooterContactInfo(models.Model):
+    link = models.CharField(max_length=200, null=False)
+    prefix = models.CharField(max_length=200, null=False)
+    suffix = models.CharField(max_length=200, null=False)
+    fontawesome_icon = models.CharField(max_length=200, null=False)
+
+    def __str__(self):
+        return str(self.id)
+
+class HomepageBanner(models.Model):
+    image = models.ImageField(null=True, blank=True)
+    name = models.CharField(max_length=200, null=False)
+
+    def __str__(self):
+        return str(self.id)
+    
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url

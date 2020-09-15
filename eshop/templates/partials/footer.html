@@ -8,9 +8,9 @@
             <h1 class="d-flex d-md-none display-5 header m-0 text-white">Let's connect.</h1>
             
             <div class="d-flex flex-row flex-md-column">
-            {% include "./home/contact-info.html" with link='fb.com/WilsonadsComputer' prefix='fb.com' suffix='/WilsonadsComputer' icon='fab fa-facebook icon' %}
-            {% include "./home/contact-info.html" with link='instagr.am/wilsonads-computer' prefix='instagr.am' suffix='/wilsonads-computer' icon='fab fa-instagram icon'%}
-            {% include "./home/contact-info.html" with link='m.me/WilsonadsComputer' prefix='m.me' suffix='/WilsonadsComputer' icon='fab fa-facebook-messenger icon'%} 
+            {% for contact in footer_contact_infos %}
+                {% include "./home/contact-info.html" with link=contact.link prefix=contact.prefix suffix=contact.suffix icon=contact.fontawesome_icon %}
+            {% endfor %}
             </div>
         </div>
         
