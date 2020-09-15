@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import cloudinary
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -48,6 +49,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
 
     'django_cron',
+
+    'cloudinary',
 ]
 
 SITE_ID = 3
@@ -203,3 +206,9 @@ LOGGING = {
         },
     },
 }
+
+cloudinary.config(
+    cloud_name = 'dxknp9c0t',
+    api_key = '918977598645319',
+    api_secret = '-WkLMxNp2_VbPxliaz33n29McUc'
+)

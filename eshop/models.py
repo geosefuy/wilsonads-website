@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.core.validators import validate_email
 import uuid
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -45,7 +46,7 @@ class Product(models.Model):
     price = models.FloatField()
     stock = models.PositiveIntegerField()
     description = models.TextField(max_length=500, default="")
-    image = models.ImageField(null=True, blank=True)
+    image =  CloudinaryField('image')
     def __str__(self):
         return self.name
     
@@ -98,9 +99,9 @@ class Order(models.Model):
         return total
 
 class Gallery(models.Model):
-    image1 = models.ImageField(null=True, blank=True)
-    image2 = models.ImageField(null=True, blank=True)
-    image3 = models.ImageField(null=True, blank=True)
+    image1 = CloudinaryField('image')
+    image2 = CloudinaryField('image')
+    image3 = CloudinaryField('image')
     productid = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self):
         return str(self.id)
@@ -172,7 +173,7 @@ class FooterContactInfo(models.Model):
         return str(self.id)
 
 class HomepageBanner(models.Model):
-    image = models.ImageField(null=True, blank=True)
+    image = CloudinaryField('image')
     name = models.CharField(max_length=200, null=False)
 
     def __str__(self):
