@@ -23,7 +23,20 @@
     </div>
 </div>
 
-{% include "../account/return-form.html" %}
+<style>
+body.modal-open .supreme-container{
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+}
+
+.modal-open .modal{
+    background-color: rgba(0,0,0,0.7);
+}
+</style>
+
 <script type="text/javascript">
 $('.return-form-modal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal

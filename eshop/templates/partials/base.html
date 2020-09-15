@@ -76,12 +76,18 @@
   </script>
 </head>
 <body>
-    {% include './header.html' %}
+  <div class="supreme-container">
+  {% include './header.html' %}
     <div class="wrapper mb-5">
       {% block body %}{% endblock %}
     </div>
-    {% include '../partials/cart/sidebar.html' %}
+  {% include '../partials/cart/sidebar.html' %}
   {% include '../partials/footer.html' %}
+  </div>
+
+  {% if detail %}
+    {% include "partials/account/return-form.html" %}
+  {% endif %}
   <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 </body>
 </html>
