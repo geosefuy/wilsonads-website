@@ -20,13 +20,15 @@
     <td class="order-total">
         &#8369;{{ detail.get_total|floatformat:2 }}
     </td>
+    {% if item.status == 'Delivered' %}
     <td class="order-return">
         <a role="button" data-orderitem="{{ detail.id }}"
             class="btn-link"
             data-toggle="modal" 
             data-target=".return-form-modal" 
             data-backdrop="false">
-            Return Item
+            Request for Return
         </a>
     </td>
+    {% endif %}
 </tr>
