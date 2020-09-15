@@ -173,6 +173,8 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Stripe
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51HNJujJVWnIKAGtwoGBT2WNyLI3R1lx3flRHSEU4miDcaQglxS4d22iH911ZipmMHvf6jw8H8zjQ7f58OXPVcTua00Wk9LH18b'
 STRIPE_SECRET_KEY = 'sk_test_51HNJujJVWnIKAGtw4dP4ZClqTq1tfXGw4LRiFLWcBSKPixzaiPGdXlp3uMn9w7nam9CTw1vDpIp0E0TLtVKMWTCZ00TsmDBu3q'
