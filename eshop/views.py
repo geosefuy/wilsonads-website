@@ -296,7 +296,7 @@ def order_details(req, account_id, order_id):
     if profile:
         profile = Customer.objects.get(id=account_id)
         if req.user == profile.user:
-            item = Order.objects.get(order=order_id)
+            item = Order.objects.get(id=order_id)
             details = OrderItem.objects.filter(order=order_id)
             form = ReturnForm()
             if req.method == 'POST':

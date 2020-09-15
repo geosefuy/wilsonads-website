@@ -151,7 +151,7 @@ class Return(models.Model):
     )
 
     item = models.ForeignKey(OrderItem, on_delete=models.CASCADE, blank=True, null=True)
-    description = models.TextField(max_length=500, null=True, blank=True)
+    description = models.TextField(max_length=500, null=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS, default="Pending")
 
 class ShippingAddress(models.Model):
