@@ -118,8 +118,12 @@ WSGI_APPLICATION = 'wilsonads.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'d5jgphv3hsjqgn',
+        'USER': 'mapcaigydtvlsa',
+        'PASSWORD':'776abb807a8b70d7189be1e84788d4ba4e2b05a63f7e9218de0a320be7632ee2',
+        'HOST': 'ec2-52-207-124-89.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
