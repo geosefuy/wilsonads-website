@@ -101,7 +101,6 @@ class Gallery(models.Model):
     image1 = models.ImageField(null=True, blank=True)
     image2 = models.ImageField(null=True, blank=True)
     image3 = models.ImageField(null=True, blank=True)
-    image4 = models.ImageField(null=True, blank=True)
     productid = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self):
         return str(self.id)
@@ -122,12 +121,6 @@ class Gallery(models.Model):
     def image3URL(self):
         try:
             url = self.image3.url
-        except:
-            url = ''
-        return url
-    def image4URL(self):
-        try:
-            url = self.image4.url
         except:
             url = ''
         return url
