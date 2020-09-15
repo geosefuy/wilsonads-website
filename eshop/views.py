@@ -293,6 +293,7 @@ def result(req):
 
 def order_details(req, account_id, order_id):
     profile = Customer.objects.filter(id=account_id)
+    error = False
     if profile:
         profile = Customer.objects.get(id=account_id)
         if req.user == profile.user:
@@ -301,7 +302,10 @@ def order_details(req, account_id, order_id):
             form = ReturnForm()
             if req.method == 'POST':
                 form = ReturnForm(req.POST)
-                if form.is_valid():
+                returns = Return.objects.filter(item=req.POST.get('item'), status='Pending').exists()
+                if returns:
+                    error = "Your return form for this item has not been approved. Please contact us for a follow-up instead."
+                if form.is_valid() and not returns:
                     form = form.save(commit=False)
                     form.item = OrderItem.objects.get(id=req.POST.get('item'))
                     form.save()
@@ -314,7 +318,8 @@ def order_details(req, account_id, order_id):
                 'profile': profile,
                 'details': details,
                 'item': item,
-                'form': form
+                'form': form,
+                'error': error
             }
             return render(req, 'pages/account-page.html', context)
         else:

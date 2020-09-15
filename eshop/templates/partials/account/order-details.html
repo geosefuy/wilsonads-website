@@ -2,7 +2,10 @@
 
 <div class="col-md">
     <div class="table-responsive col">
-        <h2 class="title col-sm mb-3">Order Details</h2>        
+        <h2 class="title col-sm mb-3">Order Details</h2>
+        {% if error %}
+        <p class="return-message" style="font-size: 12px; color: rgb(241, 80, 80);">{{ error }}</p>
+        {% endif %}    
         <table class="table order-history ml-3">
             <thead>
                 <tr class="text-center">

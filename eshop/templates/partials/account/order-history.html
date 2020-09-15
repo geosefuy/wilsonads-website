@@ -25,6 +25,13 @@
 </div>
 
 {% include "../account/cancel-form.html" %}
+
+<style>
+    .modal-open .modal{
+        background-color: rgba(0,0,0,0.7);
+    }
+</style>
+
 <script type="text/javascript">
     $('.cancel-form-modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
