@@ -98,6 +98,14 @@ def checkout(req):
                     token = req.POST['stripeToken']
                 total = order.get_cart_total * 100
                 if form.is_valid():
+                    form = form.save(commit=False)
+                    form.customer = customer
+                    form.email = customer.email
+                    form.charge_id = charge["id"]
+                    if charge["status"] == 'succeeded':
+                        form.status = 'Pending'
+                    sendReceipt(order, charge["status"])
+                    form.save()
                     if use_default =='false':
                         charge = stripe.Charge.create(
                             source=token,
@@ -113,14 +121,14 @@ def checkout(req):
                             currency="php",
                             description="order id: " + str(order.id),
                         )
-                    form = form.save(commit=False)
-                    form.customer = customer
-                    form.email = customer.email
-                    form.charge_id = charge["id"]
-                    if charge["status"] == 'succeeded':
-                        form.status = 'Pending'
-                    sendReceipt(order, charge["status"])
-                    form.save()
+                    # form = form.save(commit=False)
+                    # form.customer = customer
+                    # form.email = customer.email
+                    # form.charge_id = charge["id"]
+                    # if charge["status"] == 'succeeded':
+                    #     form.status = 'Pending'
+                    # sendReceipt(order, charge["status"])
+                    # form.save()
                     return redirect('/success')
         context = {
             'form': form,
