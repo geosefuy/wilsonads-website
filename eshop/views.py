@@ -177,8 +177,7 @@ def checkout(req):
 
 def product_details(req, product_id):
     product = Product.objects.get(id=product_id)
-    gallery = Gallery.objects.filter(productid=product)
-    print(gallery)
+    gallery = Gallery.objects.filter(productid=product_id)
     context = {
         'product': product,
         'gallery': gallery
