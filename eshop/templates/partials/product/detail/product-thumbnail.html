@@ -2,6 +2,8 @@
 <div class="col-3 product-thumbnail">
     {% if img %}
         <img src="{{ img }}" class="img-fluid" onclick="changeMainImage(this)">
+    {% else %}
+        <img src="{% static '/images/placeholder.jpg' %}" class="img-fluid">
     {% endif %}
 </div>
 
