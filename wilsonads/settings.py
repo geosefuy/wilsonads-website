@@ -205,3 +205,10 @@ cloudinary.config(
     api_key = '918977598645319',
     api_secret = '-WkLMxNp2_VbPxliaz33n29McUc'
 )
+
+# Force https redirect
+SECURE_SSL_REDIRECT = True
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# Force HTTPS in the final URIs
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
