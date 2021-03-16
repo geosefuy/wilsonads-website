@@ -28,8 +28,8 @@ source myvenv/Scripts/activate
     ```
     pip install -r requirements.txt
     ```
-### Running (i have no idea pero follow niyo na lang para masaya haha)
-1. Run these also every time mag modify ng model.py
+### Developer's Tools (Running)
+1. Run when changing model.py
     ```
     manage.py makemigrations
     manage.py migrate
